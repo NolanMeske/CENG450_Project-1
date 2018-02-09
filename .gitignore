@@ -1,0 +1,10 @@
+# intermediate build files
+*
+!*.vhd
+!*.sch
+!*.xise
+!*.xco
+!*.wcfg
+!*.gitignore
+
+#Ass UCF files?
