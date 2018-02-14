@@ -57,7 +57,6 @@
         <signal name="y(1)" />
         <signal name="y(0)" />
         <signal name="lshift_enable" />
-        <signal name="XLXN_74" />
         <signal name="a(15:0)" />
         <signal name="a(15)" />
         <signal name="a(14)" />
@@ -84,8 +83,6 @@
         <signal name="d(9)" />
         <signal name="d(8)" />
         <signal name="d(7)" />
-        <signal name="d(6)" />
-        <signal name="d(5)" />
         <signal name="d(4)" />
         <signal name="d(3)" />
         <signal name="d(2)" />
@@ -113,6 +110,8 @@
         <signal name="b(1)" />
         <signal name="b(0)" />
         <signal name="y(15:0)" />
+        <signal name="d(6)" />
+        <signal name="d(5)" />
         <port polarity="Input" name="lshift_enable" />
         <port polarity="Input" name="a(15:0)" />
         <port polarity="Input" name="b(2:0)" />
@@ -410,13 +409,13 @@
             <blockpin signalname="XLXN_60" name="O" />
         </block>
         <block symbolname="muxcy" name="XLXI_79">
-            <blockpin signalname="d(6)" name="CI" />
+            <blockpin signalname="d(8)" name="CI" />
             <blockpin signalname="d(4)" name="DI" />
             <blockpin signalname="b(2)" name="S" />
             <blockpin signalname="XLXN_59" name="O" />
         </block>
         <block symbolname="muxcy" name="XLXI_80">
-            <blockpin signalname="d(5)" name="CI" />
+            <blockpin signalname="d(9)" name="CI" />
             <blockpin signalname="d(5)" name="DI" />
             <blockpin signalname="b(2)" name="S" />
             <blockpin signalname="XLXN_58" name="O" />
@@ -1278,12 +1277,12 @@
             <wire x2="1056" y1="704" y2="704" x1="160" />
             <wire x2="1056" y1="704" y2="1008" x1="1056" />
         </branch>
-        <branch name="d(5)">
+        <branch name="d(9)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="160" y="624" type="branch" />
             <wire x2="1424" y1="624" y2="624" x1="160" />
             <wire x2="1424" y1="624" y2="1008" x1="1424" />
         </branch>
-        <branch name="d(6)">
+        <branch name="d(8)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="160" y="544" type="branch" />
             <wire x2="1808" y1="544" y2="544" x1="160" />
             <wire x2="1808" y1="544" y2="1008" x1="1808" />

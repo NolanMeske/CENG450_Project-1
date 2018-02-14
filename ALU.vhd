@@ -56,74 +56,112 @@ architecture behavioural of alu is
 			P		:	OUT	STD_LOGIC_VECTOR(31 downto 0));
 	END COMPONENT;
 
-	signal a						:	STD_LOGIC_VECTOR (15 downto 0);
-	signal b						:	STD_LOGIC_VECTOR (2 downto 0);
-	signal y						:	STD_LOGIC_VECTOR (15 downto 0);
-	signal lshift_enable		:	STD_LOGIC;
+	-- shifter1 signals
+	signal a1						:	STD_LOGIC_VECTOR (15 downto 0);
+	signal b1						:	STD_LOGIC_VECTOR (2 downto 0);
+	signal y1						:	STD_LOGIC_VECTOR (15 downto 0);
+	signal lshift_enable1		:	STD_LOGIC;
+	
+	-- shifter2 signals
+	signal a2						:	STD_LOGIC_VECTOR (15 downto 0);
+	signal b2						:	STD_LOGIC_VECTOR (2 downto 0);
+	signal y2						:	STD_LOGIC_VECTOR (15 downto 0);
+	signal lshift_enable2		:	STD_LOGIC;
+	
+	-- other signals
 	signal X_mult,Y_mult		:	STD_LOGIC_VECTOR (15 downto 0);
 	signal P						: 	STD_LOGIC_VECTOR (31 downto 0);
 
-	begin
+begin
 	--write operation 
 	
 	-- b: control bits
 	-- a: input a15 MSB
 	-- y: output y15 MSB
-	UUT: barrel_shift PORT MAP(
-		lshift_enable => lshift_enable, 
-		a => a, 
-		b => b, 
-		y => y
+	
+	shifter1: barrel_shift PORT MAP(
+		lshift_enable => lshift_enable1, 
+		a => a1, 
+		b => b1, 
+		y => y1
    );
+	
+	shifter2: barrel_shift PORT MAP(
+		lshift_enable => lshift_enable2,
+		a => a2,
+		b => b2,
+		y => y2
+	);		
+	
 	mult: vmul16x16p PORT MAP(
 		X => X_mult,
 		Y => Y_mult,
 		P =>P
 	);
 	
+	--Shifter
+	lshift_enable1 <=
+	'0' when (alu_mode = "110") else
+	'1' when (alu_mode = "101");
+	
+	lshift_enable2 <=
+	'0' when (alu_mode = "110") else
+	'1' when (alu_mode = "101");
+	
+	b1 <=
+	"000" when (in2 = X"00") else
+	"001" when (in2 = X"01") else
+	"010" when (in2 = X"02") else
+	"011" when (in2 = X"03") else
+	"100" when (in2 = X"04") else
+	"101" when (in2 = X"05") else
+	"110" when (in2 = X"06") else
+	"111" when (in2 = X"07") else
+	"111";
+	
+	b2 <=
+	"001" when (in2 = X"08") else
+	"010" when (in2 = X"09") else
+	"011" when (in2 = X"0A") else
+	"100" when (in2 = X"0B") else
+	"101" when (in2 = X"0C") else
+	"110" when (in2 = X"0D") else
+	"111" when (in2 = X"0E") else
+	"000";
+	
+	a1 <= in1 when (alu_mode = "101" or alu_mode = "110");
+	a2 <= y1;
 
-		--Shift
-		b <=
-		"001" when (alu_mode = "110") else						-- shift right by one
-		"001" when (alu_mode = "101");							-- shift left by one
+	--Multiplier		
+	X_mult <=
+	std_logic_vector(signed(in1)) when(alu_mode = "011") else
+	X"0000";
+	
+	Y_mult <=
+	std_logic_vector(signed(in2)) when(alu_mode = "011") else
+	X"0000";
 
-		lshift_enable <=
-		'0' when (alu_mode = "110") else							-- shift right
-		'1' when (alu_mode = "101");								-- shift left
-		
-		a <= 
-		in1 when (alu_mode = "110" or alu_mode = "101"); 	-- load shifter
+	result <= 
+	std_logic_vector(signed(in1) + signed(in2)) 									when(alu_mode = "001") else	-- addition
+	std_logic_vector(signed(in1) - signed(in2)) 									when(alu_mode = "010") else	-- subtraction
+	--std_logic_vector(signed(in1(7 downto 0)) * signed(in2(7 downto 0))) 	when(alu_mode = "011") else	-- multiply CHANGE THIS
+	std_logic_vector(signed(P(15 downto 0)))										when(alu_mode = "011") else
+	std_logic_vector(unsigned(in1) nand unsigned(in2)) 						when(alu_mode = "100") else	-- NAND
+	std_logic_vector(y2)														 			when(alu_mode = "101" and in2 < X"08") else							-- shift left less than 8
+	std_logic_vector(y2) 																when(alu_mode = "110" and in2 < X"08") else							-- shift right less than 8
+	std_logic_vector(y2)																	when(alu_mode = "101" and (in2 >= X"08" or in2 = X"08")) else	-- shift left more than 8
+	std_logic_vector(y2)																	when(alu_mode = "110" and (in2 >= X"08" or in2 = X"08")) else	-- shift right more than 8
+	std_logic_vector(unsigned(in1));
 
-		--Multiplier
-		
-		X_mult <=
-		std_logic_vector(signed(in1)) when(alu_mode = "011") else
-		X"0000";
-		
-		Y_mult <=
-		std_logic_vector(signed(in2)) when(alu_mode = "011") else
-		X"0000";
-
-
-		result <= 
-		std_logic_vector(signed(in1) + signed(in2)) 									when(alu_mode = "001") else	-- addition
-		std_logic_vector(signed(in1) - signed(in2)) 									when(alu_mode = "010") else	-- subtraction
-		--std_logic_vector(signed(in1(7 downto 0)) * signed(in2(7 downto 0))) 	when(alu_mode = "011") else	-- multiply CHANGE THIS
-		std_logic_vector(signed(P(15 downto 0)))										when(alu_mode = "011") else
-		std_logic_vector(unsigned(in1) nand unsigned(in2)) 						when(alu_mode = "100") else	-- NAND
-		std_logic_vector(y)														 			when(alu_mode = "101") else	-- shift left once
-		std_logic_vector(y) 																	when(alu_mode = "110") else	-- shift right once
-		std_logic_vector(unsigned(in1));
-
-		z_flag <= 
-			'0'	when (alu_mode = "111") and (unsigned(in1) /= 0) else
-			'1'	when (alu_mode = "111") and (unsigned(in1) = 0) else
-			'0';
-		  
-		n_flag <=
-			'1' 	when (alu_mode = "111") and (signed(in1) < 0) else
-			'0' 	when (alu_mode = "111") and (signed(in1) >= 0) else
-			'0';
+	z_flag <= 
+		'0'	when (alu_mode = "111") and (unsigned(in1) /= 0) else
+		'1'	when (alu_mode = "111") and (unsigned(in1) = 0) else
+		'0';
+	  
+	n_flag <=
+		'1' 	when (alu_mode = "111") and (signed(in1) < 0) else
+		'0' 	when (alu_mode = "111") and (signed(in1) >= 0) else
+		'0';
 			
 end behavioural;
 

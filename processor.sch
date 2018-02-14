@@ -31,7 +31,7 @@
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="rd_index1(2:0)" />
         <blockdef name="alu">
-            <timestamp>2018-2-6T3:21:45</timestamp>
+            <timestamp>2018-2-13T1:17:19</timestamp>
             <rect width="288" x="64" y="-320" height="320" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
             <line x2="0" y1="-224" y2="-224" x1="64" />
@@ -47,7 +47,7 @@
             <line x2="416" y1="-32" y2="-32" x1="352" />
         </blockdef>
         <blockdef name="register_file">
-            <timestamp>2018-2-6T3:21:51</timestamp>
+            <timestamp>2018-2-13T1:17:24</timestamp>
             <rect width="320" x="64" y="-448" height="448" />
             <line x2="0" y1="-416" y2="-416" x1="64" />
             <line x2="0" y1="-352" y2="-352" x1="64" />
