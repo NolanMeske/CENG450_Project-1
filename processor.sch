@@ -29,13 +29,13 @@
         <signal name="XLXN_165(15:0)" />
         <signal name="XLXN_166" />
         <signal name="XLXN_169(15:0)" />
-        <signal name="XLXN_170(15:0)" />
+        <signal name="OUT(15:0)" />
         <port polarity="Output" name="n_flag" />
         <port polarity="Output" name="z_flag" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="rst" />
         <port polarity="Input" name="IN(15:0)" />
-        <port polarity="Output" name="XLXN_170(15:0)" />
+        <port polarity="Output" name="OUT(15:0)" />
         <blockdef name="alu">
             <timestamp>2018-2-13T1:17:19</timestamp>
             <rect width="288" x="64" y="-320" height="320" />
@@ -176,7 +176,7 @@
             <blockpin signalname="XLXN_86(15:0)" name="to_in1(15:0)" />
             <blockpin signalname="XLXN_169(15:0)" name="to_in2(15:0)" />
             <blockpin name="clk" />
-            <blockpin signalname="XLXN_170(15:0)" name="to_out(15:0)" />
+            <blockpin signalname="OUT(15:0)" name="to_out(15:0)" />
         </block>
         <block symbolname="ex_mem_reg" name="XLXI_7">
             <blockpin signalname="XLXN_90(15:0)" name="ar_in(15:0)" />
@@ -376,9 +376,9 @@
             <wire x2="2848" y1="1008" y2="1024" x1="2848" />
             <wire x2="3248" y1="1008" y2="1008" x1="2848" />
         </branch>
-        <branch name="XLXN_170(15:0)">
+        <branch name="OUT(15:0)">
             <wire x2="2560" y1="1280" y2="1280" x1="2448" />
         </branch>
-        <iomarker fontsize="28" x="2560" y="1280" name="XLXN_170(15:0)" orien="R0" />
+        <iomarker fontsize="28" x="2560" y="1280" name="OUT(15:0)" orien="R0" />
     </sheet>
 </drawing>
