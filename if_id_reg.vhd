@@ -51,7 +51,7 @@ begin
 	
 	to_rd1 <=
 		data (5 downto 3) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
-		data (8 downto 6) when (op_code = "0000101" or op_code = "0000110") else
+		data (8 downto 6) when (op_code = "0000101" or op_code = "0000110" or op_code = "0100000") else
 		"000";
 		
 	to_rd2 <=
@@ -59,7 +59,7 @@ begin
 		"000";
 		
 	to_wr <=
-		data (8 downto 6) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
+		data (8 downto 6) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100" or op_code = "0100001") else
 		"000";
 		
 	wr_sel <=
