@@ -29,11 +29,13 @@
         <signal name="XLXN_165(15:0)" />
         <signal name="XLXN_166" />
         <signal name="XLXN_169(15:0)" />
+        <signal name="XLXN_170(15:0)" />
         <port polarity="Output" name="n_flag" />
         <port polarity="Output" name="z_flag" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="rst" />
         <port polarity="Input" name="IN(15:0)" />
+        <port polarity="Output" name="XLXN_170(15:0)" />
         <blockdef name="alu">
             <timestamp>2018-2-13T1:17:19</timestamp>
             <rect width="288" x="64" y="-320" height="320" />
@@ -104,7 +106,10 @@
             <rect width="256" x="64" y="-256" height="640" />
         </blockdef>
         <blockdef name="id_ex_reg">
-            <timestamp>2018-2-21T2:41:26</timestamp>
+            <timestamp>2018-2-21T18:16:7</timestamp>
+            <line x2="0" y1="224" y2="224" x1="64" />
+            <rect width="64" x="320" y="212" height="24" />
+            <line x2="384" y1="224" y2="224" x1="320" />
             <rect width="64" x="0" y="148" height="24" />
             <line x2="0" y1="160" y2="160" x1="64" />
             <rect width="64" x="320" y="-44" height="24" />
@@ -119,7 +124,7 @@
             <line x2="384" y1="-224" y2="-224" x1="320" />
             <rect width="64" x="320" y="-44" height="24" />
             <line x2="384" y1="-32" y2="-32" x1="320" />
-            <rect width="256" x="64" y="-256" height="448" />
+            <rect width="256" x="64" y="-256" height="512" />
         </blockdef>
         <blockdef name="ex_mem_reg">
             <timestamp>2018-2-21T2:46:12</timestamp>
@@ -170,6 +175,8 @@
             <blockpin signalname="XLXN_85(6:0)" name="op(6:0)" />
             <blockpin signalname="XLXN_86(15:0)" name="to_in1(15:0)" />
             <blockpin signalname="XLXN_169(15:0)" name="to_in2(15:0)" />
+            <blockpin name="clk" />
+            <blockpin signalname="XLXN_170(15:0)" name="to_out(15:0)" />
         </block>
         <block symbolname="ex_mem_reg" name="XLXI_7">
             <blockpin signalname="XLXN_90(15:0)" name="ar_in(15:0)" />
@@ -296,10 +303,10 @@
             <wire x2="1872" y1="672" y2="672" x1="560" />
             <wire x2="1872" y1="672" y2="1216" x1="1872" />
             <wire x2="2064" y1="1216" y2="1216" x1="1872" />
-            <wire x2="1872" y1="1216" y2="1312" x1="1872" />
-            <wire x2="2512" y1="1312" y2="1312" x1="1872" />
-            <wire x2="2512" y1="1136" y2="1312" x1="2512" />
-            <wire x2="4576" y1="1136" y2="1136" x1="2512" />
+            <wire x2="1872" y1="1216" y2="1440" x1="1872" />
+            <wire x2="2928" y1="1440" y2="1440" x1="1872" />
+            <wire x2="4576" y1="1136" y2="1136" x1="2928" />
+            <wire x2="2928" y1="1136" y2="1440" x1="2928" />
         </branch>
         <branch name="XLXN_83(15:0)">
             <wire x2="1696" y1="1216" y2="1216" x1="1680" />
@@ -369,5 +376,9 @@
             <wire x2="2848" y1="1008" y2="1024" x1="2848" />
             <wire x2="3248" y1="1008" y2="1008" x1="2848" />
         </branch>
+        <branch name="XLXN_170(15:0)">
+            <wire x2="2560" y1="1280" y2="1280" x1="2448" />
+        </branch>
+        <iomarker fontsize="28" x="2560" y="1280" name="XLXN_170(15:0)" orien="R0" />
     </sheet>
 </drawing>
