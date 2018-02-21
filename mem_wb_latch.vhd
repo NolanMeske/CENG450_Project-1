@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    18:49:17 02/20/2018 
+-- Create Date:    14:24:17 02/21/2018 
 -- Design Name: 
--- Module Name:    mem_wb_reg - Behavioral 
+-- Module Name:    mem_wb_latch - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,23 +29,23 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity mem_wb_reg is
-    Port ( ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
+entity mem_wb_latch is
+    Port ( wr_en_in : in  STD_LOGIC;
+           ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
+           wr_en_out : out  STD_LOGIC;
            ar_out : out  STD_LOGIC_VECTOR (15 downto 0);
-			  wr_en	: out	STD_LOGIC;
-           op : in  STD_LOGIC_VECTOR (6 downto 0));
-end mem_wb_reg;
+           clk : in  STD_LOGIC);
+end mem_wb_latch;
 
-architecture Behavioral of mem_wb_reg is
-	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
+architecture Behavioral of mem_wb_latch is
+
 begin
 
-op_code <= op;
-
-ar_out <= ar_in;
-
-wr_en <=
-	'1' when (op_code = "0100001" or op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
-	'0';
+	latch: process (clk)
+	begin
+		wr_en_out <= wr_en_in;
+		ar_out <= ar_in;
+	end process;
 
 end Behavioral;
+
