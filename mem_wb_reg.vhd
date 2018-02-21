@@ -45,7 +45,7 @@ op_code <= op;
 ar_out <= ar_in;
 
 wr_en <=
-	'1' when op_code = "0100001" else
+	'1' when (op_code = "0100001" or op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
 	'0';
 
 end Behavioral;
