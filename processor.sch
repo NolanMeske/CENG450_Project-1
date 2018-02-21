@@ -175,7 +175,7 @@
             <blockpin signalname="XLXN_85(6:0)" name="op(6:0)" />
             <blockpin signalname="XLXN_86(15:0)" name="to_in1(15:0)" />
             <blockpin signalname="XLXN_169(15:0)" name="to_in2(15:0)" />
-            <blockpin name="clk" />
+            <blockpin signalname="clk" name="clk" />
             <blockpin signalname="OUT(15:0)" name="to_out(15:0)" />
         </block>
         <block symbolname="ex_mem_reg" name="XLXI_7">
@@ -380,5 +380,9 @@
             <wire x2="2560" y1="1280" y2="1280" x1="2448" />
         </branch>
         <iomarker fontsize="28" x="2560" y="1280" name="OUT(15:0)" orien="R0" />
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1952" y="1280" type="branch" />
+            <wire x2="2064" y1="1280" y2="1280" x1="1952" />
+        </branch>
     </sheet>
 </drawing>
