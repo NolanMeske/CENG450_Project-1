@@ -31,12 +31,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity if_id_reg is
     Port ( clk : in std_logic;
-				data : in  STD_LOGIC_VECTOR (15 downto 0);
+			  data : in  STD_LOGIC_VECTOR (15 downto 0);
            to_rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
            to_rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
            to_wr : out  STD_LOGIC_VECTOR (2 downto 0);
            op : out  STD_LOGIC_VECTOR (6 downto 0);
-			  c1	:	out STD_LOGIC_VECTOR (3 downto 0));
+			  c1	:	out STD_LOGIC_VECTOR (3 downto 0);
+			  wr_sel : out STD_LOGIC);
 end if_id_reg;
 
 architecture Behavioral of if_id_reg is
@@ -60,6 +61,11 @@ begin
 	to_wr <=
 		data (8 downto 6) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
 		"000";
+		
+	wr_sel <=
+		'1' when(op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100" or op_code = "0000101" or op_code = "0000110") else
+		'0' when(op_code = "0100001") else
+		'0';
 		
 	c1 <=
 		data (3 downto 0) when (op_code = "0000101" or op_code = "0000110") else

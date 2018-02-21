@@ -24,11 +24,15 @@
         <signal name="XLXN_3(15:0)" />
         <signal name="XLXN_85(6:0)" />
         <signal name="rst" />
-        <signal name="XLXN_161(15:0)" />
+        <signal name="op(2:0)" />
+        <signal name="XLXN_163(15:0)" />
+        <signal name="IN(15:0)" />
+        <signal name="XLXN_165(15:0)" />
         <port polarity="Output" name="n_flag" />
         <port polarity="Output" name="z_flag" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="rst" />
+        <port polarity="Input" name="IN(15:0)" />
         <blockdef name="alu">
             <timestamp>2018-2-13T1:17:19</timestamp>
             <rect width="288" x="64" y="-320" height="320" />
@@ -65,7 +69,7 @@
             <line x2="448" y1="-32" y2="-32" x1="384" />
         </blockdef>
         <blockdef name="program_counter">
-            <timestamp>2018-2-21T0:33:0</timestamp>
+            <timestamp>2018-2-21T3:9:45</timestamp>
             <rect width="256" x="64" y="-64" height="64" />
             <line x2="0" y1="-32" y2="-32" x1="64" />
             <rect width="64" x="320" y="-44" height="24" />
@@ -133,6 +137,19 @@
             <rect width="64" x="320" y="-44" height="24" />
             <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
+        <blockdef name="m2_1">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <line x2="96" y1="-64" y2="-192" x1="96" />
+            <line x2="96" y1="-96" y2="-64" x1="256" />
+            <line x2="256" y1="-160" y2="-96" x1="256" />
+            <line x2="256" y1="-192" y2="-160" x1="96" />
+            <line x2="96" y1="-32" y2="-32" x1="176" />
+            <line x2="176" y1="-80" y2="-32" x1="176" />
+            <line x2="96" y1="-32" y2="-32" x1="0" />
+            <line x2="256" y1="-128" y2="-128" x1="320" />
+            <line x2="96" y1="-96" y2="-96" x1="0" />
+            <line x2="96" y1="-160" y2="-160" x1="0" />
+        </blockdef>
         <block symbolname="if_id_reg" name="XLXI_5">
             <blockpin signalname="XLXN_9(15:0)" name="data(15:0)" />
             <blockpin signalname="XLXN_70(2:0)" name="to_rd1(2:0)" />
@@ -157,21 +174,21 @@
             <blockpin signalname="XLXN_91(15:0)" name="ar_in(15:0)" />
             <blockpin signalname="XLXN_85(6:0)" name="op(6:0)" />
             <blockpin signalname="wr_en" name="wr_en" />
-            <blockpin signalname="XLXN_161(15:0)" name="ar_out(15:0)" />
+            <blockpin signalname="XLXN_163(15:0)" name="ar_out(15:0)" />
         </block>
         <block symbolname="alu" name="XLXI_1">
             <blockpin name="rst" />
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="XLXN_86(15:0)" name="in1(15:0)" />
             <blockpin signalname="XLXN_87(15:0)" name="in2(15:0)" />
-            <blockpin name="alu_mode(2:0)" />
+            <blockpin signalname="op(2:0)" name="alu_mode(2:0)" />
             <blockpin signalname="z_flag" name="z_flag" />
             <blockpin signalname="n_flag" name="n_flag" />
             <blockpin signalname="XLXN_90(15:0)" name="result(15:0)" />
         </block>
         <block symbolname="program_counter" name="XLXI_3">
             <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="XLXN_3(15:0)" name="addr(15:0)" />
+            <blockpin signalname="XLXN_3(15:0)" name="addr(6:0)" />
         </block>
         <block symbolname="ROM_VHDL" name="XLXI_4">
             <blockpin signalname="clk" name="clk" />
@@ -185,9 +202,15 @@
             <blockpin signalname="XLXN_70(2:0)" name="rd_index1(2:0)" />
             <blockpin signalname="XLXN_71(2:0)" name="rd_index2(2:0)" />
             <blockpin signalname="XLXN_73(2:0)" name="wr_index(2:0)" />
-            <blockpin signalname="XLXN_161(15:0)" name="wr_data(15:0)" />
+            <blockpin signalname="XLXN_165(15:0)" name="wr_data(15:0)" />
             <blockpin signalname="XLXN_82(15:0)" name="rd_data1(15:0)" />
             <blockpin signalname="XLXN_83(15:0)" name="rd_data2(15:0)" />
+        </block>
+        <block symbolname="m2_1" name="XLXI_9">
+            <blockpin signalname="IN(15:0)" name="D0" />
+            <blockpin signalname="XLXN_163(15:0)" name="D1" />
+            <blockpin name="S0" />
+            <blockpin signalname="XLXN_165(15:0)" name="O" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -309,12 +332,27 @@
         <iomarker fontsize="28" x="1152" y="832" name="rst" orien="R180" />
         <instance x="2064" y="1056" name="XLXI_6" orien="R0">
         </instance>
-        <branch name="XLXN_161(15:0)">
-            <wire x2="1232" y1="1216" y2="1216" x1="1072" />
-            <wire x2="1072" y1="1216" y2="1408" x1="1072" />
-            <wire x2="5088" y1="1408" y2="1408" x1="1072" />
-            <wire x2="5088" y1="1136" y2="1136" x1="4960" />
-            <wire x2="5088" y1="1136" y2="1408" x1="5088" />
+        <branch name="op(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3088" y="1072" type="branch" />
+            <wire x2="3248" y1="1072" y2="1072" x1="3088" />
+        </branch>
+        <instance x="704" y="1696" name="XLXI_9" orien="R0" />
+        <branch name="XLXN_163(15:0)">
+            <wire x2="704" y1="1600" y2="1600" x1="624" />
+            <wire x2="624" y1="1600" y2="1760" x1="624" />
+            <wire x2="5040" y1="1760" y2="1760" x1="624" />
+            <wire x2="5040" y1="1136" y2="1136" x1="4960" />
+            <wire x2="5040" y1="1136" y2="1760" x1="5040" />
+        </branch>
+        <branch name="IN(15:0)">
+            <wire x2="688" y1="1536" y2="1536" x1="576" />
+            <wire x2="704" y1="1536" y2="1536" x1="688" />
+        </branch>
+        <iomarker fontsize="28" x="576" y="1536" name="IN(15:0)" orien="R180" />
+        <branch name="XLXN_165(15:0)">
+            <wire x2="1120" y1="1568" y2="1568" x1="1024" />
+            <wire x2="1120" y1="1216" y2="1568" x1="1120" />
+            <wire x2="1232" y1="1216" y2="1216" x1="1120" />
         </branch>
     </sheet>
 </drawing>

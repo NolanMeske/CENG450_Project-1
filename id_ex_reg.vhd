@@ -30,7 +30,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity id_ex_reg is
-    Port ( rd1 : in  STD_LOGIC_VECTOR (15 downto 0);
+    Port ( clk : in STD_LOGIC;
+				rd1 : in  STD_LOGIC_VECTOR (15 downto 0);
            rd2 : in  STD_LOGIC_VECTOR (15 downto 0);
 			  c1	: in	STD_LOGIC_VECTOR (3 downto 0);
 			  op	: in	STD_LOGIC_VECTOR (6 downto 0);
@@ -46,8 +47,9 @@ begin
 to_in1 <= rd1;
 
 to_in2 <= 
-	rd2 when (op = X"0001" or op = X"0002" or op = X"0003" or op = X"0004") else
-	"000000000000"&c1 when (op = X"0005" or op = X"0006");
+	rd2 when (op = "0000001" or op = "0000010" or op = "0000011" or op = "0000100") else
+	"000000000000"&c1 when (op = "0000101" or op = "0000110") else
+	X"0000";
 
 end Behavioral;
 
