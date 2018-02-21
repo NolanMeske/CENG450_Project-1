@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    17:43:37 02/20/2018 
+-- Create Date:    18:49:17 02/20/2018 
 -- Design Name: 
--- Module Name:    ex_mem_reg - Behavioral 
+-- Module Name:    mem_wb_reg - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,16 +29,19 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity ex_mem_reg is
+entity mem_wb_reg is
     Port ( ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
-			  ar_out : out STD_LOGIC_VECTOR (15 downto 0));
-end ex_mem_reg;
+           ar_out : out  STD_LOGIC_VECTOR (15 downto 0);
+			  wr_en	: out	STD_LOGIC;
+           op : in  STD_LOGIC_VECTOR (6 downto 0));
+end mem_wb_reg;
 
-architecture Behavioral of ex_mem_reg is
+architecture Behavioral of mem_wb_reg is
 
 begin
 
 ar_out <= ar_in;
+
 
 end Behavioral;
 

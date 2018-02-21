@@ -34,28 +34,30 @@ entity if_id_reg is
            to_rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
            to_rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
            to_wr : out  STD_LOGIC_VECTOR (2 downto 0);
-           op : out  STD_LOGIC_VECTOR (5 downto 0);
+           op : out  STD_LOGIC_VECTOR (6 downto 0);
 			  c1	:	out STD_LOGIC_VECTOR (3 downto 0));
 end if_id_reg;
 
 architecture Behavioral of if_id_reg is
-
+	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
 begin
 
-op <= data (15 downto 9);
+op_code <= data (15 downto 9);
+
+op <= op_code;
 
 to_rd1 <=
-	data (5 downto 3) when (op = X"01" or op = X"02" or op = X"03" or op = X"04") else
-	data (8 downto 6) when (op = X"05" or op = X"06");
+	data (5 downto 3) when (op_code = X"01" or op_code = X"02" or op_code = X"03" or op_code = X"04") else
+	data (8 downto 6) when (op_code = X"05" or op_code = X"06");
 	
 to_rd2 <=
-	data (2 downto 0) when (op = X"01" or op = X"02" or op = X"03" or op = X"04");
+	data (2 downto 0) when (op_code = X"01" or op_code = X"02" or op_code = X"03" or op_code = X"04");
 	
 to_wr <=
-	data (8 downto 6) when (op = X"01" or op = X"02" or op = X"03" or op = X"04");
+	data (8 downto 6) when (op_code = X"01" or op_code = X"02" or op_code = X"03" or op_code = X"04");
 	
 c1 <=
-	data (3 downto 0) when (op = X"05" or op = X"06");
+	data (3 downto 0) when (op_code = X"05" or op_code = X"06");
 
 end Behavioral;
 

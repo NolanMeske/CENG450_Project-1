@@ -6,5 +6,6 @@
 !*.xco
 !*.wcfg
 !*.gitignore
+!*.sym
 
 #Ass UCF files?

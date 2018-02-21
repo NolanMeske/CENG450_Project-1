@@ -32,24 +32,22 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity id_ex_reg is
     Port ( rd1 : in  STD_LOGIC_VECTOR (15 downto 0);
            rd2 : in  STD_LOGIC_VECTOR (15 downto 0);
-			  c1	: in		STD_LOGIC_VECTOR (3 downto 0);
-			  op_in	: in		STD_LOGIC_VECTOR (5 downto 0);
+			  c1	: in	STD_LOGIC_VECTOR (3 downto 0);
+			  op	: in	STD_LOGIC_VECTOR (6 downto 0);
 			  to_in1	: out	STD_LOGIC_VECTOR (15 downto 0);
-			  to_in2	: out STD_LOGIC_VECTOR	(15 downto 0);
-			  op_out : out STD_LOGIC_VECTOR (5 downto 0));
+			  to_in2	: out STD_LOGIC_VECTOR	(15 downto 0));
 end id_ex_reg;
 
 architecture Behavioral of id_ex_reg is
-
+	signal data1 : STD_LOGIC_VECTOR (15 downto 0);
+	signal data2 : STD_LOGIC_VECTOR (15 downto 0);
 begin
 
-op_out <= op_in;
-
-to_in1 <= rd1;	
+to_in1 <= rd1;
 
 to_in2 <= 
-	rd2 when (op_in = X"0001" or op_in = X"0002" or op_in = X"0003" or op_in = X"0004") else
-	c1 when (op_in = X"0005" or op_in = X"0006");
+	rd2 when (op = X"0001" or op = X"0002" or op = X"0003" or op = X"0004") else
+	"000000000000"&c1 when (op = X"0005" or op = X"0006");
 
 end Behavioral;
 
