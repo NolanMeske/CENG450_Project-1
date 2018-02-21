@@ -19,6 +19,7 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.numeric_std.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -31,7 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity program_counter is
     Port ( clk : in  STD_LOGIC;
-           addr : out  STD_LOGIC_VECTOR (15 downto 0));
+           addr : out  STD_LOGIC_VECTOR (6 downto 0));
 end program_counter;
 
 architecture Behavioral of program_counter is
@@ -41,7 +42,7 @@ begin
 	process (clk)
 		variable temp : integer := 0;
 	begin
-		temp := to_integer(addr) + 8;
+		temp := to_integer(unsigned(addr)) + 8;
 		addr <= temp;
 	end process;
 

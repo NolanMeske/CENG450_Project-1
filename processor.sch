@@ -15,50 +15,20 @@
         <signal name="XLXN_84(3:0)" />
         <signal name="XLXN_86(15:0)" />
         <signal name="XLXN_87(15:0)" />
-        <signal name="XLXN_88(15:0)" />
-        <signal name="XLXN_89(15:0)" />
         <signal name="XLXN_90(15:0)" />
         <signal name="XLXN_91(15:0)" />
-        <signal name="XLXN_92(15:0)" />
-        <signal name="XLXN_93(15:0)" />
-        <signal name="XLXN_94(15:0)" />
-        <signal name="XLXN_97(15:0)" />
-        <signal name="XLXN_98(15:0)" />
         <signal name="n_flag" />
         <signal name="z_flag" />
-        <signal name="XLXN_101(15:0)" />
-        <signal name="XLXN_102(15:0)" />
-        <signal name="XLXN_103(15:0)" />
-        <signal name="XLXN_104(15:0)" />
-        <signal name="XLXN_105(15:0)" />
-        <signal name="XLXN_106(15:0)" />
-        <signal name="XLXN_117" />
-        <signal name="XLXN_118" />
-        <signal name="XLXN_119(2:0)" />
-        <signal name="XLXN_120(15:0)" />
-        <signal name="XLXN_121(15:0)" />
-        <signal name="XLXN_122(2:0)" />
-        <signal name="XLXN_123(2:0)" />
-        <signal name="XLXN_124(3:0)" />
         <signal name="clk" />
-        <signal name="XLXN_129(15:0)" />
-        <signal name="XLXN_130(2:0)" />
-        <signal name="XLXN_131(2:0)" />
-        <signal name="XLXN_132(3:0)" />
         <signal name="wr_en" />
-        <signal name="XLXN_3(15:0)" />
-        <signal name="XLXN_144(15:0)" />
-        <signal name="XLXN_145(6:0)" />
-        <signal name="XLXN_146(3:0)" />
+        <signal name="addr(6:0)" />
         <signal name="XLXN_85(6:0)" />
         <signal name="rst" />
-        <signal name="XLXN_156(2:0)" />
-        <signal name="XLXN_157(15:0)" />
-        <signal name="XLXN_158(15:0)" />
-        <signal name="XLXN_159(15:0)" />
+        <signal name="op(2:0)" />
         <port polarity="Output" name="n_flag" />
         <port polarity="Output" name="z_flag" />
         <port polarity="Input" name="clk" />
+        <port polarity="Input" name="addr(6:0)" />
         <port polarity="Input" name="rst" />
         <blockdef name="alu">
             <timestamp>2018-2-13T1:17:19</timestamp>
@@ -94,13 +64,6 @@
             <line x2="448" y1="-416" y2="-416" x1="384" />
             <rect width="64" x="384" y="-44" height="24" />
             <line x2="448" y1="-32" y2="-32" x1="384" />
-        </blockdef>
-        <blockdef name="program_counter">
-            <timestamp>2018-2-21T0:33:0</timestamp>
-            <rect width="256" x="64" y="-64" height="64" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <rect width="64" x="320" y="-44" height="24" />
-            <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
         <blockdef name="ROM_VHDL">
             <timestamp>2018-2-21T0:34:29</timestamp>
@@ -195,18 +158,14 @@
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="XLXN_86(15:0)" name="in1(15:0)" />
             <blockpin signalname="XLXN_87(15:0)" name="in2(15:0)" />
-            <blockpin name="alu_mode(2:0)" />
+            <blockpin signalname="op(2:0)" name="alu_mode(2:0)" />
             <blockpin signalname="z_flag" name="z_flag" />
             <blockpin signalname="n_flag" name="n_flag" />
             <blockpin signalname="XLXN_90(15:0)" name="result(15:0)" />
         </block>
-        <block symbolname="program_counter" name="XLXI_3">
-            <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="XLXN_3(15:0)" name="addr(15:0)" />
-        </block>
         <block symbolname="ROM_VHDL" name="XLXI_4">
             <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="XLXN_3(15:0)" name="addr(6:0)" />
+            <blockpin signalname="addr(6:0)" name="addr(6:0)" />
             <blockpin signalname="XLXN_9(15:0)" name="data(15:0)" />
         </block>
         <block symbolname="register_file" name="XLXI_2">
@@ -281,16 +240,8 @@
             <wire x2="288" y1="144" y2="144" x1="160" />
         </branch>
         <iomarker fontsize="28" x="160" y="144" name="clk" orien="R180" />
-        <instance x="96" y="512" name="XLXI_3" orien="R0">
-        </instance>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="64" y="480" type="branch" />
-            <wire x2="96" y1="480" y2="480" x1="64" />
-        </branch>
-        <branch name="XLXN_3(15:0)">
-            <wire x2="496" y1="480" y2="480" x1="480" />
-            <wire x2="512" y1="480" y2="480" x1="496" />
-            <wire x2="512" y1="320" y2="480" x1="512" />
+        <branch name="addr(6:0)">
+            <wire x2="512" y1="320" y2="320" x1="464" />
             <wire x2="528" y1="320" y2="320" x1="512" />
         </branch>
         <branch name="clk">
@@ -347,5 +298,10 @@
         <iomarker fontsize="28" x="1152" y="832" name="rst" orien="R180" />
         <instance x="2064" y="1056" name="XLXI_6" orien="R0">
         </instance>
+        <iomarker fontsize="28" x="464" y="320" name="addr(6:0)" orien="R180" />
+        <branch name="op(2:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3152" y="1072" type="branch" />
+            <wire x2="3248" y1="1072" y2="1072" x1="3152" />
+        </branch>
     </sheet>
 </drawing>
