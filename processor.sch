@@ -21,23 +21,13 @@
         <signal name="z_flag" />
         <signal name="clk" />
         <signal name="wr_en" />
-<<<<<<< HEAD
-        <signal name="addr(6:0)" />
-        <signal name="XLXN_85(6:0)" />
-        <signal name="rst" />
-        <signal name="op(2:0)" />
-=======
         <signal name="XLXN_3(15:0)" />
         <signal name="XLXN_85(6:0)" />
         <signal name="rst" />
-        <signal name="XLXN_160(15:0)" />
         <signal name="XLXN_161(15:0)" />
-        <signal name="XLXN_162" />
->>>>>>> master
         <port polarity="Output" name="n_flag" />
         <port polarity="Output" name="z_flag" />
         <port polarity="Input" name="clk" />
-        <port polarity="Input" name="addr(6:0)" />
         <port polarity="Input" name="rst" />
         <blockdef name="alu">
             <timestamp>2018-2-13T1:17:19</timestamp>
@@ -73,6 +63,13 @@
             <line x2="448" y1="-416" y2="-416" x1="384" />
             <rect width="64" x="384" y="-44" height="24" />
             <line x2="448" y1="-32" y2="-32" x1="384" />
+        </blockdef>
+        <blockdef name="program_counter">
+            <timestamp>2018-2-21T0:33:0</timestamp>
+            <rect width="256" x="64" y="-64" height="64" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="320" y="-44" height="24" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
         <blockdef name="ROM_VHDL">
             <timestamp>2018-2-21T0:34:29</timestamp>
@@ -167,14 +164,18 @@
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="XLXN_86(15:0)" name="in1(15:0)" />
             <blockpin signalname="XLXN_87(15:0)" name="in2(15:0)" />
-            <blockpin signalname="op(2:0)" name="alu_mode(2:0)" />
+            <blockpin name="alu_mode(2:0)" />
             <blockpin signalname="z_flag" name="z_flag" />
             <blockpin signalname="n_flag" name="n_flag" />
             <blockpin signalname="XLXN_90(15:0)" name="result(15:0)" />
         </block>
+        <block symbolname="program_counter" name="XLXI_3">
+            <blockpin signalname="clk" name="clk" />
+            <blockpin signalname="XLXN_3(15:0)" name="addr(15:0)" />
+        </block>
         <block symbolname="ROM_VHDL" name="XLXI_4">
             <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="addr(6:0)" name="addr(6:0)" />
+            <blockpin signalname="XLXN_3(15:0)" name="addr(6:0)" />
             <blockpin signalname="XLXN_9(15:0)" name="data(15:0)" />
         </block>
         <block symbolname="register_file" name="XLXI_2">
@@ -246,10 +247,6 @@
             <wire x2="288" y1="144" y2="144" x1="160" />
         </branch>
         <iomarker fontsize="28" x="160" y="144" name="clk" orien="R180" />
-<<<<<<< HEAD
-        <branch name="addr(6:0)">
-            <wire x2="512" y1="320" y2="320" x1="464" />
-=======
         <instance x="96" y="512" name="XLXI_3" orien="R0">
         </instance>
         <branch name="clk">
@@ -259,7 +256,6 @@
         <branch name="XLXN_3(15:0)">
             <wire x2="512" y1="480" y2="480" x1="480" />
             <wire x2="512" y1="320" y2="480" x1="512" />
->>>>>>> master
             <wire x2="528" y1="320" y2="320" x1="512" />
         </branch>
         <branch name="clk">
@@ -272,12 +268,12 @@
         </instance>
         <branch name="XLXN_85(6:0)">
             <wire x2="560" y1="960" y2="960" x1="544" />
-            <wire x2="560" y1="736" y2="960" x1="560" />
-            <wire x2="1776" y1="736" y2="736" x1="560" />
-            <wire x2="1776" y1="736" y2="1216" x1="1776" />
+            <wire x2="1776" y1="672" y2="672" x1="560" />
+            <wire x2="1776" y1="672" y2="1216" x1="1776" />
             <wire x2="2064" y1="1216" y2="1216" x1="1776" />
             <wire x2="1776" y1="1216" y2="1312" x1="1776" />
             <wire x2="2512" y1="1312" y2="1312" x1="1776" />
+            <wire x2="560" y1="672" y2="960" x1="560" />
             <wire x2="2512" y1="1136" y2="1312" x1="2512" />
             <wire x2="4576" y1="1136" y2="1136" x1="2512" />
         </branch>
@@ -313,19 +309,12 @@
         <iomarker fontsize="28" x="1152" y="832" name="rst" orien="R180" />
         <instance x="2064" y="1056" name="XLXI_6" orien="R0">
         </instance>
-<<<<<<< HEAD
-        <iomarker fontsize="28" x="464" y="320" name="addr(6:0)" orien="R180" />
-        <branch name="op(2:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3152" y="1072" type="branch" />
-            <wire x2="3248" y1="1072" y2="1072" x1="3152" />
-=======
         <branch name="XLXN_161(15:0)">
             <wire x2="1232" y1="1216" y2="1216" x1="1072" />
             <wire x2="1072" y1="1216" y2="1408" x1="1072" />
             <wire x2="5088" y1="1408" y2="1408" x1="1072" />
             <wire x2="5088" y1="1136" y2="1136" x1="4960" />
             <wire x2="5088" y1="1136" y2="1408" x1="5088" />
->>>>>>> master
         </branch>
     </sheet>
 </drawing>

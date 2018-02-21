@@ -37,11 +37,15 @@ entity mem_wb_reg is
 end mem_wb_reg;
 
 architecture Behavioral of mem_wb_reg is
-
+	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
 begin
+
+op_code <= op;
 
 ar_out <= ar_in;
 
+wr_en <=
+	'1' when op_code = "0100001" else
+	'0';
 
 end Behavioral;
-

@@ -46,13 +46,11 @@ begin
 
 	op_code <= data(15 downto 9);
 
-	op <= op_code;
-	
-	
+	op <= op_code;	
 	
 	to_rd1 <=
-		std_logic_vector(data (5 downto 3)) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
-		std_logic_vector(data (8 downto 6)) when (op_code = "0000101" or op_code = "0000110") else
+		data (5 downto 3) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
+		data (8 downto 6) when (op_code = "0000101" or op_code = "0000110") else
 		"000";
 		
 	to_rd2 <=
@@ -66,5 +64,5 @@ begin
 	c1 <=
 		data (3 downto 0) when (op_code = "0000101" or op_code = "0000110") else
 		"0000";
+		
 end Behavioral;
-
