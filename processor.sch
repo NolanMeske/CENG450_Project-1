@@ -13,7 +13,6 @@
         <signal name="XLXN_194(2:0)" />
         <signal name="XLXN_195(2:0)" />
         <signal name="XLXN_196(2:0)" />
-        <signal name="XLXN_197(15:0)" />
         <signal name="XLXN_198(6:0)" />
         <signal name="XLXN_199(3:0)" />
         <signal name="XLXN_209(2:0)" />
@@ -191,7 +190,7 @@
             <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
         <blockdef name="if_id_controller">
-            <timestamp>2018-2-22T0:19:4</timestamp>
+            <timestamp>2018-2-22T0:21:45</timestamp>
             <rect width="336" x="64" y="-384" height="384" />
             <rect width="64" x="0" y="-268" height="24" />
             <line x2="0" y1="-256" y2="-256" x1="64" />
@@ -201,8 +200,6 @@
             <line x2="464" y1="-288" y2="-288" x1="400" />
             <rect width="64" x="400" y="-236" height="24" />
             <line x2="464" y1="-224" y2="-224" x1="400" />
-            <rect width="64" x="400" y="-172" height="24" />
-            <line x2="464" y1="-160" y2="-160" x1="400" />
             <rect width="64" x="400" y="-108" height="24" />
             <line x2="464" y1="-96" y2="-96" x1="400" />
             <rect width="64" x="400" y="-44" height="24" />
@@ -278,13 +275,13 @@
             <blockpin signalname="XLXN_194(2:0)" name="rd1(2:0)" />
             <blockpin signalname="XLXN_195(2:0)" name="rd2(2:0)" />
             <blockpin signalname="XLXN_196(2:0)" name="wr(2:0)" />
-            <blockpin signalname="XLXN_197(15:0)" name="wr_data(15:0)" />
+            <blockpin name="wr_data(15:0)" />
             <blockpin signalname="XLXN_198(6:0)" name="op_in(6:0)" />
             <blockpin signalname="XLXN_199(3:0)" name="c1_in(3:0)" />
             <blockpin signalname="XLXN_209(2:0)" name="to_rd1(2:0)" />
             <blockpin signalname="XLXN_210(2:0)" name="to_rd2(2:0)" />
             <blockpin signalname="XLXN_211(2:0)" name="to_wr(2:0)" />
-            <blockpin signalname="wr(15:0)" name="to_wr_data(15:0)" />
+            <blockpin name="to_wr_data(15:0)" />
             <blockpin signalname="XLXN_221(6:0)" name="op_out(6:0)" />
             <blockpin signalname="XLXN_220(3:0)" name="c1_out(3:0)" />
         </block>
@@ -293,7 +290,6 @@
             <blockpin signalname="XLXN_194(2:0)" name="to_rd1(2:0)" />
             <blockpin signalname="XLXN_195(2:0)" name="to_rd2(2:0)" />
             <blockpin signalname="XLXN_196(2:0)" name="to_wr(2:0)" />
-            <blockpin signalname="XLXN_197(15:0)" name="to_wr_data(15:0)" />
             <blockpin signalname="XLXN_198(6:0)" name="op(6:0)" />
             <blockpin signalname="XLXN_199(3:0)" name="c1(3:0)" />
         </block>
@@ -334,9 +330,6 @@
         </branch>
         <branch name="XLXN_196(2:0)">
             <wire x2="1008" y1="928" y2="928" x1="800" />
-        </branch>
-        <branch name="XLXN_197(15:0)">
-            <wire x2="1008" y1="992" y2="992" x1="800" />
         </branch>
         <branch name="XLXN_198(6:0)">
             <wire x2="1008" y1="1056" y2="1056" x1="800" />
@@ -508,10 +501,6 @@
         <branch name="wr(15:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5216" y="1264" type="branch" />
             <wire x2="5216" y1="1264" y2="1264" x1="5120" />
-        </branch>
-        <branch name="wr(15:0)">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1504" y="928" type="branch" />
-            <wire x2="1504" y1="928" y2="928" x1="1472" />
         </branch>
         <branch name="wr(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1824" y="1120" type="branch" />
