@@ -31,8 +31,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity if_id_controller is
     Port ( data : in  STD_LOGIC_VECTOR (15 downto 0);
-			  in_port : in std_logic_vector (15 downto 0);
-			  from_wb : in std_logic_vector (15 downto 0);
+			  in_port : in std_logic_vector (15 downto 0); -- needs to be moved to id/ex stage
            to_rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
            to_rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
            to_wr : out  STD_LOGIC_VECTOR (2 downto 0);
@@ -62,9 +61,7 @@ begin
 		data (8 downto 6) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
 		"000";
 		
-	to_wr_data <=
-		in_port when (op_code = "0100001") else
-		from_wb;		
+	to_wr_data <= in_port;	
 
 	c1 <=
 		data (3 downto 0) when (op_code = "0000101" or op_code = "0000110") else
