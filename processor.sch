@@ -9,7 +9,6 @@
         <signal name="clk" />
         <signal name="wr_en" />
         <signal name="rom(15:0)" />
-        <signal name="XLXN_3(15:0)" />
         <signal name="XLXN_194(2:0)" />
         <signal name="XLXN_195(2:0)" />
         <signal name="XLXN_196(2:0)" />
@@ -39,6 +38,7 @@
         <signal name="XLXN_295(15:0)" />
         <signal name="XLXN_296" />
         <signal name="wr(15:0)" />
+        <signal name="XLXN_297(6:0)" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="rst" />
         <port polarity="Output" name="OUT(15:0)" />
@@ -79,13 +79,6 @@
             <line x2="448" y1="-416" y2="-416" x1="384" />
             <rect width="64" x="384" y="-44" height="24" />
             <line x2="448" y1="-32" y2="-32" x1="384" />
-        </blockdef>
-        <blockdef name="program_counter">
-            <timestamp>2018-2-21T3:9:45</timestamp>
-            <rect width="256" x="64" y="-64" height="64" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <rect width="64" x="320" y="-44" height="24" />
-            <line x2="384" y1="-32" y2="-32" x1="320" />
         </blockdef>
         <blockdef name="ROM_VHDL">
             <timestamp>2018-2-21T0:34:29</timestamp>
@@ -205,14 +198,22 @@
             <rect width="64" x="400" y="-44" height="24" />
             <line x2="464" y1="-32" y2="-32" x1="400" />
         </blockdef>
+        <blockdef name="counter">
+            <timestamp>2018-3-6T22:56:11</timestamp>
+            <rect width="256" x="64" y="-320" height="320" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="320" y="-300" height="24" />
+            <line x2="384" y1="-288" y2="-288" x1="320" />
+        </blockdef>
         <block symbolname="ROM_VHDL" name="XLXI_4">
             <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="XLXN_3(15:0)" name="addr(6:0)" />
+            <blockpin signalname="XLXN_297(6:0)" name="addr(6:0)" />
             <blockpin signalname="rom(15:0)" name="data(15:0)" />
-        </block>
-        <block symbolname="program_counter" name="XLXI_3">
-            <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="XLXN_3(15:0)" name="addr(6:0)" />
         </block>
         <block symbolname="register_file" name="XLXI_2">
             <blockpin signalname="rst" name="rst" />
@@ -293,6 +294,14 @@
             <blockpin signalname="XLXN_198(6:0)" name="op(6:0)" />
             <blockpin signalname="XLXN_199(3:0)" name="c1(3:0)" />
         </block>
+        <block symbolname="counter" name="XLXI_48">
+            <blockpin signalname="clk" name="clock" />
+            <blockpin name="reset" />
+            <blockpin name="en" />
+            <blockpin name="br" />
+            <blockpin name="Qin(6:0)" />
+            <blockpin signalname="XLXN_297(6:0)" name="Q(6:0)" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
         <branch name="rom(15:0)">
@@ -301,9 +310,6 @@
         </branch>
         <branch name="clk">
             <wire x2="256" y1="64" y2="64" x1="128" />
-        </branch>
-        <branch name="XLXN_3(15:0)">
-            <wire x2="816" y1="240" y2="240" x1="528" />
         </branch>
         <branch name="clk">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="672" y="176" type="branch" />
@@ -314,12 +320,6 @@
         <branch name="rom(15:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1312" y="176" type="branch" />
             <wire x2="1312" y1="176" y2="176" x1="1200" />
-        </branch>
-        <instance x="144" y="272" name="XLXI_3" orien="R0">
-        </instance>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="112" y="240" type="branch" />
-            <wire x2="144" y1="240" y2="240" x1="112" />
         </branch>
         <iomarker fontsize="28" x="128" y="64" name="clk" orien="R180" />
         <branch name="XLXN_194(2:0)">
@@ -509,6 +509,18 @@
         <instance x="1008" y="1152" name="XLXI_20" orien="R0">
         </instance>
         <instance x="336" y="1152" name="XLXI_45" orien="R0">
+        </instance>
+        <branch name="XLXN_297(6:0)">
+            <wire x2="800" y1="240" y2="240" x1="608" />
+            <wire x2="816" y1="240" y2="240" x1="800" />
+        </branch>
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="112" y="240" type="branch" />
+            <wire x2="128" y1="240" y2="240" x1="112" />
+            <wire x2="144" y1="240" y2="240" x1="128" />
+            <wire x2="224" y1="240" y2="240" x1="144" />
+        </branch>
+        <instance x="224" y="528" name="XLXI_48" orien="R0">
         </instance>
     </sheet>
 </drawing>
