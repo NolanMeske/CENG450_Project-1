@@ -41,7 +41,7 @@ end counter;
 
 architecture behv of counter is		 	  
 	
-    signal Pre_Q: integer range 0 to 127; --TODO: adjust to correct range
+    signal Pre_Q: integer range 0 to 127; --TODO: adjust to correct range?
 
 begin
 
@@ -57,7 +57,7 @@ begin
 		elsif en = '1' and br = '1' then
 			Pre_Q <= conv_integer(Qin); 
 		elsif en = '1' then	    
-			Pre_Q <= Pre_Q + 2; --Changed to increment by 2
+			Pre_Q <= Pre_Q + 1; 
 	   end if;
 	 end if;
  end process;	

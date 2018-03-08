@@ -30,19 +30,17 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity if_id_latch is
-    Port ( clk : in  STD_LOGIC;
-           rd1 : in  STD_LOGIC_VECTOR (2 downto 0);
-           rd2 : in  STD_LOGIC_VECTOR (2 downto 0);
-           wr : in  STD_LOGIC_VECTOR (2 downto 0);
-           wr_data : in  STD_LOGIC_VECTOR (15 downto 0);
-           op_in : in  STD_LOGIC_VECTOR (6 downto 0);
-           c1_in : in  STD_LOGIC_VECTOR (3 downto 0);
-           to_rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
-           to_rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
-           to_wr : out  STD_LOGIC_VECTOR (2 downto 0);
-           to_wr_data : out  STD_LOGIC_VECTOR (15 downto 0);
-           op_out : out  STD_LOGIC_VECTOR (6 downto 0);
-           c1_out : out  STD_LOGIC_VECTOR (3 downto 0));
+    Port ( clk : in std_logic;
+			  enable : in std_logic;
+			  reset : in std_logic;
+	 
+           instruction_if : in std_logic_vector(15 downto 0);
+			  PC_if : in std_logic_vector(6 downto 0);
+			  
+			  instruction_id : out std_logic_vector(15 downto 0);
+			  PC_id : out std_logic_vector(6 downto 0)
+			 );
+			
 end if_id_latch;
 
 architecture Behavioral of if_id_latch is
@@ -51,12 +49,13 @@ begin
 
 	latch: process (clk)
 	begin
-		to_rd1 <= rd1;
-		to_rd2 <= rd2;
-		to_wr <= wr;
-		to_wr_data <= wr_data;
-		op_out <= op_in;
-		c1_out <= c1_in;
+		if (rising_edge(clk) and reset = '1') then
+			instruction_id <= X"0000";
+			PC_id <= "0000000";
+		elsif(rising_edge(clk) and enable = '1') then
+				instruction_id <= instruction_if;
+				PC_id <= PC_if;
+		end if;
 	end process;
 
 
