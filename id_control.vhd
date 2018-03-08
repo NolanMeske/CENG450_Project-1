@@ -30,7 +30,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity id_control is
-    Port ( instruction_id : in  STD_LOGIC_VECTOR (15 downto 0);
+    Port ( 	clk : in std_logic;
+				instruction_id : in  STD_LOGIC_VECTOR (15 downto 0);
            rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
            rd2 : out  STD_LOGIC_VECTOR (2 downto 0));
 end id_control;
@@ -39,7 +40,7 @@ architecture Behavioral of id_control is
 	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
 begin
 
-	op_code <= data(15 downto 9);
+	op_code <= instruction_id(15 downto 9);
 
 	rd1 <=
 		--when instructions: ADD or SUB or MUL or NAND

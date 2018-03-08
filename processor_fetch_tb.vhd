@@ -81,7 +81,7 @@ COMPONENT processor
       wait for clk_period*3;
 		wait for 1 ns;
 		INSERT_NOP <= '1';
-		wait for clk_period*3;
+		wait for clk_period;
 		INSERT_NOP <= '0';
 		wait for clk_period*5;
 		ENABLE_IF_ID_LATCH <= '0';
@@ -89,7 +89,8 @@ COMPONENT processor
 		ENABLE_IF_ID_LATCH <= '1';	
 		wait for clk_period*5;
 		RESET_IF_ID_LATCH <= '1';
-      wait;
+		
+		wait;
    end process;
 
   END;
