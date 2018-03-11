@@ -36,7 +36,7 @@ entity fcu is
 				destination_ex_mem:	in std_logic_vector (2 downto 0);
 				
 				op_code_mem_wb: in std_logic_vector (6 downto 0);
-				destination_mem_wb: in std_logic_vector (6 downto 0);
+				destination_mem_wb: in std_logic_vector (2 downto 0);
 				
 				op_code_id_ex: in std_logic_vector (6 downto 0);
 				source_id_ex: in std_logic_vector (2 downto 0);
@@ -46,7 +46,6 @@ entity fcu is
 end fcu;
 
 architecture Behavioral of fcu is	
-	signal forwarding_state : std_logic;
 	signal A : std_logic;	-- id/ex is a-format
 	signal B : std_logic;	-- ex/mem is a-format
 	signal C : std_logic;	-- mem/web is a-format
@@ -133,7 +132,7 @@ begin
 				forward <= '0';
 				source_select <= '0';
 			end if;	
-					
+							
 		end process;
 
 end Behavioral;
