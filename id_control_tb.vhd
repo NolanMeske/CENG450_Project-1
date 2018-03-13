@@ -27,7 +27,7 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
+USE ieee.std_logic_arith.all;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
@@ -87,7 +87,11 @@ BEGIN
       wait for 100 ns;	
 
       wait for clk_period*10;
-
+		
+		for i in 0 to 71 loop
+			instruction_id <= conv_std_logic_vector(i,7) & "111" & "000" & "111";
+			wait for clk_period;
+		end loop;
       -- insert stimulus here 
 
       wait;
