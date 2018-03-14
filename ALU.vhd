@@ -33,6 +33,7 @@ entity alu is
 	
 	--output signals
 	result: out std_logic_vector(15 downto 0); 
+	mult_top_result: out std_logic_vector(15 downto 0);
 	z_flag: out std_logic;
 	n_flag: out std_logic); 
 
@@ -152,7 +153,11 @@ begin
 	std_logic_vector(y2)																	when(alu_mode = "101" and (in2 >= X"08" or in2 = X"08")) else	-- shift left more than 8
 	std_logic_vector(y2)																	when(alu_mode = "110" and (in2 >= X"08" or in2 = X"08")) else	-- shift right more than 8
 	std_logic_vector(unsigned(in1));
-
+	
+	mult_top_result <= 
+		std_logic_vector(signed(P(31 downto 16))) when(alu_mode = "011") else
+		X"0000";
+	
 	z_flag <= 
 		'0'	when (alu_mode = "111") and (unsigned(in1) /= 0) else
 		'1'	when (alu_mode = "111") and (unsigned(in1) = 0) else

@@ -32,6 +32,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity mem_wb_latch is
     Port ( wr_en_in : in  STD_LOGIC;
            ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
+			  instruction_mem : in  STD_LOGIC_VECTOR (15 downto 0);
+			  instruction_wb : out  STD_LOGIC_VECTOR (15 downto 0);
            wr_en_out : out  STD_LOGIC;
            ar_out : out  STD_LOGIC_VECTOR (15 downto 0);
            clk : in  STD_LOGIC);
@@ -43,8 +45,11 @@ begin
 
 	latch: process (clk)
 	begin
+	if (rising_edge(clk)) then
 		wr_en_out <= wr_en_in;
 		ar_out <= ar_in;
+		instruction_wb <= instruction_mem;
+	end if;
 	end process;
 
 end Behavioral;

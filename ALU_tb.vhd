@@ -38,13 +38,13 @@ architecture behavioural of test_alu is
 component alu port(rst, clk : in std_logic; 
 alu_mode: in std_logic_vector(2 downto 0);
 in1, in2: in std_logic_vector(15 downto 0);
-result: out std_logic_vector(15 downto 0);
+result,mult_top_result: out std_logic_vector(15 downto 0);
 z_flag, n_flag: out std_logic);
 end component;
 
 signal rst, clk, z_flag, n_flag : std_logic;
 signal alu_mode : std_logic_vector(2 downto 0);
-signal in1, in2, result : std_logic_vector(15 downto 0);
+signal in1, in2, result,mult_top_result : std_logic_vector(15 downto 0);
 
 begin
 
@@ -55,6 +55,7 @@ u1:alu port map(
 	in2 => in2, 
 	alu_mode => alu_mode, 
 	result => result, 
+	mult_top_result => mult_top_result,
 	z_flag => z_flag, 
 	n_flag => n_flag
 );
@@ -70,11 +71,13 @@ rst <= '1'; alu_mode <= "000"; in1 <= X"0000"; in2 <= X"0000";
 wait until (clk='0' and clk'event); wait until (clk='1' and clk'event); wait until (clk='1' and clk'event);
 rst <= '0';
 
-wait until (clk='1' and clk'event); alu_mode <= "001"; wr_data <= X"000"; in2 <= X"0001";
+wait until (clk='1' and clk'event); alu_mode <= "001";  in2 <= X"0001"; --wr_data <= X"000";
 wait for 40 us;
 wait until (clk='1' and clk'event); alu_mode <= "010"; in1 <= X"0002"; in2 <= X"0001"; 
 wait for 40 us;
 wait until (clk='1' and clk'event); alu_mode <= "011"; in1 <= X"0002"; in2 <= X"0002";
+wait for 40 us;
+wait until (clk='1' and clk'event); alu_mode <= "011"; in1 <= X"f000"; in2 <= X"0002";
 wait for 40 us;
 wait until (clk='1' and clk'event); alu_mode <= "100"; in1 <= X"0006"; in2 <= X"000c";
 wait for 40 us;

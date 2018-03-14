@@ -43,16 +43,17 @@ begin
 	op_code <= instruction_id(15 downto 9);
 
 	rd1 <=
-		--when instructions: ADD or SUB or MUL or NAND
-		instruction_id (5 downto 3) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
-		--else when instructions: SHL or SHR or BR or BR.N or BR.Z or BR.SUB
-		instruction_id (8 downto 6) when (op_code = "0000101" or op_code = "0000110" or op_code = "1000011" or op_code = "1000100"
-		 or op_code = "1000011" or op_code = "1000011") else
+		--when instructions: ADD or SUB or MUL 
+		instruction_id (5 downto 3) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011") else
+		--else when instructions: NAND or SHL or SHR or TEST or BR or BR.N or BR.Z or BR.SUB
+		instruction_id (8 downto 6) when (op_code = "0000100" or op_code = "0000101" or op_code = "0000110" or op_code = "0000111" 
+		or op_code = "1000011" or op_code = "1000100" or op_code = "1000011" or op_code = "1000011") else
 		"000";
 		
 	rd2 <=
 		--when instructions: ADD or SUB or MUL or NAND
 		instruction_id (2 downto 0) when (op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
+		instruction_id(5 downto 6) when (op_code = "0000100") else
 		"000";
 		
 

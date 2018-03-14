@@ -33,7 +33,9 @@ entity mem_wb_controller is
     Port ( ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
            ar_out : out  STD_LOGIC_VECTOR (15 downto 0);
 			  wr_en	: out	STD_LOGIC;
-           op : in  STD_LOGIC_VECTOR (6 downto 0));
+           op : in  STD_LOGIC_VECTOR (6 downto 0);
+			  controller_input : in STD_LOGIC_VECTOR(15 downto 0)
+			 );
 end mem_wb_controller;
 
 architecture Behavioral of mem_wb_controller is
@@ -42,10 +44,14 @@ begin
 
 op_code <= op;
 
-ar_out <= ar_in;
+ar_out <= 
+	controller_input when (op_code = "0100001") else
+	ar_in;
 
 wr_en <=
-	'1' when (op_code = "0100001" or op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
+	'1' when (op_code = "0100001" or op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100"
+	or op_code = "0000101" or op_code = "0000110") else
 	'0';
+
 
 end Behavioral;

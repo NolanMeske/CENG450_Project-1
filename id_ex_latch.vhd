@@ -34,8 +34,6 @@ entity id_ex_latch is
     Port ( clk 		: in std_logic;
 			  enable 	: in std_logic;
 			  reset 		: in std_logic;
-			  z_flag_in : in std_logic;
-			  n_flag_in : in std_logic;
 			  
 			  rd_data1_id 	: in std_logic_vector(15 downto 0);
 			  rd_data2_id 	: in std_logic_vector(15 downto 0);
@@ -47,10 +45,8 @@ entity id_ex_latch is
 			  PC_ex 				: out std_logic_vector(6 downto 0);
 			  
 			  rd_data1_ex 	: out std_logic_vector(15 downto 0);
-			  rd_data2_ex 	: out std_logic_vector(15 downto 0);
+			  rd_data2_ex 	: out std_logic_vector(15 downto 0)
 			  
-			  z_flag_out : out std_logic;
-			  n_flag_out : out std_logic
 			 );
 end id_ex_latch;
 
@@ -65,15 +61,11 @@ begin
 			PC_ex <= "0000000";
 			rd_data1_ex <= X"0000";
 			rd_data2_ex <= X"0000";
-			z_flag_out <= '0';
-			n_flag_out <= '0';
 		elsif(rising_edge(clk) and enable = '1') then
 			instruction_ex <= instruction_id;
 			PC_ex <= PC_id;
 			rd_data1_ex <= rd_data1_id;
 			rd_data2_ex <= rd_data2_id;
-			z_flag_out <= z_flag_in;
-			n_flag_out <= n_flag_in;
 		end if;
 	end process;
 
