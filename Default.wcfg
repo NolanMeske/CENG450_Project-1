@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/ISE Design Projects/CENG450_Project/processor_sch_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="processor_sch_tb" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/processor_sch_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/instruction_if" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">instruction_if[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction_if[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/instruction_id" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">instruction_id[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction_id[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/instruction_ex" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">instruction_ex[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction_ex[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/instruction_mem" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">instruction_mem[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction_mem[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/instruction_wb" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">instruction_wb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction_wb[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/pc_if" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_if[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_if[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/pc_id" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_id[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_id[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/pc_ex" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_ex[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_ex[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/pc_mem" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_mem[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_mem[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/pc_new" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_new[6:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_new[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/processor_sch_tb/UUT/br_enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">br_enable</obj_property>
+      <obj_property name="ObjectShortName">br_enable</obj_property>
+   </wvobject>
+</wave_config>

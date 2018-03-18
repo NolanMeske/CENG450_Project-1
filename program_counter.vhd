@@ -22,6 +22,7 @@ use ieee.std_logic_1164.all;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.STD_LOGIC_ARITH.all;
 use ieee.NUMERIC_STD.all;
+use ieee.std_logic_unsigned.all;
 
 ----------------------------------------------------
 
@@ -47,16 +48,14 @@ architecture behv of counter is
 begin
 
     -- behavior describe the counter
-	--TODO: Initialize Pre_Q to starting address in ROM
-
 
  process(clock)
     begin
 	 if rising_edge(clock) then
 		if reset = '1' then
  	    		Pre_Q <= 0;
-		--elsif en = '1' and br = '1' then
-			--Pre_Q <= 8;--to_integer(unsigned(Qin)); 
+		elsif en = '1' and br = '1' then
+			Pre_Q <= conv_integer(Qin); 
 		elsif en = '1' then	    
 			Pre_Q <= Pre_Q + 1; 
 	   end if;
