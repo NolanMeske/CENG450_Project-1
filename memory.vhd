@@ -19,6 +19,7 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -31,24 +32,31 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity memory is
     Port ( clk : in  STD_LOGIC;
-           addr : in  STD_LOGIC_VECTOR (15 downto 0);
-           data : in  STD_LOGIC_VECTOR (7 downto 0));
+           addr_in : in  STD_LOGIC_VECTOR (15 downto 0);
+           wr_data : in  STD_LOGIC_VECTOR (15 downto 0);
+			  rd_data : out STD_LOGIC_VECTOR (15 downto 0);
+			  wr_en : in std_logic;
+			  rd_en : in std_logic);
 end memory;
 
 architecture Behavioral of memory is
 
-	type memory_type is array (0 to 65536) of std_logic_vector (7 downto 0);
+	type memory_type is array (0 to 512) of std_logic_vector (15 downto 0);
 	
-	variable memory_content : memory_type;
+	signal memory : memory_type;
 
 begin
 
 p1: process (clk)
-	variable addr_in : integer := 0;
+	variable addr : integer := 0;
 	begin
 		if rising_edge (clk) then
-			add_in := conv_integer(unsigned(addr));
-			data <= memory_content(add_in);
+			addr := conv_integer(addr_in);
+			if rd_en = '1' then				
+				rd_data <= memory(addr);
+			elsif wr_en = '1' then
+				memory(addr) <= wr_data;
+			end if;
 		end if;
 	end process;
 end Behavioral;
