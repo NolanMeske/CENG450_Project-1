@@ -33,7 +33,9 @@ entity id_control is
     Port ( 	clk : in std_logic;
 				instruction_id : in  STD_LOGIC_VECTOR (15 downto 0);
            rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
-           rd2 : out  STD_LOGIC_VECTOR (2 downto 0));
+           rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
+			  insert_nop : out std_logic
+			 );
 end id_control;
 
 architecture Behavioral of id_control is
@@ -61,11 +63,19 @@ begin
 		--when instructions: ADD or SUB or MUL or NAND
 		instruction_id (2 downto 0) when (  op_code = "0000001" --ADD
 													or op_code = "0000010" --SUB
-													or op_code = "0000011" --MUL
-													or op_code = "0000100")--NAND
+													or op_code = "0000011") --MUL
 													else
-		instruction_id(5 downto 6) when (op_code = "0000100") else "000";
+		instruction_id(5 downto 3) when (op_code = "0000100") --NAND
+													else "000";
 		
+	mult:process (clk)
+	begin
+		if (falling_edge(clk) and op_code = "0000011") then --if mult
+			insert_nop <= '1';
+		elsif (falling_edge(clk)) then
+			insert_nop <= '0';
+		end if;
+	end process;
 
 end Behavioral;
 

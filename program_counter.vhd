@@ -55,7 +55,7 @@ begin
 		if reset = '1' then
  	    		Pre_Q <= 0;
 		elsif en = '1' and br = '1' then
-			Pre_Q <= conv_integer(Qin); 
+			Pre_Q <= conv_integer(Qin) + 1; 
 		elsif en = '1' then	    
 			Pre_Q <= Pre_Q + 1; 
 	   end if;

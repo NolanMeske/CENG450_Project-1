@@ -77,7 +77,9 @@ wait until (clk='1' and clk'event); alu_mode <= "010"; in1 <= X"0002"; in2 <= X"
 wait for 40 us;
 wait until (clk='1' and clk'event); alu_mode <= "011"; in1 <= X"0002"; in2 <= X"0002";
 wait for 40 us;
-wait until (clk='1' and clk'event); alu_mode <= "011"; in1 <= X"f000"; in2 <= X"0002";
+wait until (clk='1' and clk'event); alu_mode <= "011"; in1 <= X"8001"; in2 <= X"0002";
+wait for 40 us;
+wait until (clk='1' and clk'event); alu_mode <= "011"; in1 <= X"fffe"; in2 <= X"0005";
 wait for 40 us;
 wait until (clk='1' and clk'event); alu_mode <= "100"; in1 <= X"0006"; in2 <= X"000c";
 wait for 40 us;

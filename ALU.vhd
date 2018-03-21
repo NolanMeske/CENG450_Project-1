@@ -146,7 +146,7 @@ begin
 	std_logic_vector(signed(in1) + signed(in2)) 									when(alu_mode = "001") else	-- addition
 	std_logic_vector(signed(in1) - signed(in2)) 									when(alu_mode = "010") else	-- subtraction
 	--std_logic_vector(signed(in1(7 downto 0)) * signed(in2(7 downto 0))) 	when(alu_mode = "011") else	-- multiply CHANGE THIS
-	std_logic_vector(signed(P(15 downto 0)))										when(alu_mode = "011") else
+	P(15 downto 0)																			when(alu_mode = "011") else
 	std_logic_vector(unsigned(in1) nand unsigned(in2)) 						when(alu_mode = "100") else	-- NAND
 	std_logic_vector(y2)														 			when(alu_mode = "101" and in2 < X"08") else							-- shift left less than 8
 	std_logic_vector(y2) 																when(alu_mode = "110" and in2 < X"08") else							-- shift right less than 8
@@ -155,7 +155,7 @@ begin
 	std_logic_vector(unsigned(in1));
 	
 	mult_top_result <= 
-		std_logic_vector(signed(P(31 downto 16))) when(alu_mode = "011") else
+		P(31 downto 16) when(alu_mode = "011") else
 		X"0000";
 	
 	z_flag <= 
