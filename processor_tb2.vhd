@@ -84,7 +84,7 @@ BEGIN
 		TEST_RESET_EX_MEM <= '0';	
 		
 		wait for 52 ns;
-		controller_input <= X"8001"; --R0
+		controller_input <= X"fffe"; --R0 -2
 		wait for 10 ns;
 		controller_input <= X"0003"; --R1
 		wait for 10 ns;

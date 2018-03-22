@@ -72,7 +72,7 @@ architecture behavioural of alu is
 	-- other signals
 	signal X_mult,Y_mult		:	STD_LOGIC_VECTOR (15 downto 0);
 	signal P						: 	STD_LOGIC_VECTOR (31 downto 0);
-
+	signal temp_mult 			: STD_LOGIC_VECTOR(31 downto 0);
 begin
 	--write operation 
 	
@@ -133,20 +133,26 @@ begin
 	a1 <= in1 when (alu_mode = "101" or alu_mode = "110");
 	a2 <= y1;
 
-	--Multiplier		
-	X_mult <=
-	std_logic_vector(signed(in1)) when(alu_mode = "011") else
-	X"0000";
-	
-	Y_mult <=
-	std_logic_vector(signed(in2)) when(alu_mode = "011") else
-	X"0000";
+	--Multiplier	
+-- TODO if we have time fix this multiplier instead of using '*'	
+--	X_mult <=
+--	std_logic_vector(signed(in1)) when(alu_mode = "011") else
+--	X"0000";
+--	
+--	Y_mult <=
+--	std_logic_vector(signed(in2)) when(alu_mode = "011") else
+--	X"0000";
+	temp_mult <= std_logic_vector(signed(in1) * signed(in2));
 
 	result <= 
 	std_logic_vector(signed(in1) + signed(in2)) 									when(alu_mode = "001") else	-- addition
 	std_logic_vector(signed(in1) - signed(in2)) 									when(alu_mode = "010") else	-- subtraction
 	--std_logic_vector(signed(in1(7 downto 0)) * signed(in2(7 downto 0))) 	when(alu_mode = "011") else	-- multiply CHANGE THIS
-	P(15 downto 0)																			when(alu_mode = "011") else
+	
+	-- TODO if we have time fix this multiplier instead of using '*'	
+	--P(15 downto 0)																			when(alu_mode = "011") else
+	temp_mult(15 downto 0)																when(alu_mode = "011") else
+	
 	std_logic_vector(unsigned(in1) nand unsigned(in2)) 						when(alu_mode = "100") else	-- NAND
 	std_logic_vector(y2)														 			when(alu_mode = "101" and in2 < X"08") else							-- shift left less than 8
 	std_logic_vector(y2) 																when(alu_mode = "110" and in2 < X"08") else							-- shift right less than 8
@@ -154,8 +160,12 @@ begin
 	std_logic_vector(y2)																	when(alu_mode = "110" and (in2 >= X"08" or in2 = X"08")) else	-- shift right more than 8
 	std_logic_vector(unsigned(in1));
 	
+	-- TODO if we have time fix this multiplier instead of using '*'	
+--	mult_top_result <= 
+--		P(31 downto 16) when(alu_mode = "011") else
+--		X"0000";
 	mult_top_result <= 
-		P(31 downto 16) when(alu_mode = "011") else
+		temp_mult(31 downto 16) when(alu_mode = "011") else
 		X"0000";
 	
 	z_flag <= 
