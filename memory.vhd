@@ -47,6 +47,7 @@ architecture Behavioral of memory is
 
 begin
 
+-- will this work? who knows!
 p1: process (clk)
 	variable addr : integer := 0;
 	begin
