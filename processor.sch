@@ -55,11 +55,9 @@
         <signal name="XLXN_619(7:0)" />
         <signal name="XLXN_620(2:0)" />
         <signal name="XLXN_621(2:0)" />
-        <signal name="XLXN_622" />
         <signal name="controller_input(15:0)" />
         <signal name="result_ex(15:0)" />
         <signal name="PC_mem(6:0)" />
-        <signal name="XLXN_633(15:0)" />
         <port polarity="Input" name="Reset" />
         <port polarity="Input" name="INSERT_NOP" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
@@ -309,19 +307,6 @@
             <rect width="64" x="416" y="-44" height="24" />
             <line x2="480" y1="-32" y2="-32" x1="416" />
         </blockdef>
-        <blockdef name="memory">
-            <timestamp>2018-3-20T23:44:45</timestamp>
-            <rect width="304" x="64" y="-320" height="320" />
-            <line x2="0" y1="-288" y2="-288" x1="64" />
-            <line x2="0" y1="-224" y2="-224" x1="64" />
-            <line x2="0" y1="-160" y2="-160" x1="64" />
-            <rect width="64" x="0" y="-108" height="24" />
-            <line x2="0" y1="-96" y2="-96" x1="64" />
-            <rect width="64" x="0" y="-44" height="24" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <rect width="64" x="368" y="-300" height="24" />
-            <line x2="432" y1="-288" y2="-288" x1="368" />
-        </blockdef>
         <block symbolname="ROM_VHDL" name="XLXI_4">
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="pc_if(6:0)" name="addr(6:0)" />
@@ -455,14 +440,6 @@
             <blockpin signalname="XLXN_603(15:0)" name="alu_mult_top_result(15:0)" />
             <blockpin signalname="instruction_ex(11:9)" name="alu_mode(2:0)" />
             <blockpin signalname="result_ex(15:0)" name="result_ex(15:0)" />
-        </block>
-        <block symbolname="memory" name="XLXI_69">
-            <blockpin signalname="clk" name="clk" />
-            <blockpin name="wr_en" />
-            <blockpin name="rd_en" />
-            <blockpin name="addr_in(15:0)" />
-            <blockpin name="wr_data(15:0)" />
-            <blockpin name="rd_data(15:0)" />
         </block>
         <block symbolname="mem_wb_controller" name="XLXI_40">
             <blockpin signalname="results_mem(15:0)" name="ar_in(15:0)" />
@@ -885,11 +862,5 @@
         </instance>
         <instance x="4192" y="1088" name="XLXI_66" orien="R0">
         </instance>
-        <instance x="4208" y="2160" name="XLXI_69" orien="R0">
-        </instance>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4064" y="1872" type="branch" />
-            <wire x2="4208" y1="1872" y2="1872" x1="4064" />
-        </branch>
     </sheet>
 </drawing>
