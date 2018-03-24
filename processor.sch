@@ -307,22 +307,6 @@
             <rect width="64" x="416" y="-44" height="24" />
             <line x2="480" y1="-32" y2="-32" x1="416" />
         </blockdef>
-        <blockdef name="ram16x8s">
-            <timestamp>2000-1-1T10:10:10</timestamp>
-            <line x2="64" y1="-320" y2="-320" x1="0" />
-            <line x2="64" y1="-256" y2="-256" x1="0" />
-            <line x2="64" y1="-192" y2="-192" x1="0" />
-            <line x2="64" y1="-128" y2="-128" x1="0" />
-            <line x2="64" y1="-448" y2="-448" x1="0" />
-            <line x2="320" y1="-448" y2="-448" x1="384" />
-            <line x2="64" y1="-384" y2="-384" x1="0" />
-            <line x2="64" y1="-512" y2="-512" x1="0" />
-            <rect width="64" x="320" y="-460" height="24" />
-            <rect width="64" x="0" y="-460" height="24" />
-            <rect width="256" x="64" y="-576" height="512" />
-            <line x2="64" y1="-384" y2="-400" x1="80" />
-            <line x2="80" y1="-368" y2="-384" x1="64" />
-        </blockdef>
         <block symbolname="ROM_VHDL" name="XLXI_4">
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="pc_if(6:0)" name="addr(6:0)" />
@@ -474,16 +458,6 @@
             <blockpin signalname="PC_mem(6:0)" name="PC_mem(6:0)" />
             <blockpin signalname="instruction_mem(15:9)" name="instruction_mem(15:0)" />
             <blockpin signalname="results_mem(15:0)" name="result_mem(15:0)" />
-        </block>
-        <block symbolname="ram16x8s" name="XLXI_71">
-            <blockpin name="A0" />
-            <blockpin name="A1" />
-            <blockpin name="A2" />
-            <blockpin name="A3" />
-            <blockpin name="D(7:0)" />
-            <blockpin name="WCLK" />
-            <blockpin name="WE" />
-            <blockpin name="O(7:0)" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="7040" height="5440">
@@ -888,6 +862,5 @@
         </instance>
         <instance x="4192" y="1088" name="XLXI_66" orien="R0">
         </instance>
-        <instance x="4144" y="2528" name="XLXI_71" orien="R0" />
     </sheet>
 </drawing>
