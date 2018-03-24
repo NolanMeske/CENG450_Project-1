@@ -32,108 +32,187 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity fcu is
 	port ( 	clk: in std_logic;
 	
-				op_code_ex_mem: in std_logic_vector (6 downto 0);
-				destination_ex_mem:	in std_logic_vector (2 downto 0);
+				instruction_ex: in std_logic_vector(15 downto 0);
+				instruction_mem: in std_logic_vector(15 downto 0);
+				instruction_wb: in std_logic_vector(15 downto 0);
 				
-				op_code_mem_wb: in std_logic_vector (6 downto 0);
-				destination_mem_wb: in std_logic_vector (2 downto 0);
-				
-				op_code_id_ex: in std_logic_vector (6 downto 0);
-				source_id_ex: in std_logic_vector (2 downto 0);
-				
-				forward: out std_logic;
-				source_select: std_logic);
+				forward_mem_1: out std_logic;
+				forward_mem_2: out std_logic;
+				forward_wb_1: out std_logic;
+				forward_wb_2: out std_logic
+			);
 end fcu;
 
 architecture Behavioral of fcu is	
-	signal A : std_logic;	-- id/ex is a-format
-	signal B : std_logic;	-- ex/mem is a-format
-	signal C : std_logic;	-- mem/web is a-format
-	signal D : std_logic;	-- id/ex source equals ex/mem destination
-	signal E : std_logic;	-- id/ex source equals mem-wb destination
+	signal A1 : std_logic;	-- id/ex is a-format (excluding the IN and nop instruction) 
+	signal A2 : std_logic;	-- id/ex is a-format (excluding the IN and nop instruction) 
+	signal B : std_logic;	-- ex/mem is a-format (instructions where op_code = 1-6,33)
+	signal C : std_logic;	-- mem/wb is a-format (instructions where op_code = 1-6,33)
+	
+	signal op_code_mem: std_logic_vector (6 downto 0);
+	signal destination_mem: std_logic_vector (2 downto 0);
+	
+	signal op_code_wb: std_logic_vector (6 downto 0);
+	signal destination_wb: std_logic_vector (2 downto 0);
+	
+	signal op_code_ex: std_logic_vector (6 downto 0);
+	signal source_ex_a: std_logic_vector (2 downto 0);
+	signal source_ex_b: std_logic_vector (2 downto 0);
+	signal source_ex_c: std_logic_vector (2 downto 0);
 begin
 
-	proc: process (clk)
-		begin
-		
-		-- if A+B+C+D+E, then forward from id/mem		
-		-- if id/ex is a-format, and id/mem or mem/wb are also a-format,
-		-- and id/ex source equals both id/mem and mem/wb destination, then
-		-- forward from id/mem, since mem/wb is stale.
-		
-		-- if A+B+D, then forwad from ex/mem
-		-- if A+C+E, then forward from mem/wn
-		-- if id/ex is a-format, and either id/mem or mem/wb are also a-format,
-		-- and id/ex source equals to either id/mem or mem/wb destination, then
-		-- forward from the register that is a-format and whose desintation matches id/ex source.
-		
-			-- cleaner way to do this check?
-			if op_code_id_ex = 	(	"0000000" or
-											"0000001" or
-											"0000010" or
-											"0000011" or
-											"0000100" or
-											"0000101" or
-											"0000110" or
-											"0000111") then
-				A <= '1';
-			else
-				A <= '0';
-			end if;
-			
-			if op_code_ex_mem = 	(	"0000000" or
-											"0000001" or
-											"0000010" or
-											"0000011" or
-											"0000100" or
-											"0000101" or
-											"0000110" or
-											"0000111") then
-				B <= '1';
-			else
-				B <= '0';
-			end if;
-			
-			if op_code_mem_wb = 	(	"0000000" or
-											"0000001" or
-											"0000010" or
-											"0000011" or
-											"0000100" or
-											"0000101" or
-											"0000110" or
-											"0000111") then
-				C <= '1';
-			else
-				C <= '0';
-			end if;
-			
-			if source_id_ex = destination_ex_mem then
-				D <= '1';
-			else
-				D <= '0';
-			end if;
-			
-			if source_id_ex = destination_mem_wb then
-				E <= '1';
-			else
-				E <= '0';
-			end if;
-			
-			if A and B and C and D and E then
-				forward <= '1';
-				source_select <= '1';
-			elsif A and B and D then
-				forward <= '1';
-				source_select <= '0';
-			elsif A and C and E then
-				forward <= '1';
-				source_select <= '1';
-			else
-				forward <= '0';
-				source_select <= '0';
-			end if;	
-							
-		end process;
+	op_code_ex <= instruction_ex(15 downto 9);
+	source_ex_a <= instruction_ex(8 downto 6);
+	source_ex_b <= instruction_ex(5 downto 3);
+	source_ex_c <= instruction_ex(2 downto 0);
+	
+	op_code_mem <= instruction_mem(15 downto 9);
+	destination_mem <= instruction_mem(8 downto 6);
+	
+	op_code_wb <= instruction_wb(15 downto 9);
+	destination_wb <= instruction_wb(8 downto 6);
 
+	
+	
+	A1 <= '1' when op_code_ex = "0000001" or 
+						op_code_ex = "0000010" or
+						op_code_ex = "0000011" else			
+		   '0';
+		  
+	A2 <= '1' when	op_code_ex = "0000100" or
+						op_code_ex = "0000101" or
+						op_code_ex = "0000110" or
+						op_code_ex = "0000111" or
+						op_code_ex = "0100000" else
+			'0';
+	
+	B <= '1' when 	op_code_mem = "0000001" or
+						op_code_mem = "0000010" or
+						op_code_mem = "0000011" or
+						op_code_mem = "0000100" or
+						op_code_mem = "0000101" or
+						op_code_mem = "0000110" or
+						op_code_mem = "0100001" else
+		  '0';
+	
+	C <= '1' when 	op_code_wb = "0000001" or
+						op_code_wb = "0000010" or
+						op_code_wb = "0000011" or
+						op_code_wb = "0000100" or
+						op_code_wb = "0000101" or
+						op_code_wb = "0000110" or
+						op_code_wb = "0100001" else
+		  '0';
+
+
+	forward_mem_1 <= '1' when A1 = '1' and
+									B = '1' and
+									destination_mem = source_ex_b else
+						 '1' when A2 = '1' and
+									B = '1' and
+									destination_mem = source_ex_a else
+						 '0';
+			
+	forward_mem_2 <= '1' when A1 = '1' and
+									B = '1' and
+									destination_mem = source_ex_c else
+						 '1' when A2 = '1' and
+									B = '1' and
+									op_code_ex = "0000100" and
+									destination_mem = source_ex_b else
+						 '0';
+
+	forward_wb_1 <= '0' when destination_wb = destination_mem else
+						'1' when A1 = '1' and
+									C = '1' and
+									destination_wb = source_ex_b else
+						'1' when A2 = '1' and
+									C = '1' and
+									destination_wb = source_ex_a else
+						'0';
+	
+	forward_wb_2 <= '0' when destination_wb = destination_mem else
+						'1' when A1 = '1' and
+									C = '1' and
+									destination_wb = source_ex_c else
+						'1' when A2 = '1' and
+									C = '1' and
+									op_code_ex = "0000100" and
+									destination_wb = source_ex_b else
+						'0';
+
+
+--	proc: process (clk)
+--			begin
+--			
+--			-- if A+B+C+D+E, then forward from id/mem		
+--			-- if id/ex is a-format, and id/mem or mem/wb are also a-format,
+--			-- and id/ex source equals both id/mem and mem/wb destination, then
+--			-- forward from id/mem, since mem/wb is stale.
+--			
+--			-- if A+B+D, then forwad from ex/mem
+--			-- if A+C+E, then forward from mem/wn
+--			-- if id/ex is a-format, and either id/mem or mem/wb are also a-format,
+--			-- and id/ex source equals to either id/mem or mem/wb destination, then
+--			-- forward from the register that is a-format and whose desintation matches id/ex source.
+--			
+--			if A1 = '1' and B = '1' then
+--				if destination_mem = source_ex_b then
+--					forward_mem_1 <= '1';
+--				else 
+--					forward_mem_1 <= '0';
+--				end if;
+--				
+--				if destination_mem = source_ex_c then
+--					forward_mem2 <= '1';
+--				else
+--					forward_mem2 <= '0';
+--				end if;
+--				
+--			end if;
+--			
+--			if A1 = '1' and C = '1' and destination_wb /= destination_mem then
+--				if destination_wb = source_ex_b then
+--					forward_wb1 <= '1';
+--				else
+--					forward_wb1 <= '0';
+--				end if;
+--				
+--				if destination_wb = source_ex_c then
+--					forward_wb2 <= '1';
+--				else
+--					forward_wb2 <= '0';
+--				end if;
+--			end if;
+--			
+--			if A2 = '1' and B = '1' then
+--				if destination_mem = source_ex_a then
+--					forward_mem_1 <= '1';
+--				else
+--					forward_mem_1 <= '0';
+--				end if;
+--				if op_code_ex "0000100" and destination_mem = source_ex_b then
+--					forward_mem2 <= '1';
+--				else
+--					forward_mem2 <= '0';
+--				end if;
+--			end if;
+--			
+--			if A2 = '1' and C = '1' destination_wb /= destination_mem then
+--				if destination_wb = source_ex_a then
+--					forward_wb1 <= '1';
+--				else
+--					forward_wb1 <= '0';
+--				end if;
+--				if op_code_ex "0000100" and destination_wb = source_ex_b then
+--					forward_wb2 <= '1';
+--				else
+--					forward_wb2 <= '0';
+--				end if;
+--			end if;
+--
+--
+--							
+--		end process;
+--
 end Behavioral;
-

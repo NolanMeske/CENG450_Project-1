@@ -90,7 +90,7 @@ BEGIN
 		wait for 10 ns;
 		controller_input <= X"0001"; --R2
 		wait for 10 ns;
-		controller_input <= X"0002"; --R3
+		controller_input <= X"0005"; --R3
 		wait; -- forever
 		wait for 10 ns;
 		controller_input <= X"0000"; --0? --R4

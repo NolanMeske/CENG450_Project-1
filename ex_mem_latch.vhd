@@ -38,6 +38,8 @@ entity ex_mem_latch is
 	 
            instruction_ex 	: in std_logic_vector(15 downto 0);
 			  PC_ex 				: in std_logic_vector(6 downto 0);
+			  controller_input : in std_logic_vector(15 downto 0);
+			  controller_input_mem : out std_logic_vector(15 downto 0);
 			  
 			  result_mem 	: out std_logic_vector(15 downto 0);
 			  
@@ -56,10 +58,12 @@ latch: process (clk)
 			instruction_mem <= X"0000";
 			PC_mem <= "0000000";
 			result_mem <= X"0000";
+			controller_input_mem <= X"0000";
 		elsif(rising_edge(clk) and enable = '1') then
 			instruction_mem <= instruction_ex;
 			PC_mem <= PC_ex;
 			result_mem <= result_ex;
+			controller_input_mem <= controller_input;
 		end if;
 	end process;
 end Behavioral;

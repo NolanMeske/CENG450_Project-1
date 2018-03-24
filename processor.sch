@@ -12,8 +12,6 @@
         <signal name="insert_nop" />
         <signal name="XLXN_320(6:0)" />
         <signal name="PC_if_initial(6:0)" />
-        <signal name="XLXN_295(15:0)" />
-        <signal name="XLXN_296" />
         <signal name="wr_en" />
         <signal name="wr(15:0)" />
         <signal name="TEST_ENABLE_IF_ID_LATCH" />
@@ -31,27 +29,42 @@
         <signal name="rd_data1_id(15:0)" />
         <signal name="PC_ex(6:0)" />
         <signal name="instruction_ex(15:0)" />
-        <signal name="alu_in2(15:0)" />
         <signal name="alu_in1(15:0)" />
         <signal name="Reset" />
         <signal name="instruction_ex(11:9)" />
+        <signal name="TEST_RESET_ID_EX_LATCH" />
+        <signal name="n_flag" />
+        <signal name="z_flag" />
+        <signal name="PC_new(6:0)" />
+        <signal name="XLXN_724(6:0)" />
+        <signal name="instruction_wb(8:6)" />
+        <signal name="XLXN_738(11:9)" />
+        <signal name="XLXN_750(6:0)" />
+        <signal name="XLXN_754(15:0)" />
+        <signal name="XLXN_756(15:0)" />
+        <signal name="XLXN_757(15:0)" />
+        <signal name="XLXN_758(15:0)" />
+        <signal name="XLXN_759" />
+        <signal name="XLXN_760(2:0)" />
+        <signal name="XLXN_295(15:0)" />
+        <signal name="XLXN_296" />
         <signal name="alu_top_result(15:0)" />
         <signal name="alu_result(15:0)" />
+        <signal name="XLXN_771(11:9)" />
         <signal name="result_ex(15:0)" />
         <signal name="instruction_mem(15:0)" />
         <signal name="results_mem(15:0)" />
         <signal name="instruction_mem(15:9)" />
         <signal name="instruction_wb(15:0)" />
-        <signal name="TEST_RESET_ID_EX_LATCH" />
         <signal name="TEST_ENABLE_EX_MEM" />
         <signal name="TEST_RESET_EX_MEM" />
         <signal name="PC_mem(6:0)" />
-        <signal name="n_flag" />
-        <signal name="z_flag" />
+        <signal name="XLXN_783(6:0)" />
         <signal name="controller_input(15:0)" />
-        <signal name="PC_new(6:0)" />
-        <signal name="XLXN_724(6:0)" />
-        <signal name="instruction_wb(8:6)" />
+        <signal name="XLXN_787(15:0)" />
+        <signal name="controller_input_mem(15:0)" />
+        <signal name="XLXN_789(15:0)" />
+        <signal name="alu_in2(15:0)" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
         <port polarity="Input" name="rst" />
@@ -236,8 +249,11 @@
             <rect width="304" x="64" y="-128" height="192" />
         </blockdef>
         <blockdef name="ex_mem_latch">
-            <timestamp>2018-3-14T5:16:0</timestamp>
-            <rect width="448" x="64" y="-384" height="500" />
+            <timestamp>2018-3-22T20:50:57</timestamp>
+            <rect width="64" x="0" y="148" height="24" />
+            <line x2="0" y1="160" y2="160" x1="64" />
+            <rect width="64" x="512" y="148" height="24" />
+            <line x2="576" y1="160" y2="160" x1="512" />
             <line x2="0" y1="-352" y2="-352" x1="64" />
             <rect width="64" x="0" y="-172" height="24" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
@@ -253,6 +269,7 @@
             <line x2="576" y1="32" y2="32" x1="512" />
             <rect width="64" x="512" y="-172" height="24" />
             <line x2="576" y1="-160" y2="-160" x1="512" />
+            <rect width="448" x="64" y="-384" height="564" />
         </blockdef>
         <blockdef name="alu_result_control">
             <timestamp>2018-3-14T16:50:3</timestamp>
@@ -283,6 +300,35 @@
             <rect width="64" x="416" y="-44" height="24" />
             <line x2="480" y1="-32" y2="-32" x1="416" />
         </blockdef>
+        <blockdef name="fcu">
+            <timestamp>2018-3-24T17:46:8</timestamp>
+            <rect width="400" x="64" y="-256" height="256" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <rect width="64" x="0" y="-172" height="24" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="528" y1="-224" y2="-224" x1="464" />
+            <line x2="528" y1="-160" y2="-160" x1="464" />
+            <line x2="528" y1="-96" y2="-96" x1="464" />
+            <line x2="528" y1="-32" y2="-32" x1="464" />
+        </blockdef>
+        <blockdef name="mux3_16bit">
+            <timestamp>2018-3-24T18:29:47</timestamp>
+            <rect width="256" x="64" y="-256" height="256" />
+            <rect width="64" x="0" y="-236" height="24" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <rect width="64" x="0" y="-172" height="24" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="320" y="-236" height="24" />
+            <line x2="384" y1="-224" y2="-224" x1="320" />
+        </blockdef>
         <block symbolname="counter" name="XLXI_48">
             <blockpin signalname="clk" name="clock" />
             <blockpin name="reset" />
@@ -304,22 +350,6 @@
                 <trait valuetype="BitVector 32 Hexadecimal" />
             </attr>
             <blockpin signalname="XLXN_320(6:0)" name="O" />
-        </block>
-        <block symbolname="mem_wb_latch" name="XLXI_41">
-            <blockpin signalname="XLXN_296" name="wr_en_in" />
-            <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="XLXN_295(15:0)" name="ar_in(15:0)" />
-            <blockpin signalname="wr_en" name="wr_en_out" />
-            <blockpin signalname="wr(15:0)" name="ar_out(15:0)" />
-            <blockpin signalname="instruction_mem(15:0)" name="instruction_mem(15:0)" />
-            <blockpin signalname="instruction_wb(15:0)" name="instruction_wb(15:0)" />
-        </block>
-        <block symbolname="mem_wb_controller" name="XLXI_40">
-            <blockpin signalname="results_mem(15:0)" name="ar_in(15:0)" />
-            <blockpin signalname="instruction_mem(15:9)" name="op(6:0)" />
-            <blockpin signalname="XLXN_296" name="wr_en" />
-            <blockpin signalname="XLXN_295(15:0)" name="ar_out(15:0)" />
-            <blockpin signalname="controller_input(15:0)" name="controller_input(15:0)" />
         </block>
         <block symbolname="mux2_16bit" name="XLXI_49">
             <blockpin signalname="insert_nop" name="SEL" />
@@ -359,28 +389,6 @@
             <blockpin signalname="alu_in2(15:0)" name="rd_data2_ex(15:0)" />
             <blockpin signalname="instruction_ex(15:0)" name="instruction_ex(15:0)" />
         </block>
-        <block symbolname="ex_mem_latch" name="XLXI_64">
-            <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="result_ex(15:0)" name="result_ex(15:0)" />
-            <blockpin signalname="instruction_ex(15:0)" name="instruction_ex(15:0)" />
-            <blockpin signalname="PC_ex(6:0)" name="PC_ex(6:0)" />
-            <blockpin signalname="TEST_ENABLE_EX_MEM" name="enable" />
-            <blockpin signalname="TEST_RESET_EX_MEM" name="reset" />
-            <blockpin signalname="PC_mem(6:0)" name="PC_mem(6:0)" />
-            <blockpin signalname="instruction_mem(15:0)" name="instruction_mem(15:0)" />
-            <blockpin signalname="results_mem(15:0)" name="result_mem(15:0)" />
-        </block>
-        <block symbolname="alu" name="XLXI_1">
-            <blockpin signalname="Reset" name="rst" />
-            <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="alu_in1(15:0)" name="in1(15:0)" />
-            <blockpin signalname="alu_in2(15:0)" name="in2(15:0)" />
-            <blockpin signalname="instruction_ex(11:9)" name="alu_mode(2:0)" />
-            <blockpin signalname="z_flag" name="z_flag" />
-            <blockpin signalname="n_flag" name="n_flag" />
-            <blockpin signalname="alu_result(15:0)" name="result(15:0)" />
-            <blockpin signalname="alu_top_result(15:0)" name="mult_top_result(15:0)" />
-        </block>
         <block symbolname="if_id_latch" name="XLXI_52">
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="br_enable" name="reset" />
@@ -411,13 +419,6 @@
             <blockpin signalname="br_enable" name="br_enable" />
             <blockpin signalname="PC_new(6:0)" name="PC_new(6:0)" />
         </block>
-        <block symbolname="alu_result_control" name="XLXI_66">
-            <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="alu_result(15:0)" name="alu_result(15:0)" />
-            <blockpin signalname="alu_top_result(15:0)" name="alu_mult_top_result(15:0)" />
-            <blockpin signalname="instruction_ex(11:9)" name="alu_mode(2:0)" />
-            <blockpin signalname="result_ex(15:0)" name="result_ex(15:0)" />
-        </block>
         <block symbolname="mux2_7bit" name="XLXI_90">
             <blockpin signalname="br_enable" name="SEL" />
             <blockpin signalname="XLXN_724(6:0)" name="D0(6:0)" />
@@ -430,8 +431,81 @@
             <blockpin signalname="rom(15:0)" name="data(15:0)" />
             <blockpin signalname="XLXN_328" name="en" />
         </block>
+        <block symbolname="mem_wb_latch" name="XLXI_41">
+            <blockpin signalname="XLXN_296" name="wr_en_in" />
+            <blockpin signalname="clk" name="clk" />
+            <blockpin signalname="XLXN_295(15:0)" name="ar_in(15:0)" />
+            <blockpin signalname="wr_en" name="wr_en_out" />
+            <blockpin signalname="wr(15:0)" name="ar_out(15:0)" />
+            <blockpin signalname="instruction_mem(15:0)" name="instruction_mem(15:0)" />
+            <blockpin signalname="instruction_wb(15:0)" name="instruction_wb(15:0)" />
+        </block>
+        <block symbolname="mem_wb_controller" name="XLXI_40">
+            <blockpin signalname="results_mem(15:0)" name="ar_in(15:0)" />
+            <blockpin signalname="instruction_mem(15:9)" name="op(6:0)" />
+            <blockpin signalname="XLXN_296" name="wr_en" />
+            <blockpin signalname="XLXN_295(15:0)" name="ar_out(15:0)" />
+            <blockpin signalname="controller_input_mem(15:0)" name="controller_input(15:0)" />
+        </block>
+        <block symbolname="ex_mem_latch" name="XLXI_64">
+            <blockpin signalname="clk" name="clk" />
+            <blockpin signalname="TEST_ENABLE_EX_MEM" name="enable" />
+            <blockpin signalname="TEST_RESET_EX_MEM" name="reset" />
+            <blockpin signalname="result_ex(15:0)" name="result_ex(15:0)" />
+            <blockpin signalname="instruction_ex(15:0)" name="instruction_ex(15:0)" />
+            <blockpin signalname="PC_ex(6:0)" name="PC_ex(6:0)" />
+            <blockpin signalname="results_mem(15:0)" name="result_mem(15:0)" />
+            <blockpin signalname="instruction_mem(15:0)" name="instruction_mem(15:0)" />
+            <blockpin signalname="PC_mem(6:0)" name="PC_mem(6:0)" />
+            <blockpin signalname="controller_input(15:0)" name="controller_input(15:0)" />
+            <blockpin signalname="controller_input_mem(15:0)" name="controller_input_mem(15:0)" />
+        </block>
+        <block symbolname="alu" name="XLXI_1">
+            <blockpin signalname="Reset" name="rst" />
+            <blockpin signalname="clk" name="clk" />
+            <blockpin signalname="alu_in1(15:0)" name="in1(15:0)" />
+            <blockpin signalname="alu_in2(15:0)" name="in2(15:0)" />
+            <blockpin signalname="instruction_ex(11:9)" name="alu_mode(2:0)" />
+            <blockpin signalname="z_flag" name="z_flag" />
+            <blockpin signalname="n_flag" name="n_flag" />
+            <blockpin signalname="alu_result(15:0)" name="result(15:0)" />
+            <blockpin signalname="alu_top_result(15:0)" name="mult_top_result(15:0)" />
+        </block>
+        <block symbolname="alu_result_control" name="XLXI_66">
+            <blockpin signalname="clk" name="clk" />
+            <blockpin signalname="alu_result(15:0)" name="alu_result(15:0)" />
+            <blockpin signalname="alu_top_result(15:0)" name="alu_mult_top_result(15:0)" />
+            <blockpin signalname="instruction_ex(11:9)" name="alu_mode(2:0)" />
+            <blockpin signalname="result_ex(15:0)" name="result_ex(15:0)" />
+        </block>
+        <block symbolname="fcu" name="XLXI_105">
+            <blockpin name="clk" />
+            <blockpin name="instruction_ex(15:0)" />
+            <blockpin name="instruction_mem(15:0)" />
+            <blockpin name="instruction_wb(15:0)" />
+            <blockpin name="forward_mem_1" />
+            <blockpin name="forward_mem_2" />
+            <blockpin name="forward_wb_1" />
+            <blockpin name="forward_wb_2" />
+        </block>
+        <block symbolname="mux3_16bit" name="XLXI_106">
+            <blockpin name="SEL(1:0)" />
+            <blockpin name="D0(15:0)" />
+            <blockpin name="D1(15:0)" />
+            <blockpin name="D2(15:0)" />
+            <blockpin name="X(15:0)" />
+        </block>
+        <block symbolname="mux3_16bit" name="XLXI_107">
+            <blockpin name="SEL(1:0)" />
+            <blockpin name="D0(15:0)" />
+            <blockpin name="D1(15:0)" />
+            <blockpin name="D2(15:0)" />
+            <blockpin name="X(15:0)" />
+        </block>
     </netlist>
-    <sheet sheetnum="1" width="5440" height="3520">
+    <sheet sheetnum="1" width="7609" height="5382">
+        <attr value="CM" name="LengthUnitName" />
+        <attr value="4" name="GridsPerUnit" />
         <branch name="clk">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="80" y="976" type="branch" />
             <wire x2="192" y1="976" y2="976" x1="80" />
@@ -472,30 +546,6 @@
             <wire x2="336" y1="1472" y2="1472" x1="304" />
             <wire x2="304" y1="1472" y2="1760" x1="304" />
         </branch>
-        <branch name="XLXN_295(15:0)">
-            <wire x2="4704" y1="2400" y2="2400" x1="4448" />
-        </branch>
-        <branch name="XLXN_296">
-            <wire x2="4576" y1="2336" y2="2336" x1="4448" />
-            <wire x2="4576" y1="2272" y2="2336" x1="4576" />
-            <wire x2="4704" y1="2272" y2="2272" x1="4576" />
-        </branch>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4672" y="2336" type="branch" />
-            <wire x2="4704" y1="2336" y2="2336" x1="4672" />
-        </branch>
-        <branch name="wr_en">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5184" y="2272" type="branch" />
-            <wire x2="5184" y1="2272" y2="2272" x1="5088" />
-        </branch>
-        <branch name="wr(15:0)">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5184" y="2400" type="branch" />
-            <wire x2="5184" y1="2400" y2="2400" x1="5088" />
-        </branch>
-        <instance x="4704" y="2432" name="XLXI_41" orien="R0">
-        </instance>
-        <instance x="4064" y="2432" name="XLXI_40" orien="R0">
-        </instance>
         <branch name="TEST_ENABLE_IF_ID_LATCH">
             <wire x2="816" y1="2400" y2="2400" x1="592" />
             <wire x2="816" y1="1888" y2="2400" x1="816" />
@@ -574,128 +624,40 @@
             <wire x2="2688" y1="1408" y2="1408" x1="2608" />
         </branch>
         <branch name="PC_ex(6:0)">
-            <wire x2="4640" y1="1936" y2="1936" x1="3232" />
-            <wire x2="4736" y1="1808" y2="1808" x1="4640" />
-            <wire x2="4640" y1="1808" y2="1936" x1="4640" />
+            <wire x2="3248" y1="1936" y2="1936" x1="3232" />
+            <wire x2="3248" y1="1936" y2="2032" x1="3248" />
+            <wire x2="5520" y1="2032" y2="2032" x1="3248" />
+            <wire x2="5568" y1="1808" y2="1808" x1="5520" />
+            <wire x2="5520" y1="1808" y2="2032" x1="5520" />
         </branch>
         <instance x="2688" y="1824" name="XLXI_65" orien="R0">
         </instance>
         <branch name="instruction_ex(15:0)">
-            <wire x2="4592" y1="1872" y2="1872" x1="3232" />
-            <wire x2="4736" y1="1744" y2="1744" x1="4592" />
-            <wire x2="4592" y1="1744" y2="1872" x1="4592" />
-        </branch>
-        <branch name="alu_in2(15:0)">
-            <wire x2="3568" y1="1680" y2="1680" x1="3232" />
+            <wire x2="3248" y1="1872" y2="1872" x1="3232" />
+            <wire x2="3248" y1="1872" y2="1920" x1="3248" />
+            <wire x2="5552" y1="1920" y2="1920" x1="3248" />
+            <wire x2="5552" y1="1744" y2="1920" x1="5552" />
+            <wire x2="5568" y1="1744" y2="1744" x1="5552" />
         </branch>
         <branch name="alu_in1(15:0)">
-            <wire x2="3568" y1="1616" y2="1616" x1="3232" />
+            <wire x2="4400" y1="1616" y2="1616" x1="3232" />
         </branch>
         <branch name="Reset">
-            <wire x2="3568" y1="1488" y2="1488" x1="3296" />
-        </branch>
-        <instance x="4736" y="1840" name="XLXI_64" orien="R0">
-        </instance>
-        <branch name="instruction_ex(11:9)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3504" y="1744" type="branch" />
-            <wire x2="3568" y1="1744" y2="1744" x1="3504" />
-        </branch>
-        <instance x="3568" y="1776" name="XLXI_1" orien="R0">
-        </instance>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3504" y="1552" type="branch" />
-            <wire x2="3568" y1="1552" y2="1552" x1="3504" />
-        </branch>
-        <branch name="alu_top_result(15:0)">
-            <wire x2="4032" y1="1808" y2="1808" x1="3984" />
-            <wire x2="4032" y1="1728" y2="1808" x1="4032" />
-            <wire x2="4080" y1="1728" y2="1728" x1="4032" />
-        </branch>
-        <branch name="alu_result(15:0)">
-            <wire x2="4016" y1="1744" y2="1744" x1="3984" />
-            <wire x2="4016" y1="1664" y2="1744" x1="4016" />
-            <wire x2="4080" y1="1664" y2="1664" x1="4016" />
-        </branch>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4048" y="1600" type="branch" />
-            <wire x2="4080" y1="1600" y2="1600" x1="4048" />
+            <wire x2="4384" y1="1488" y2="1488" x1="4336" />
+            <wire x2="4400" y1="1488" y2="1488" x1="4384" />
         </branch>
         <branch name="instruction_ex(11:9)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3984" y="1968" type="branch" />
-            <wire x2="4048" y1="1968" y2="1968" x1="3984" />
-            <wire x2="4080" y1="1792" y2="1792" x1="4048" />
-            <wire x2="4048" y1="1792" y2="1968" x1="4048" />
-        </branch>
-        <branch name="result_ex(15:0)">
-            <wire x2="4688" y1="1600" y2="1600" x1="4640" />
-            <wire x2="4688" y1="1600" y2="1680" x1="4688" />
-            <wire x2="4736" y1="1680" y2="1680" x1="4688" />
-        </branch>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4672" y="1488" type="branch" />
-            <wire x2="4736" y1="1488" y2="1488" x1="4672" />
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4352" y="1744" type="branch" />
+            <wire x2="4400" y1="1744" y2="1744" x1="4352" />
         </branch>
         <instance x="864" y="1728" name="XLXI_52" orien="R0">
         </instance>
         <instance x="2000" y="1904" name="XLXI_2" orien="R0">
         </instance>
-        <branch name="instruction_mem(15:0)">
-            <wire x2="5376" y1="1872" y2="1872" x1="5312" />
-        </branch>
-        <branch name="results_mem(15:0)">
-            <wire x2="5376" y1="1680" y2="1680" x1="5312" />
-        </branch>
-        <branch name="results_mem(15:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3984" y="2336" type="branch" />
-            <wire x2="4064" y1="2336" y2="2336" x1="3984" />
-        </branch>
-        <branch name="instruction_mem(15:9)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3984" y="2400" type="branch" />
-            <wire x2="4064" y1="2400" y2="2400" x1="3984" />
-        </branch>
-        <branch name="instruction_mem(15:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4624" y="2464" type="branch" />
-            <wire x2="4704" y1="2464" y2="2464" x1="4624" />
-        </branch>
-        <branch name="instruction_wb(15:0)">
-            <wire x2="5232" y1="2464" y2="2464" x1="5088" />
-        </branch>
         <branch name="TEST_RESET_ID_EX_LATCH">
             <wire x2="2672" y1="2144" y2="2144" x1="2352" />
             <wire x2="2688" y1="1936" y2="1936" x1="2672" />
             <wire x2="2672" y1="1936" y2="2144" x1="2672" />
-        </branch>
-        <branch name="TEST_ENABLE_EX_MEM">
-            <wire x2="4656" y1="1984" y2="1984" x1="4416" />
-            <wire x2="4656" y1="1872" y2="1984" x1="4656" />
-            <wire x2="4736" y1="1872" y2="1872" x1="4656" />
-        </branch>
-        <branch name="TEST_RESET_EX_MEM">
-            <wire x2="4672" y1="2064" y2="2064" x1="4416" />
-            <wire x2="4672" y1="1936" y2="2064" x1="4672" />
-            <wire x2="4736" y1="1936" y2="1936" x1="4672" />
-        </branch>
-        <branch name="PC_mem(6:0)">
-            <wire x2="5344" y1="2032" y2="2032" x1="5056" />
-            <wire x2="5056" y1="2032" y2="2096" x1="5056" />
-            <wire x2="5120" y1="2096" y2="2096" x1="5056" />
-            <wire x2="5344" y1="1936" y2="1936" x1="5312" />
-            <wire x2="5344" y1="1936" y2="2032" x1="5344" />
-        </branch>
-        <branch name="n_flag">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4176" y="1456" type="branch" />
-            <wire x2="4032" y1="1616" y2="1616" x1="3984" />
-            <wire x2="4032" y1="1456" y2="1616" x1="4032" />
-            <wire x2="4176" y1="1456" y2="1456" x1="4032" />
-        </branch>
-        <branch name="z_flag">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4176" y="1408" type="branch" />
-            <wire x2="4016" y1="1488" y2="1488" x1="3984" />
-            <wire x2="4016" y1="1408" y2="1488" x1="4016" />
-            <wire x2="4176" y1="1408" y2="1408" x1="4016" />
-        </branch>
-        <branch name="controller_input(15:0)">
-            <wire x2="4064" y1="2464" y2="2464" x1="4032" />
         </branch>
         <instance x="1712" y="1328" name="XLXI_68" orien="R0">
         </instance>
@@ -723,16 +685,9 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1648" y="1296" type="branch" />
             <wire x2="1712" y1="1296" y2="1296" x1="1648" />
         </branch>
-        <instance x="4080" y="1824" name="XLXI_66" orien="R0">
-        </instance>
         <iomarker fontsize="28" x="2496" y="2048" name="TEST_ENABLE_ID_EX_LATCH" orien="R180" />
-        <iomarker fontsize="28" x="3296" y="1488" name="Reset" orien="R180" />
         <iomarker fontsize="28" x="1968" y="1488" name="rst" orien="R180" />
         <iomarker fontsize="28" x="2352" y="2144" name="TEST_RESET_ID_EX_LATCH" orien="R180" />
-        <iomarker fontsize="28" x="4416" y="1984" name="TEST_ENABLE_EX_MEM" orien="R180" />
-        <iomarker fontsize="28" x="4416" y="2064" name="TEST_RESET_EX_MEM" orien="R180" />
-        <iomarker fontsize="28" x="5120" y="2096" name="PC_mem(6:0)" orien="R0" />
-        <iomarker fontsize="28" x="4032" y="2464" name="controller_input(15:0)" orien="R180" />
         <iomarker fontsize="28" x="592" y="2400" name="TEST_ENABLE_IF_ID_LATCH" orien="R180" />
         <branch name="PC_if_initial(6:0)">
             <wire x2="1104" y1="640" y2="640" x1="928" />
@@ -820,5 +775,151 @@
             <wire x2="1824" y1="1808" y2="1808" x1="1808" />
             <wire x2="1824" y1="1808" y2="1872" x1="1824" />
         </branch>
+        <instance x="4896" y="2432" name="XLXI_40" orien="R0">
+        </instance>
+        <instance x="5568" y="1840" name="XLXI_64" orien="R0">
+        </instance>
+        <instance x="4400" y="1776" name="XLXI_1" orien="R0">
+        </instance>
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4336" y="1552" type="branch" />
+            <wire x2="4400" y1="1552" y2="1552" x1="4336" />
+        </branch>
+        <branch name="alu_top_result(15:0)">
+            <wire x2="4864" y1="1808" y2="1808" x1="4816" />
+            <wire x2="4864" y1="1728" y2="1808" x1="4864" />
+            <wire x2="4912" y1="1728" y2="1728" x1="4864" />
+        </branch>
+        <branch name="alu_result(15:0)">
+            <wire x2="4848" y1="1744" y2="1744" x1="4816" />
+            <wire x2="4848" y1="1664" y2="1744" x1="4848" />
+            <wire x2="4912" y1="1664" y2="1664" x1="4848" />
+        </branch>
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4880" y="1600" type="branch" />
+            <wire x2="4912" y1="1600" y2="1600" x1="4880" />
+        </branch>
+        <branch name="instruction_ex(11:9)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4816" y="1872" type="branch" />
+            <wire x2="4880" y1="1872" y2="1872" x1="4816" />
+            <wire x2="4912" y1="1792" y2="1792" x1="4880" />
+            <wire x2="4880" y1="1792" y2="1872" x1="4880" />
+        </branch>
+        <branch name="result_ex(15:0)">
+            <wire x2="5520" y1="1600" y2="1600" x1="5472" />
+            <wire x2="5520" y1="1600" y2="1680" x1="5520" />
+            <wire x2="5568" y1="1680" y2="1680" x1="5520" />
+        </branch>
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5504" y="1488" type="branch" />
+            <wire x2="5568" y1="1488" y2="1488" x1="5504" />
+        </branch>
+        <branch name="instruction_mem(15:0)">
+            <wire x2="6208" y1="1872" y2="1872" x1="6144" />
+        </branch>
+        <branch name="results_mem(15:0)">
+            <wire x2="6208" y1="1680" y2="1680" x1="6144" />
+        </branch>
+        <branch name="results_mem(15:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4816" y="2336" type="branch" />
+            <wire x2="4896" y1="2336" y2="2336" x1="4816" />
+        </branch>
+        <branch name="instruction_mem(15:9)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4816" y="2400" type="branch" />
+            <wire x2="4896" y1="2400" y2="2400" x1="4816" />
+        </branch>
+        <branch name="TEST_ENABLE_EX_MEM">
+            <wire x2="5488" y1="1984" y2="1984" x1="5248" />
+            <wire x2="5488" y1="1872" y2="1984" x1="5488" />
+            <wire x2="5568" y1="1872" y2="1872" x1="5488" />
+        </branch>
+        <branch name="TEST_RESET_EX_MEM">
+            <wire x2="5504" y1="2064" y2="2064" x1="5248" />
+            <wire x2="5504" y1="1936" y2="2064" x1="5504" />
+            <wire x2="5568" y1="1936" y2="1936" x1="5504" />
+        </branch>
+        <branch name="PC_mem(6:0)">
+            <wire x2="6176" y1="2032" y2="2032" x1="5888" />
+            <wire x2="5888" y1="2032" y2="2096" x1="5888" />
+            <wire x2="5952" y1="2096" y2="2096" x1="5888" />
+            <wire x2="6176" y1="1936" y2="1936" x1="6144" />
+            <wire x2="6176" y1="1936" y2="2032" x1="6176" />
+        </branch>
+        <branch name="n_flag">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5008" y="1456" type="branch" />
+            <wire x2="4864" y1="1616" y2="1616" x1="4816" />
+            <wire x2="4864" y1="1456" y2="1616" x1="4864" />
+            <wire x2="5008" y1="1456" y2="1456" x1="4864" />
+        </branch>
+        <branch name="z_flag">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5008" y="1408" type="branch" />
+            <wire x2="4848" y1="1488" y2="1488" x1="4816" />
+            <wire x2="4848" y1="1408" y2="1488" x1="4848" />
+            <wire x2="5008" y1="1408" y2="1408" x1="4848" />
+        </branch>
+        <instance x="4912" y="1824" name="XLXI_66" orien="R0">
+        </instance>
+        <branch name="controller_input(15:0)">
+            <wire x2="5536" y1="2144" y2="2144" x1="5168" />
+            <wire x2="5568" y1="2000" y2="2000" x1="5536" />
+            <wire x2="5536" y1="2000" y2="2144" x1="5536" />
+        </branch>
+        <branch name="controller_input_mem(15:0)">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4832" y="2224" type="branch" />
+            <wire x2="4832" y1="2224" y2="2464" x1="4832" />
+            <wire x2="4896" y1="2464" y2="2464" x1="4832" />
+            <wire x2="6256" y1="2224" y2="2224" x1="4832" />
+            <wire x2="6256" y1="2000" y2="2000" x1="6144" />
+            <wire x2="6256" y1="2000" y2="2224" x1="6256" />
+        </branch>
+        <iomarker fontsize="28" x="5248" y="1984" name="TEST_ENABLE_EX_MEM" orien="R180" />
+        <iomarker fontsize="28" x="5248" y="2064" name="TEST_RESET_EX_MEM" orien="R180" />
+        <iomarker fontsize="28" x="5952" y="2096" name="PC_mem(6:0)" orien="R0" />
+        <iomarker fontsize="28" x="5168" y="2144" name="controller_input(15:0)" orien="R180" />
+        <iomarker fontsize="28" x="4336" y="1488" name="Reset" orien="R180" />
+        <instance x="3504" y="816" name="XLXI_105" orien="R0">
+        </instance>
+        <branch name="wr(15:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="6016" y="2400" type="branch" />
+            <wire x2="6000" y1="2400" y2="2400" x1="5920" />
+            <wire x2="6016" y1="2400" y2="2400" x1="6000" />
+        </branch>
+        <branch name="wr_en">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="6016" y="2272" type="branch" />
+            <wire x2="6000" y1="2272" y2="2272" x1="5920" />
+            <wire x2="6016" y1="2272" y2="2272" x1="6000" />
+        </branch>
+        <branch name="instruction_mem(15:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5456" y="2464" type="branch" />
+            <wire x2="5472" y1="2464" y2="2464" x1="5456" />
+            <wire x2="5536" y1="2464" y2="2464" x1="5472" />
+        </branch>
+        <branch name="XLXN_295(15:0)">
+            <wire x2="5296" y1="2400" y2="2400" x1="5280" />
+            <wire x2="5536" y1="2400" y2="2400" x1="5296" />
+        </branch>
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5504" y="2336" type="branch" />
+            <wire x2="5520" y1="2336" y2="2336" x1="5504" />
+            <wire x2="5536" y1="2336" y2="2336" x1="5520" />
+        </branch>
+        <branch name="XLXN_296">
+            <wire x2="5296" y1="2336" y2="2336" x1="5280" />
+            <wire x2="5408" y1="2336" y2="2336" x1="5296" />
+            <wire x2="5408" y1="2272" y2="2336" x1="5408" />
+            <wire x2="5536" y1="2272" y2="2272" x1="5408" />
+        </branch>
+        <instance x="5536" y="2432" name="XLXI_41" orien="R0">
+        </instance>
+        <branch name="instruction_wb(15:0)">
+            <wire x2="6064" y1="2464" y2="2464" x1="5920" />
+        </branch>
+        <instance x="3568" y="1152" name="XLXI_106" orien="R0">
+        </instance>
+        <branch name="alu_in2(15:0)">
+            <wire x2="4400" y1="1680" y2="1680" x1="3232" />
+        </branch>
+        <instance x="3568" y="1504" name="XLXI_107" orien="R0">
+        </instance>
     </sheet>
 </drawing>
