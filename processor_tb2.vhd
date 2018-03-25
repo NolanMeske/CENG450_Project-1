@@ -83,14 +83,25 @@ BEGIN
 		TEST_RESET_ID_EX_LATCH <= '0';
 		TEST_RESET_EX_MEM <= '0';	
 		
-		wait for 52 ns;
-		controller_input <= X"fffe"; --R0 -2
+		wait for 42 ns;
+		
+		--For Format B Part a
+		controller_input <= X"0002"; --R0 -2
 		wait for 10 ns;
 		controller_input <= X"0003"; --R1
 		wait for 10 ns;
 		controller_input <= X"0001"; --R2
 		wait for 10 ns;
 		controller_input <= X"0005"; --R3
+		
+		--For Format B Part c
+--		controller_input <= X"fffe"; --R0 -2
+--		wait for 10 ns;
+--		controller_input <= X"0003"; --R1
+--		wait for 10 ns;
+--		controller_input <= X"0001"; --R2
+--		wait for 10 ns;
+--		controller_input <= X"0005"; --R3
 		wait; -- forever
 		wait for 10 ns;
 		controller_input <= X"0000"; --0? --R4

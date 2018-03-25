@@ -45,7 +45,7 @@ begin
 op_code <= op;
 
 ar_out <= 
-	controller_input when (op_code = "0100001") else
+	--controller_input when (op_code = "0100001") else
 	ar_in;
 
 wr_en <=

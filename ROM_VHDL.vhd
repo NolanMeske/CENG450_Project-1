@@ -17,16 +17,25 @@ architecture BHV of ROM_VHDL is
     type ROM_TYPE is array (0 to 127 ) of std_logic_vector (15 downto 0);
 
 constant rom_content : ROM_TYPE := (
-	000 => "0100001000000000", -- IN R0 , -2  -- This example tests how fast a multiplication operation is performed.
+	
+	--Format-B Part 1 - Dependencies test
+	000 => "0100001000000000", -- IN R0 , 02  -- This example tests how data dependencies are handled
 	001 => "0100001001000000", -- IN R1 , 03  -- The values to be loaded into the corresponding resgister.
 	002 => "0100001010000000", -- IN R2 , 01
 	003 => "0100001011000000", -- IN R3 , 05  --  End of initialization
-	004 => x"0000",
-	005 => x"0000",
-	006 => x"0000",
-	007 => "0000011110000011", -- MUL R6, R0, R3
-	008 => "1000000111111111", -- BRR -1
+	004 => "0000001001001010", -- ADD R1, R1, R2
+	005 => "0000010010001000", -- SUB R2, R1, R0
+	006 => "0000010001011010", -- SUB R1, R3, R2
 	others => x"0000" ); -- NOP
+	
+	--Format-B Part 3 - Multiplication test
+--	000 => "0100001000000000", -- IN R0 , -2  -- This example tests how fast a multiplication operation is performed.
+--	001 => "0100001001000000", -- IN R1 , 03  -- The values to be loaded into the corresponding resgister.
+--	002 => "0100001010000000", -- IN R2 , 01
+--	003 => "0100001011000000", -- IN R3 , 05  --  End of initialization
+--	004 => "0000011110000011", -- MUL R6, R0, R3
+--	005 => "1000000111111111", -- BRR -1
+--	others => x"0000" ); -- NOP
 
 --Tests branches (format B test 2)
 --    constant rom_content : ROM_TYPE := (

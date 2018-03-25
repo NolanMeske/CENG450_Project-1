@@ -62,8 +62,13 @@ latch: process (clk)
 		elsif(rising_edge(clk) and enable = '1') then
 			instruction_mem <= instruction_ex;
 			PC_mem <= PC_ex;
-			result_mem <= result_ex;
-			controller_input_mem <= controller_input;
+			--result_mem <= result_ex;
+			--controller_input_mem <= controller_input;
+			if instruction_ex(15 downto 9) = "0100001" then
+				result_mem <= controller_input;
+			else
+				result_mem <= result_ex;
+			end if;
 		end if;
 	end process;
 end Behavioral;
