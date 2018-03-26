@@ -48,6 +48,10 @@ entity mem_address_decode is
 			  en_sec_c_b : out std_logic;
 			  en_sec_d_a : out std_logic;
 			  en_sec_d_b : out std_logic;
+			  wr_sec_a : out std_logic;
+			  wr_sec_b : out std_logic;
+			  wr_sec_c : out std_logic;
+			  wr_sec_d : out std_logic;
 			  sector_select_high : out std_logic_vector (1 downto 0);
 			  sector_select_low	: out std_logic_vector (1 downto 0);
 			  mode : in std_logic_vector (1 downto 0));
@@ -64,8 +68,15 @@ architecture Behavioral of mem_address_decode is
 begin
 
 	-- Assumption: read words. High byte can be tossed out; therfore, byte addressable.
+	-- Assumption: write words. High and low bytes are written indpendently; therefore, byte addressable.
 	-- Modes: read (0), byte write (1), word write (2).
 	-- Read outputs 16 bit words, and bytes on different ports.
+	
+	-- Does this module need to distinguish between the locations of bytes and words, or
+	-- is that the compiler's problem?
+	
+	-- Do I just assume that every write is a word, but that those writes are byte addressable?
+	
 	-- Pretty sure that this is big endian right now.
 	
 	address <= unsigned(addri);
