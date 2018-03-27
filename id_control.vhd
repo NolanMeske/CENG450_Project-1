@@ -34,9 +34,11 @@ entity id_control is
 				instruction_id : in  STD_LOGIC_VECTOR (15 downto 0);
 				rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
 				rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
+				
 				immediate_data : out STD_LOGIC_VECTOR (7 downto 0);
 				immediate_m : out STD_LOGIC;
 				immediate_en : out STD_LOGIC;
+				
 				mov_src : out std_logic_vector (2 downto 0);
 				mov_dest : out std_logic_vector (2 downto 0);
 				mov_en : out std_logic_vector
@@ -52,7 +54,9 @@ begin
 	rd1 <=
 		instruction_id (5 downto 3) when (  op_code = "0000001" --ADD
 													or op_code = "0000010" --SUB
-													or op_code = "0000011")-- MULT 
+													or op_code = "0000011" --MULT 
+													or op_code = "0010000" --LOAD
+													or op_code = "0010001")--STORE
 													else
 		instruction_id (8 downto 6) when (  op_code = "0000100" --NAND
 													or op_code = "0000101" --SHL
@@ -70,7 +74,10 @@ begin
 													or op_code = "0000010" --SUB
 													or op_code = "0000011") --MUL
 													else
-													instruction_id(5 downto 3) when (op_code = "0000100") else "000"; -- NAND?
+													instruction_id(5 downto 3) when (op_code = "0000100") else 
+		instruction_id (8 downto 6) when (	op_code = "0010000" --LOAD
+													or	op_code = "0010001")--STORE
+													else "000"; -- NAND?
 		
 	immediate_data <= instruction_id(7 downto 0) when op_code = "0010010"
 							else "00000000";

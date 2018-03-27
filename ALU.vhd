@@ -154,6 +154,7 @@ begin
 	std_logic_vector(y2)																	when(alu_mode = "110" and (in2 >= X"08" or in2 = X"08")) else	-- shift right more than 8
 	std_logic_vector(unsigned(in1));
 	
+	-- I want to add a pass through to this case like above.
 	mult_top_result <= 
 		std_logic_vector(signed(P(31 downto 16))) when(alu_mode = "011") else
 		X"0000";

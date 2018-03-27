@@ -45,27 +45,27 @@ entity id_ex_latch is
 			  PC_ex 				: out std_logic_vector(6 downto 0);
 			  
 			  rd_data1_ex 	: out std_logic_vector(15 downto 0);
-			  rd_data2_ex 	: out std_logic_vector(15 downto 0)
-			  
+			  rd_data2_ex 	: out std_logic_vector(15 downto 0)		  
 			 );
 end id_ex_latch;
 
 architecture Behavioral of id_ex_latch is
-
 begin
 	
 	latch: process (clk) 
 	begin
-		if (rising_edge(clk) and reset = '1') then
-			instruction_ex <= X"0000";
-			PC_ex <= "0000000";
-			rd_data1_ex <= X"0000";
-			rd_data2_ex <= X"0000";
-		elsif(rising_edge(clk) and enable = '1') then
-			instruction_ex <= instruction_id;
-			PC_ex <= PC_id;
-			rd_data1_ex <= rd_data1_id;
-			rd_data2_ex <= rd_data2_id;
+		if rising_edge(clk) then
+			if reset = '1' then
+				instruction_ex <= X"0000";
+				PC_ex <= "0000000";
+				rd_data1_ex <= X"0000";
+				rd_data2_ex <= X"0000";
+			elsif enable = '1' then
+				instruction_ex <= instruction_id;
+				PC_ex <= PC_id;
+				rd_data1_ex <= rd_data1_id;
+				rd_data2_ex <= rd_data2_id;
+			end if;
 		end if;
 	end process;
 

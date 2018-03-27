@@ -33,6 +33,7 @@ use ieee.numeric_std.all;
 
 entity memory_simple is
 port(		clk : in std_logic;
+			enable : in std_logic;
 			din : in std_logic_vector (15 downto 0);
 			adr : in std_logic_vector (15 downto 0);
 			dout : out std_logic_vector (15 downto 0);
@@ -53,7 +54,7 @@ begin
 		
 	begin
 	
-		if rising_edge(clk) then
+		if rising_edge(clk) and enable = '1' then
 	
 			lsb_index := to_integer(unsigned(adr));
 			msb_index := lsb_index + 1;

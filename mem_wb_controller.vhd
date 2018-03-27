@@ -30,11 +30,15 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity mem_wb_controller is
-    Port ( ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
-           ar_out : out  STD_LOGIC_VECTOR (15 downto 0);
-			  wr_en	: out	STD_LOGIC;
-           op : in  STD_LOGIC_VECTOR (6 downto 0);
-			  controller_input : in STD_LOGIC_VECTOR(15 downto 0)
+    Port ( instruction_mem : in  STD_LOGIC_VECTOR (15 downto 0);
+			 
+			  wb_en	: out	STD_LOGIC;
+			  wb_src_select : out std_logic; 
+           
+			  mem_mode : out std_logic;
+			  mem_en : out std_logic;
+			  
+			  controller_input : in STD_LOGIC_VECTOR(15 downto 0)		-- not sure what this input is
 			 );
 end mem_wb_controller;
 
@@ -42,16 +46,39 @@ architecture Behavioral of mem_wb_controller is
 	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
 begin
 
-op_code <= op;
+-- all the codes need to change since you upped the width.
+-- conceptual issue: the memory addres that is loaded/stored to/from is loaded from a register, 
+-- not carried with the instruction.
 
-ar_out <= 
-	controller_input when (op_code = "0100001") else
-	ar_in;
+op_code <= instruction_mem(15 downto 9);
 
-wr_en <=
-	'1' when (op_code = "0100001" or op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100"
-	or op_code = "0000101" or op_code = "0000110") else
-	'0';
+-- Write back related cases:
+wb_en <=	'1' when (	op_code = "0100001" or 
+							op_code = "0000001" or 
+							op_code = "0000010" or 
+							op_code = "0000011" or 
+							op_code = "0000100" or 
+							op_code = "0000101" or 
+							op_code = "0000110"	) else
+			'0';
 
+-- send wb_out to wb when not an l format instrcution.
+-- send memory_simple output to wb when loading.
+wb_src_select <= '0' when (	op_code = "0100001" or 
+										op_code = "0000001" or 
+										op_code = "0000010" or 
+										op_code = "0000011" or 
+										op_code = "0000100" or 
+										op_code = "0000101" or 
+										op_code = "0000110"	) else
+					  '1' when instruction_mem = "0010000";
+
+-- Memory related cases	
+mem_mode <= '1' when op_code = "0010000" else
+				'0';
+				
+mem_en <= '1' when (	op_code = "0010000" or
+							op_code = "0010001"	) else
+			 '0'; 
 
 end Behavioral;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="id_control">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2018-3-20T20:24:18</timestamp>
+    <timestamp>2018-3-27T23:15:18</timestamp>
     <pin polarity="Input" x="0" y="-96" name="clk" />
     <pin polarity="Input" x="0" y="-32" name="instruction_id(15:0)" />
     <pin polarity="Output" x="432" y="32" name="immediate_m" />

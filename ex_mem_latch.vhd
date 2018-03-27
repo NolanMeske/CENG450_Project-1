@@ -42,7 +42,13 @@ entity ex_mem_latch is
 			  result_mem 	: out std_logic_vector(15 downto 0);
 			  
 			  instruction_mem 	: out std_logic_vector(15 downto 0);
-			  PC_mem 				: out std_logic_vector(6 downto 0)
+			  PC_mem 				: out std_logic_vector(6 downto 0);
+			  
+			  mem_adr_ex : in std_logic_vector (15 downto 0);
+			  mem_val_ex : in std_logic_vector (15 downto 0);
+			  
+			  mem_adr : out std_logic_vector (15 downto 0);
+			  mem_val : out std_logic_vector (15 downto 0)
 			);
 end ex_mem_latch;
 
@@ -60,6 +66,8 @@ latch: process (clk)
 			instruction_mem <= instruction_ex;
 			PC_mem <= PC_ex;
 			result_mem <= result_ex;
+			mem_adr <= mem_adr_ex;
+			mem_val <= mem_val_ex;
 		end if;
 	end process;
 end Behavioral;
