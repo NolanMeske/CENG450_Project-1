@@ -44,8 +44,6 @@
         <signal name="XLXN_617" />
         <signal name="XLXN_618" />
         <signal name="XLXN_619(7:0)" />
-        <signal name="XLXN_620(2:0)" />
-        <signal name="XLXN_621(2:0)" />
         <signal name="result_ex(15:0)" />
         <signal name="PC_mem(6:0)" />
         <signal name="XLXN_638(15:0)" />
@@ -66,6 +64,8 @@
         <signal name="controller_input(15:0)" />
         <signal name="mem_mode" />
         <signal name="mem_en" />
+        <signal name="XLXN_660(2:0)" />
+        <signal name="XLXN_661(2:0)" />
         <port polarity="Input" name="INSERT_NOP" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
         <port polarity="Input" name="rst" />
@@ -409,8 +409,8 @@
             <blockpin signalname="rf_rd1(2:0)" name="rd1(2:0)" />
             <blockpin signalname="rf_rd2(2:0)" name="rd2(2:0)" />
             <blockpin signalname="XLXN_619(7:0)" name="immediate_data(7:0)" />
-            <blockpin signalname="XLXN_620(2:0)" name="mov_src(2:0)" />
-            <blockpin signalname="XLXN_621(2:0)" name="mov_dest(2:0)" />
+            <blockpin signalname="XLXN_660(2:0)" name="mov_src(2:0)" />
+            <blockpin signalname="XLXN_661(2:0)" name="mov_dest(2:0)" />
         </block>
         <block symbolname="register_file" name="XLXI_2">
             <blockpin signalname="rst" name="rst" />
@@ -426,8 +426,8 @@
             <blockpin signalname="XLXN_616" name="imm_m" />
             <blockpin signalname="XLXN_618" name="mov_en" />
             <blockpin signalname="XLXN_619(7:0)" name="imm_data(7:0)" />
-            <blockpin signalname="XLXN_620(2:0)" name="mov_dest(2:0)" />
-            <blockpin signalname="XLXN_621(2:0)" name="mov_src(2:0)" />
+            <blockpin signalname="XLXN_661(2:0)" name="mov_dest(2:0)" />
+            <blockpin signalname="XLXN_660(2:0)" name="mov_src(2:0)" />
         </block>
         <block symbolname="id_ex_latch" name="XLXI_65">
             <blockpin signalname="clk" name="clk" />
@@ -785,16 +785,6 @@
             <wire x2="1936" y1="1264" y2="1392" x1="1936" />
             <wire x2="2080" y1="1392" y2="1392" x1="1936" />
         </branch>
-        <branch name="XLXN_620(2:0)">
-            <wire x2="1984" y1="1328" y2="1328" x1="1904" />
-            <wire x2="1984" y1="1328" y2="1456" x1="1984" />
-            <wire x2="2080" y1="1456" y2="1456" x1="1984" />
-        </branch>
-        <branch name="XLXN_621(2:0)">
-            <wire x2="1920" y1="1392" y2="1392" x1="1904" />
-            <wire x2="1920" y1="1392" y2="1520" x1="1920" />
-            <wire x2="2080" y1="1520" y2="1520" x1="1920" />
-        </branch>
         <iomarker fontsize="28" x="4688" y="1312" name="TEST_ENABLE_EX_MEM" orien="R180" />
         <branch name="clk">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4928" y="752" type="branch" />
@@ -915,6 +905,7 @@
             <wire x2="5712" y1="2080" y2="2080" x1="5616" />
         </branch>
         <branch name="instruction_wb(15:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5760" y="2144" type="branch" />
             <wire x2="5760" y1="2144" y2="2144" x1="5616" />
         </branch>
         <branch name="wr_en">
@@ -996,7 +987,6 @@
         </instance>
         <iomarker fontsize="28" x="3136" y="2080" name="controller_input(15:0)" orien="R180" />
         <text style="fontsize:24;fontname:Arial" x="1612" y="1476">This is a mess.</text>
-        <text style="fontsize:24;fontname:Arial" x="5836" y="2144">This bus is supposed to be disconnected.</text>
         <text style="fontsize:28;fontname:Arial" x="2836" y="1808">I think that there's going to be a timing problem here. Mostly becuase I have not thought about timing.</text>
         <branch name="clk">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="144" y="240" type="branch" />
@@ -1024,6 +1014,17 @@
             <wire x2="176" y1="96" y2="368" x1="176" />
             <wire x2="256" y1="368" y2="368" x1="176" />
             <wire x2="656" y1="736" y2="736" x1="592" />
+        </branch>
+        <branch name="XLXN_660(2:0)">
+            <wire x2="1968" y1="1328" y2="1328" x1="1904" />
+            <wire x2="1968" y1="1328" y2="1520" x1="1968" />
+            <wire x2="2080" y1="1520" y2="1520" x1="1968" />
+        </branch>
+        <branch name="XLXN_661(2:0)">
+            <wire x2="1920" y1="1392" y2="1392" x1="1904" />
+            <wire x2="1920" y1="1392" y2="1456" x1="1920" />
+            <wire x2="1936" y1="1456" y2="1456" x1="1920" />
+            <wire x2="2080" y1="1456" y2="1456" x1="1936" />
         </branch>
     </sheet>
 </drawing>

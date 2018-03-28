@@ -93,9 +93,9 @@ begin
 	
 	mov_dest <= instruction_id(8 downto 6) when op_code = "0010011"
 				  else "000";
-				  
-	immediate_en <= '1' when op_code = "0010011"
-						 else '0';
+	
+	mov_en <= '1' when op_code = "0010011" else
+				 '0';
 
 end Behavioral;
 

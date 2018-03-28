@@ -46,14 +46,11 @@ architecture Behavioral of mem_wb_controller is
 	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
 begin
 
--- all the codes need to change since you upped the width.
--- conceptual issue: the memory addres that is loaded/stored to/from is loaded from a register, 
--- not carried with the instruction.
-
 op_code <= instruction_mem(15 downto 9);
 
 -- Write back related cases:
-wb_en <=	'1' when (	op_code = "0100001" or 
+wb_en <=	'1' when (	op_code = "0010000" or
+							op_code = "0100001" or 
 							op_code = "0000001" or 
 							op_code = "0000010" or 
 							op_code = "0000011" or 
@@ -64,14 +61,8 @@ wb_en <=	'1' when (	op_code = "0100001" or
 
 -- send wb_out to wb when not an l format instrcution.
 -- send memory_simple output to wb when loading.
-wb_src_select <= '0' when (	op_code = "0100001" or 
-										op_code = "0000001" or 
-										op_code = "0000010" or 
-										op_code = "0000011" or 
-										op_code = "0000100" or 
-										op_code = "0000101" or 
-										op_code = "0000110"	) else
-					  '1' when instruction_mem = "0010000";
+wb_src_select <= '1' when op_code = "0010000" else
+					  '0';
 
 -- Memory related cases	
 mem_mode <= '1' when op_code = "0010000" else

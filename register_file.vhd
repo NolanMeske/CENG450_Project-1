@@ -22,7 +22,8 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
 entity register_file is
-port(rst : in std_logic; clk: in std_logic;
+port(
+rst : in std_logic; clk: in std_logic;
 --read signals
 rd_index1: in std_logic_vector(2 downto 0); 
 rd_index2: in std_logic_vector(2 downto 0); 
@@ -47,14 +48,13 @@ architecture behavioural of register_file is
 	type reg_array is array (integer range 0 to 7) of std_logic_vector(15 downto 0);
 	--internals signals
 	signal reg_file : reg_array;
-	signal mov_feedback : std_logic_vector (15 downto 0);
 	--reg_array(0) := X"0002"; --CMS Added for testing
 	--reg_array(1) := X"0002";	--CMS Added for testing
 	
 begin
 --write operation
---this needs to be modified to get the mov in 
 process(clk)
+	variable mov_feedback : std_logic_vector (15 downto 0);
 begin
    if(clk='0' and clk'event) then if(rst='1') then
       for i in 0 to 7 loop
@@ -75,21 +75,21 @@ begin
 	 -- imm
 	 elsif(imm_en = '1' and wr_enable='0' and mov_en='0') then
 		if imm_m = '0' then
-			reg_file(7) <= "00000000" & imm_data;
+			reg_file(7) <= reg_file(7)(15 downto 8) & imm_data;
 		elsif imm_m = '1' then
-			reg_file(7) <= imm_data & "00000000";
+			reg_file(7) <= imm_data & reg_file(7)(7 downto 0);
 		end if;
 	 -- mov
 	 elsif(mov_en = '1' and imm_en='0' and wr_enable='0' ) then
 		case mov_src is
-      when "000" => mov_feedback <= reg_file(0);
-      when "001" => mov_feedback <= reg_file(1);
-		when "010" => mov_feedback <= reg_file(2);
-		when "011" => mov_feedback <= reg_file(3);
-		when "100" => mov_feedback <= reg_file(4);
-		when "101" => mov_feedback <= reg_file(5);
-		when "110" => mov_feedback <= reg_file(6);
-		when "111" => mov_feedback <= reg_file(7);
+      when "000" => mov_feedback := reg_file(0);
+      when "001" => mov_feedback := reg_file(1);
+		when "010" => mov_feedback := reg_file(2);
+		when "011" => mov_feedback := reg_file(3);
+		when "100" => mov_feedback := reg_file(4);
+		when "101" => mov_feedback := reg_file(5);
+		when "110" => mov_feedback := reg_file(6);
+		when "111" => mov_feedback := reg_file(7);
       when others => NULL; end case;
 		case mov_dest is
       when "000" => reg_file(0) <= mov_feedback;
