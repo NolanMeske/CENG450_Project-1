@@ -30,7 +30,6 @@ ARCHITECTURE behavioral OF processor_sch_tb IS
           TEST_RESET_ID_EX_LATCH	:	IN	STD_LOGIC; 
           TEST_ENABLE_EX_MEM	:	IN	STD_LOGIC; 
           TEST_RESET_EX_MEM	:	IN	STD_LOGIC; 
-          PC_mem	:	OUT	STD_LOGIC_VECTOR (6 DOWNTO 0); 
 			 controller_input : in std_logic_vector(15 downto 0));
    END COMPONENT;
 
@@ -60,7 +59,6 @@ BEGIN
 		TEST_RESET_ID_EX_LATCH => TEST_RESET_ID_EX_LATCH, 
 		TEST_ENABLE_EX_MEM => TEST_ENABLE_EX_MEM, 
 		TEST_RESET_EX_MEM => TEST_RESET_EX_MEM, 
-		PC_mem => PC_mem, 
 		controller_input => controller_input
    );
 
