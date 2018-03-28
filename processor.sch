@@ -39,7 +39,6 @@
         <signal name="z_flag" />
         <signal name="PC_new(6:0)" />
         <signal name="br_enable" />
-        <signal name="XLXN_606(6:0)" />
         <signal name="instruction_wb(8:6)" />
         <signal name="XLXN_616" />
         <signal name="XLXN_617" />
@@ -67,7 +66,7 @@
         <signal name="controller_input(15:0)" />
         <signal name="mem_mode" />
         <signal name="mem_en" />
-        <signal name="ar_out(15:0)" />
+        <signal name="XLXN_660(6:0)" />
         <port polarity="Input" name="INSERT_NOP" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
         <port polarity="Input" name="rst" />
@@ -374,7 +373,7 @@
             <blockpin signalname="br_enable" name="reset" />
             <blockpin signalname="TEST_ENABLE_IF_ID_LATCH" name="enable" />
             <blockpin signalname="instruction_id(15:0)" name="instruction_id(15:0)" />
-            <blockpin signalname="XLXN_606(6:0)" name="PC_id(6:0)" />
+            <blockpin signalname="PC_id(6:0)" name="PC_id(6:0)" />
             <blockpin signalname="instruction_if(15:0)" name="instruction_if(15:0)" />
             <blockpin signalname="XLXN_474(6:0)" name="PC_if(6:0)" />
         </block>
@@ -446,7 +445,7 @@
             <blockpin signalname="rd_data1_id(15:0)" name="rd_data1_id(15:0)" />
             <blockpin signalname="rd_data2_id(15:0)" name="rd_data2_id(15:0)" />
             <blockpin signalname="instruction_id(15:0)" name="instruction_id(15:0)" />
-            <blockpin signalname="XLXN_606(6:0)" name="PC_id(6:0)" />
+            <blockpin signalname="PC_id(6:0)" name="PC_id(6:0)" />
             <blockpin signalname="instruction_ex(15:0)" name="instruction_ex(15:0)" />
             <blockpin signalname="PC_ex(6:0)" name="PC_ex(6:0)" />
             <blockpin signalname="rd1_data_ex(15:0)" name="rd_data1_ex(15:0)" />
@@ -530,7 +529,7 @@
         <block symbolname="memory_simple" name="XLXI_70">
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="mem_mode" name="mode" />
-            <blockpin signalname="ar_out(15:0)" name="din(15:0)" />
+            <blockpin signalname="mem_val(15:0)" name="din(15:0)" />
             <blockpin signalname="mem_adr(15:0)" name="adr(15:0)" />
             <blockpin signalname="dout(15:0)" name="dout(15:0)" />
             <blockpin signalname="mem_en" name="enable" />
@@ -755,8 +754,14 @@
             <wire x2="1744" y1="368" y2="368" x1="1680" />
         </branch>
         <branch name="PC_id(6:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1680" y="560" type="branch" />
+            <wire x2="1456" y1="1216" y2="1216" x1="1360" />
+            <wire x2="1456" y1="1216" y2="1600" x1="1456" />
+            <wire x2="2592" y1="1600" y2="1600" x1="1456" />
+            <wire x2="1680" y1="560" y2="560" x1="1456" />
             <wire x2="1744" y1="560" y2="560" x1="1680" />
+            <wire x2="1456" y1="560" y2="1216" x1="1456" />
+            <wire x2="2720" y1="1072" y2="1072" x1="2592" />
+            <wire x2="2592" y1="1072" y2="1600" x1="2592" />
         </branch>
         <branch name="PC_new(6:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="160" y="496" type="branch" />
@@ -767,13 +772,6 @@
             <wire x2="224" y1="432" y2="432" x1="160" />
         </branch>
         <iomarker fontsize="28" x="624" y="1664" name="TEST_ENABLE_IF_ID_LATCH" orien="R180" />
-        <branch name="XLXN_606(6:0)">
-            <wire x2="1456" y1="1216" y2="1216" x1="1360" />
-            <wire x2="1456" y1="1216" y2="1584" x1="1456" />
-            <wire x2="2528" y1="1584" y2="1584" x1="1456" />
-            <wire x2="2528" y1="1072" y2="1584" x1="2528" />
-            <wire x2="2720" y1="1072" y2="1072" x1="2528" />
-        </branch>
         <branch name="instruction_wb(8:6)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2416" y="1728" type="branch" />
             <wire x2="2080" y1="1072" y2="1072" x1="2000" />
@@ -921,8 +919,7 @@
         <instance x="4336" y="1120" name="XLXI_66" orien="R0">
         </instance>
         <branch name="XLXN_638(15:0)">
-            <wire x2="4944" y1="2080" y2="2080" x1="4640" />
-            <wire x2="4960" y1="2080" y2="2080" x1="4944" />
+            <wire x2="4960" y1="2080" y2="2080" x1="4640" />
         </branch>
         <branch name="instruction_mem(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4880" y="2144" type="branch" />
@@ -930,13 +927,11 @@
         </branch>
         <branch name="wb_en">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4928" y="1952" type="branch" />
-            <wire x2="4944" y1="1952" y2="1952" x1="4928" />
-            <wire x2="4960" y1="1952" y2="1952" x1="4944" />
+            <wire x2="4960" y1="1952" y2="1952" x1="4928" />
         </branch>
         <branch name="clk">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4928" y="2016" type="branch" />
-            <wire x2="4944" y1="2016" y2="2016" x1="4928" />
-            <wire x2="4960" y1="2016" y2="2016" x1="4944" />
+            <wire x2="4960" y1="2016" y2="2016" x1="4928" />
         </branch>
         <instance x="4960" y="2112" name="XLXI_41" orien="R0">
         </instance>
@@ -974,35 +969,29 @@
         <instance x="4256" y="2240" name="XLXI_72" orien="R0">
         </instance>
         <branch name="controller_input(15:0)">
-            <wire x2="3152" y1="2080" y2="2080" x1="3136" />
-            <wire x2="3168" y1="2080" y2="2080" x1="3152" />
+            <wire x2="3168" y1="2080" y2="2080" x1="3136" />
         </branch>
         <instance x="3168" y="2048" name="XLXI_40" orien="R0">
         </instance>
         <branch name="instruction_mem(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3088" y="2400" type="branch" />
-            <wire x2="3104" y1="2400" y2="2400" x1="3088" />
-            <wire x2="3168" y1="2400" y2="2400" x1="3104" />
+            <wire x2="3168" y1="2400" y2="2400" x1="3088" />
         </branch>
         <branch name="mem_mode">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3744" y="2144" type="branch" />
-            <wire x2="3728" y1="2144" y2="2144" x1="3712" />
-            <wire x2="3744" y1="2144" y2="2144" x1="3728" />
+            <wire x2="3744" y1="2144" y2="2144" x1="3712" />
         </branch>
         <branch name="mem_en">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3744" y="2208" type="branch" />
-            <wire x2="3728" y1="2208" y2="2208" x1="3712" />
-            <wire x2="3744" y1="2208" y2="2208" x1="3728" />
+            <wire x2="3744" y1="2208" y2="2208" x1="3712" />
         </branch>
         <branch name="wb_src_select">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3744" y="2272" type="branch" />
-            <wire x2="3728" y1="2272" y2="2272" x1="3712" />
-            <wire x2="3744" y1="2272" y2="2272" x1="3728" />
+            <wire x2="3744" y1="2272" y2="2272" x1="3712" />
         </branch>
         <branch name="wb_en">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3760" y="2336" type="branch" />
-            <wire x2="3744" y1="2336" y2="2336" x1="3712" />
-            <wire x2="3760" y1="2336" y2="2336" x1="3744" />
+            <wire x2="3760" y1="2336" y2="2336" x1="3712" />
         </branch>
         <branch name="clk">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3056" y="2720" type="branch" />
@@ -1020,7 +1009,7 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3056" y="2784" type="branch" />
             <wire x2="3248" y1="2784" y2="2784" x1="3056" />
         </branch>
-        <branch name="ar_out(15:0)">
+        <branch name="mem_val(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3056" y="2848" type="branch" />
             <wire x2="3248" y1="2848" y2="2848" x1="3056" />
         </branch>

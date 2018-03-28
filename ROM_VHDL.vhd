@@ -12,7 +12,8 @@ entity ROM_VHDL is
     port(
          clk      : in  std_logic;
          addr     : in  std_logic_vector (6 downto 0);
-         data     : out std_logic_vector (15 downto 0)
+         data     : out std_logic_vector (15 downto 0);
+			en			: in std_logic
          );
 end ROM_VHDL;
 
@@ -35,7 +36,7 @@ begin
 p1:    process (clk)
 	 variable add_in : integer := 0;
     begin
-        if rising_edge(clk) then
+        if rising_edge(clk) and en = '1' then
 					 add_in := conv_integer(unsigned(addr));
                 data <= rom_content(add_in);
         end if;

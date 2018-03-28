@@ -1,4 +1,4 @@
--- Vhdl test bench created from schematic Z:\Documents\GitHub\CENG450_Project\processor.sch - Tue Mar 27 17:06:58 2018
+-- Vhdl test bench created from schematic Z:\Documents\GitHub\CENG450_Project\processor.sch - Tue Mar 27 19:49:21 2018
 --
 -- Notes: 
 -- 1) This testbench template has been automatically generated using types
@@ -17,9 +17,9 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 LIBRARY UNISIM;
 USE UNISIM.Vcomponents.ALL;
-ENTITY lformat_test IS
-END lformat_test;
-ARCHITECTURE behavioral OF lformat_test IS 
+ENTITY processor_processor_sch_tb IS
+END processor_processor_sch_tb;
+ARCHITECTURE behavioral OF processor_processor_sch_tb IS 
 
    COMPONENT processor
    PORT( INSERT_NOP	:	IN	STD_LOGIC; 
@@ -64,10 +64,27 @@ BEGIN
    );
 
 -- *** Test Bench - User Defined Section ***
-   tb : PROCESS
+	INSERT_NOP <= '0';
+	TEST_ENABLE_IF_ID_LATCH <= '1';
+	rst <= '0';
+	TEST_ENABLE_ID_EX_LATCH <= '1';
+	TEST_RESET_ID_EX_LATCH <= '0';
+	TEST_ENABLE_EX_MEM <= '1';
+	TEST_RESET_EX_MEM <= '0';
+	controller_input <= X"0000";
+
+   clk_process : PROCESS
    BEGIN
-      WAIT; -- will wait forever
+		clk <= '1';
+		wait for 5 us;
+		clk <= '0';
+		wait for 5 us;
    END PROCESS;
+	
+	test : process
+	begin
+		wait for 100 us;
+	end process; 
 -- *** End Test Bench - User Defined Section ***
 
 END;
