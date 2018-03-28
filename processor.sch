@@ -61,7 +61,6 @@
         <signal name="Reset" />
         <signal name="XLXN_658(15:0)" />
         <signal name="XLXN_659(15:0)" />
-        <signal name="XLXN_676(15:0)" />
         <signal name="instruction_mem(15:0)" />
         <signal name="instruction_wb(15:0)" />
         <signal name="mem_val(15:0)" />
@@ -1032,7 +1031,8 @@
         <instance x="3248" y="2944" name="XLXI_70" orien="R0">
         </instance>
         <iomarker fontsize="28" x="3136" y="2080" name="controller_input(15:0)" orien="R180" />
-        <text style="fontsize:28;fontname:Arial" x="3128" y="1804">I think that there's going to be a timing problem here.</text>
         <text style="fontsize:24;fontname:Arial" x="1612" y="1476">This is a mess.</text>
+        <text style="fontsize:24;fontname:Arial" x="5836" y="2144">This bus is supposed to be disconnected.</text>
+        <text style="fontsize:28;fontname:Arial" x="2836" y="1808">I think that there's going to be a timing problem here. Mostly becuase I have not thought about timing.</text>
     </sheet>
 </drawing>
