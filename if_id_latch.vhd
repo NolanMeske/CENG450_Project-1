@@ -49,15 +49,16 @@ begin
 
 	latch: process (clk)
 	begin
-		if (rising_edge(clk) and reset = '1') then
-			instruction_id <= X"0000";
-			PC_id <= "0000000";
-		elsif(rising_edge(clk) and enable = '1') then
+		if rising_edge(clk) then
+			if reset = '1' then
+				instruction_id <= X"0000";
+				PC_id <= "0000000";
+			elsif enable = '1' then
 				instruction_id <= instruction_if;
 				PC_id <= PC_if;
+			end if;
 		end if;
 	end process;
-
-
+	
 end Behavioral;
 

@@ -66,7 +66,6 @@
         <signal name="controller_input(15:0)" />
         <signal name="mem_mode" />
         <signal name="mem_en" />
-        <signal name="XLXN_660(6:0)" />
         <port polarity="Input" name="INSERT_NOP" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
         <port polarity="Input" name="rst" />
@@ -360,14 +359,6 @@
             <blockpin signalname="rom(15:0)" name="data(15:0)" />
             <blockpin signalname="XLXN_328" name="en" />
         </block>
-        <block symbolname="counter" name="XLXI_48">
-            <blockpin signalname="clk" name="clock" />
-            <blockpin name="reset" />
-            <blockpin signalname="XLXN_328" name="en" />
-            <blockpin signalname="br_enable" name="br" />
-            <blockpin signalname="PC_new(6:0)" name="Qin(6:0)" />
-            <blockpin signalname="pc_if(6:0)" name="Q(6:0)" />
-        </block>
         <block symbolname="if_id_latch" name="XLXI_52">
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="br_enable" name="reset" />
@@ -534,14 +525,22 @@
             <blockpin signalname="dout(15:0)" name="dout(15:0)" />
             <blockpin signalname="mem_en" name="enable" />
         </block>
+        <block symbolname="counter" name="XLXI_48">
+            <blockpin signalname="clk" name="clock" />
+            <blockpin signalname="Reset" name="reset" />
+            <blockpin signalname="XLXN_328" name="en" />
+            <blockpin signalname="br_enable" name="br" />
+            <blockpin signalname="PC_new(6:0)" name="Qin(6:0)" />
+            <blockpin signalname="pc_if(6:0)" name="Q(6:0)" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="7040" height="5440">
         <branch name="clk">
             <wire x2="256" y1="64" y2="64" x1="128" />
         </branch>
         <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="672" y="176" type="branch" />
-            <wire x2="816" y1="176" y2="176" x1="672" />
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="720" y="176" type="branch" />
+            <wire x2="816" y1="176" y2="176" x1="720" />
         </branch>
         <instance x="816" y="272" name="XLXI_4" orien="R0">
         </instance>
@@ -550,12 +549,6 @@
             <wire x2="1312" y1="176" y2="176" x1="1200" />
         </branch>
         <iomarker fontsize="28" x="128" y="64" name="clk" orien="R180" />
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="112" y="240" type="branch" />
-            <wire x2="224" y1="240" y2="240" x1="112" />
-        </branch>
-        <instance x="224" y="528" name="XLXI_48" orien="R0">
-        </instance>
         <branch name="clk">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="832" y="576" type="branch" />
             <wire x2="896" y1="576" y2="576" x1="832" />
@@ -584,22 +577,13 @@
             <wire x2="368" y1="1440" y2="1440" x1="272" />
         </branch>
         <branch name="pc_if(6:0)">
-            <wire x2="816" y1="240" y2="240" x1="608" />
+            <wire x2="816" y1="240" y2="240" x1="640" />
         </branch>
         <branch name="INSERT_NOP">
             <wire x2="336" y1="1024" y2="1024" x1="256" />
             <wire x2="368" y1="1024" y2="1024" x1="336" />
             <wire x2="368" y1="736" y2="736" x1="336" />
             <wire x2="336" y1="736" y2="1024" x1="336" />
-        </branch>
-        <branch name="XLXN_328">
-            <wire x2="160" y1="144" y2="368" x1="160" />
-            <wire x2="224" y1="368" y2="368" x1="160" />
-            <wire x2="656" y1="144" y2="144" x1="160" />
-            <wire x2="656" y1="144" y2="304" x1="656" />
-            <wire x2="816" y1="304" y2="304" x1="656" />
-            <wire x2="656" y1="304" y2="736" x1="656" />
-            <wire x2="656" y1="736" y2="736" x1="592" />
         </branch>
         <branch name="TEST_ENABLE_IF_ID_LATCH">
             <wire x2="848" y1="1664" y2="1664" x1="624" />
@@ -757,19 +741,10 @@
             <wire x2="1456" y1="1216" y2="1216" x1="1360" />
             <wire x2="1456" y1="1216" y2="1600" x1="1456" />
             <wire x2="2592" y1="1600" y2="1600" x1="1456" />
-            <wire x2="1680" y1="560" y2="560" x1="1456" />
-            <wire x2="1744" y1="560" y2="560" x1="1680" />
             <wire x2="1456" y1="560" y2="1216" x1="1456" />
+            <wire x2="1744" y1="560" y2="560" x1="1456" />
             <wire x2="2720" y1="1072" y2="1072" x1="2592" />
             <wire x2="2592" y1="1072" y2="1600" x1="2592" />
-        </branch>
-        <branch name="PC_new(6:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="160" y="496" type="branch" />
-            <wire x2="224" y1="496" y2="496" x1="160" />
-        </branch>
-        <branch name="br_enable">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="160" y="432" type="branch" />
-            <wire x2="224" y1="432" y2="432" x1="160" />
         </branch>
         <iomarker fontsize="28" x="624" y="1664" name="TEST_ENABLE_IF_ID_LATCH" orien="R180" />
         <branch name="instruction_wb(8:6)">
@@ -1023,5 +998,32 @@
         <text style="fontsize:24;fontname:Arial" x="1612" y="1476">This is a mess.</text>
         <text style="fontsize:24;fontname:Arial" x="5836" y="2144">This bus is supposed to be disconnected.</text>
         <text style="fontsize:28;fontname:Arial" x="2836" y="1808">I think that there's going to be a timing problem here. Mostly becuase I have not thought about timing.</text>
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="144" y="240" type="branch" />
+            <wire x2="256" y1="240" y2="240" x1="144" />
+        </branch>
+        <branch name="PC_new(6:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="192" y="496" type="branch" />
+            <wire x2="256" y1="496" y2="496" x1="192" />
+        </branch>
+        <branch name="br_enable">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="192" y="432" type="branch" />
+            <wire x2="256" y1="432" y2="432" x1="192" />
+        </branch>
+        <branch name="Reset">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="144" y="304" type="branch" />
+            <wire x2="256" y1="304" y2="304" x1="144" />
+        </branch>
+        <instance x="256" y="528" name="XLXI_48" orien="R0">
+        </instance>
+        <branch name="XLXN_328">
+            <wire x2="656" y1="96" y2="96" x1="176" />
+            <wire x2="656" y1="96" y2="304" x1="656" />
+            <wire x2="816" y1="304" y2="304" x1="656" />
+            <wire x2="656" y1="304" y2="736" x1="656" />
+            <wire x2="176" y1="96" y2="368" x1="176" />
+            <wire x2="256" y1="368" y2="368" x1="176" />
+            <wire x2="656" y1="736" y2="736" x1="592" />
+        </branch>
     </sheet>
 </drawing>

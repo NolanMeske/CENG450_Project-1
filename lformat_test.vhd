@@ -76,14 +76,17 @@ BEGIN
    clk_process : PROCESS
    BEGIN
 		clk <= '1';
-		wait for 5 us;
+		wait for 5 ns;
 		clk <= '0';
-		wait for 5 us;
+		wait for 5 ns;
    END PROCESS;
 	
 	test : process
 	begin
-		wait for 100 us;
+	reset <= '1';
+	wait for 20 ns;
+	reset <= '0';
+	wait;
 	end process; 
 -- *** End Test Bench - User Defined Section ***
 
