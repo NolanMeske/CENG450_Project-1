@@ -17,9 +17,9 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 LIBRARY UNISIM;
 USE UNISIM.Vcomponents.ALL;
-ENTITY processor_processor_sch_tb IS
-END processor_processor_sch_tb;
-ARCHITECTURE behavioral OF processor_processor_sch_tb IS 
+ENTITY lformat_test IS
+END lformat_test;
+ARCHITECTURE behavioral OF lformat_test IS 
 
    COMPONENT processor
    PORT( INSERT_NOP	:	IN	STD_LOGIC; 
