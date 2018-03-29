@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    17:43:27 02/15/2018 
+-- Create Date:    13:42:38 03/23/2018 
 -- Design Name: 
--- Module Name:    memory - Behavioral 
+-- Module Name:    byte_to_word - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,27 +29,19 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity memory is
-    Port ( clk : in  STD_LOGIC;
-           addr : in  STD_LOGIC_VECTOR (15 downto 0);
-           data : in  STD_LOGIC_VECTOR (7 downto 0));
-end memory;
+entity byte_to_word is
+    Port ( high_byte : in  STD_LOGIC_VECTOR (7 downto 0);
+           low_byte : in  STD_LOGIC_VECTOR (7 downto 0);
+			  en : in std_logic;
+           word : out  STD_LOGIC_VECTOR (15 downto 0));
+end byte_to_word;
 
-architecture Behavioral of memory is
-
-	type memory_type is array (0 to 65536) of std_logic_vector (7 downto 0);
-	
-	variable memory_content : memory_type;
+architecture Behavioral of byte_to_word is
 
 begin
 
-p1: process (clk)
-	variable addr_in : integer := 0;
-	begin
-		if rising_edge (clk) then
-			add_in := conv_integer(unsigned(addr));
-			data <= memory_content(add_in);
-		end if;
-	end process;
+	word <= high_byte & low_byte when en = '1' else
+			  "0000000000000000";
+
 end Behavioral;
 

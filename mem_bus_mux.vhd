@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    13:28:48 02/21/2018 
+-- Create Date:    16:19:13 03/23/2018 
 -- Design Name: 
--- Module Name:    if_id_latch - Behavioral 
+-- Module Name:    mem_bus_mux - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,36 +29,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity if_id_latch is
-    Port ( clk : in std_logic;
-			  enable : in std_logic;
-			  reset : in std_logic;
-	 
-           instruction_if : in std_logic_vector(15 downto 0);
-			  PC_if : in std_logic_vector(6 downto 0);
-			  
-			  instruction_id : out std_logic_vector(15 downto 0);
-			  PC_id : out std_logic_vector(6 downto 0)
-			 );
-			
-end if_id_latch;
+entity mem_bus_mux is
+    Port ( sec_a : in  STD_LOGIC_VECTOR (7 downto 0);
+           sec_b : in  STD_LOGIC_VECTOR (7 downto 0);
+           sec_d : in  STD_LOGIC_VECTOR (7 downto 0);
+           sec_c : in  STD_LOGIC_VECTOR (7 downto 0);
+           s0 : in  STD_LOGIC;
+           s1 : in  STD_LOGIC;
+           en : in  STD_LOGIC;
+           o : out  STD_LOGIC_VECTOR (7 downto 0));
+end mem_bus_mux;
 
-architecture Behavioral of if_id_latch is
+architecture Behavioral of mem_bus_mux is
 
 begin
 
-	latch: process (clk)
-	begin
-		if rising_edge(clk) then
-			if reset = '1' then
-				instruction_id <= X"0000";
-				PC_id <= "0000000";
-			elsif enable = '1' then
-				instruction_id <= instruction_if;
-				PC_id <= PC_if;
-			end if;
-		end if;
-	end process;
-	
+	o <= sec_a when s0 = '0' and s1 = '0' else
+		  sec_b when s0 = '0' and s1 = '1' else
+		  sec_c when s0 = '1' and s1 = '0' else
+		  sec_d when s0 = '1' and s1 = '1';
+
 end Behavioral;
 

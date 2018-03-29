@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    21:44:28 03/13/2018 
--- Design Name: 
--- Module Name:    ex_mem_latch - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company:
+-- Engineer:
 --
--- Dependencies: 
+-- Create Date:    21:44:28 03/13/2018
+-- Design Name:
+-- Module Name:    ex_mem_latch - Behavioral
+-- Project Name:
+-- Target Devices:
+-- Tool versions:
+-- Description:
 --
--- Revision: 
+-- Dependencies:
+--
+-- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 library IEEE;
@@ -33,18 +33,24 @@ entity ex_mem_latch is
 			Port ( clk 	: in std_logic;
 			  enable 	: in std_logic;
 			  reset 		: in std_logic;
-			  
+
 			  result_ex 	: in std_logic_vector(15 downto 0);
-	 
+
            instruction_ex 	: in std_logic_vector(15 downto 0);
 			  PC_ex 				: in std_logic_vector(6 downto 0);
 			  controller_input : in std_logic_vector(15 downto 0);
 			  controller_input_mem : out std_logic_vector(15 downto 0);
-			  
+
 			  result_mem 	: out std_logic_vector(15 downto 0);
-			  
+
 			  instruction_mem 	: out std_logic_vector(15 downto 0);
-			  PC_mem 				: out std_logic_vector(6 downto 0)
+			  PC_mem 				: out std_logic_vector(6 downto 0);
+
+			  mem_adr_ex : in std_logic_vector (15 downto 0);
+			  mem_val_ex : in std_logic_vector (15 downto 0);
+
+			  mem_adr : out std_logic_vector (15 downto 0);
+			  mem_val : out std_logic_vector (15 downto 0)
 			);
 end ex_mem_latch;
 
@@ -52,14 +58,14 @@ architecture Behavioral of ex_mem_latch is
 
 begin
 
-latch: process (clk) 
+latch: process (clk)
 	begin
 		if (rising_edge(clk) and reset = '1') then
 			instruction_mem <= X"0000";
 			PC_mem <= "0000000";
 			result_mem <= X"0000";
 			controller_input_mem <= X"0000";
-		elsif(rising_edge(clk) and enable = '1') then
+		elsif (rising_edge(clk) and enable = '1') then
 			instruction_mem <= instruction_ex;
 			PC_mem <= PC_ex;
 			--result_mem <= result_ex;
@@ -69,7 +75,8 @@ latch: process (clk)
 			else
 				result_mem <= result_ex;
 			end if;
+			mem_adr <= mem_adr_ex;
+			mem_val <= mem_val_ex;
 		end if;
 	end process;
 end Behavioral;
-
