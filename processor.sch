@@ -56,14 +56,9 @@
         <signal name="controller_input(15:0)" />
         <signal name="TEST_ENABLE_EX_MEM" />
         <signal name="Reset" />
-        <signal name="ar_mem(15:0)" />
-        <signal name="wr_en_mem" />
-        <signal name="XLXN_1670(15:0)" />
-        <signal name="XLXN_1672(15:0)" />
-        <signal name="instruction_mem(15:9)" />
-        <signal name="XLXN_1674(15:0)" />
         <signal name="controller_input_mem(15:0)" />
         <signal name="PC_mem(6:0)" />
+        <signal name="instruction_mem(15:9)" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
         <port polarity="Input" name="TEST_ENABLE_ID_EX_LATCH" />
@@ -92,8 +87,16 @@
             <rect width="288" x="64" y="-320" height="384" />
         </blockdef>
         <blockdef name="register_file">
-            <timestamp>2018-3-13T4:12:15</timestamp>
-            <rect width="320" x="64" y="-448" height="448" />
+            <timestamp>2018-3-29T19:23:32</timestamp>
+            <line x2="0" y1="32" y2="32" x1="64" />
+            <line x2="0" y1="96" y2="96" x1="64" />
+            <line x2="0" y1="160" y2="160" x1="64" />
+            <rect width="64" x="0" y="212" height="24" />
+            <line x2="0" y1="224" y2="224" x1="64" />
+            <rect width="64" x="0" y="276" height="24" />
+            <line x2="0" y1="288" y2="288" x1="64" />
+            <rect width="64" x="0" y="340" height="24" />
+            <line x2="0" y1="352" y2="352" x1="64" />
             <line x2="0" y1="-416" y2="-416" x1="64" />
             <line x2="0" y1="-352" y2="-352" x1="64" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
@@ -109,6 +112,7 @@
             <line x2="448" y1="-416" y2="-416" x1="384" />
             <rect width="64" x="384" y="-364" height="24" />
             <line x2="448" y1="-352" y2="-352" x1="384" />
+            <rect width="320" x="64" y="-448" height="832" />
         </blockdef>
         <blockdef name="ROM_VHDL">
             <timestamp>2018-3-8T17:53:20</timestamp>
@@ -121,8 +125,7 @@
             <rect width="256" x="64" y="-128" height="192" />
         </blockdef>
         <blockdef name="id_ex_latch">
-            <timestamp>2018-3-14T15:16:47</timestamp>
-            <rect width="416" x="64" y="-448" height="584" />
+            <timestamp>2018-3-29T19:23:32</timestamp>
             <line x2="0" y1="-416" y2="-416" x1="64" />
             <line x2="0" y1="48" y2="48" x1="64" />
             <line x2="0" y1="112" y2="112" x1="64" />
@@ -142,19 +145,19 @@
             <line x2="544" y1="-144" y2="-144" x1="480" />
             <rect width="64" x="480" y="36" height="24" />
             <line x2="544" y1="48" y2="48" x1="480" />
+            <rect width="416" x="64" y="-448" height="712" />
         </blockdef>
         <blockdef name="mem_wb_controller">
-            <timestamp>2018-3-14T20:17:55</timestamp>
+            <timestamp>2018-3-29T19:23:32</timestamp>
+            <rect width="64" x="0" y="340" height="24" />
+            <line x2="0" y1="352" y2="352" x1="64" />
             <rect width="64" x="0" y="20" height="24" />
             <line x2="0" y1="32" y2="32" x1="64" />
-            <rect width="64" x="0" y="-108" height="24" />
-            <line x2="0" y1="-96" y2="-96" x1="64" />
-            <rect width="64" x="0" y="-44" height="24" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <line x2="384" y1="-96" y2="-96" x1="320" />
-            <rect width="64" x="320" y="-44" height="24" />
-            <line x2="384" y1="-32" y2="-32" x1="320" />
-            <rect width="256" x="64" y="-128" height="192" />
+            <rect width="416" x="64" y="-128" height="640" />
+            <line x2="544" y1="288" y2="288" x1="480" />
+            <line x2="544" y1="96" y2="96" x1="480" />
+            <line x2="544" y1="160" y2="160" x1="480" />
+            <line x2="544" y1="224" y2="224" x1="480" />
         </blockdef>
         <blockdef name="mem_wb_latch">
             <timestamp>2018-3-28T18:6:58</timestamp>
@@ -402,14 +405,14 @@
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="TEST_ENABLE_ID_EX_LATCH" name="enable" />
             <blockpin signalname="TEST_RESET_ID_EX_LATCH" name="reset" />
-            <blockpin signalname="PC_ex(6:0)" name="PC_ex(6:0)" />
             <blockpin signalname="rd_data1_id(15:0)" name="rd_data1_id(15:0)" />
             <blockpin signalname="rd_data2_id(15:0)" name="rd_data2_id(15:0)" />
             <blockpin signalname="instruction_id(15:0)" name="instruction_id(15:0)" />
             <blockpin signalname="PC_id(6:0)" name="PC_id(6:0)" />
+            <blockpin signalname="instruction_ex(15:0)" name="instruction_ex(15:0)" />
+            <blockpin signalname="PC_ex(6:0)" name="PC_ex(6:0)" />
             <blockpin signalname="rd_data1_ex(15:0)" name="rd_data1_ex(15:0)" />
             <blockpin signalname="rd_data2_ex(15:0)" name="rd_data2_ex(15:0)" />
-            <blockpin signalname="instruction_ex(15:0)" name="instruction_ex(15:0)" />
         </block>
         <block symbolname="id_control" name="XLXI_62">
             <blockpin signalname="clk" name="clk" />
@@ -428,6 +431,12 @@
             <blockpin signalname="wr(15:0)" name="wr_data(15:0)" />
             <blockpin signalname="rd_data1_id(15:0)" name="rd_data1(15:0)" />
             <blockpin signalname="rd_data2_id(15:0)" name="rd_data2(15:0)" />
+            <blockpin name="imm_en" />
+            <blockpin name="imm_m" />
+            <blockpin name="mov_en" />
+            <blockpin name="imm_data(7:0)" />
+            <blockpin name="mov_dest(2:0)" />
+            <blockpin name="mov_src(2:0)" />
         </block>
         <block symbolname="fcu" name="XLXI_105">
             <blockpin signalname="clk" name="clk" />
@@ -485,20 +494,21 @@
             <blockpin signalname="alu_top_result(15:0)" name="mult_top_result(15:0)" />
         </block>
         <block symbolname="mem_wb_latch" name="XLXI_41">
-            <blockpin signalname="wr_en_mem" name="wr_en_in" />
+            <blockpin name="wr_en_in" />
             <blockpin signalname="clk" name="clk" />
-            <blockpin signalname="ar_mem(15:0)" name="ar_in(15:0)" />
+            <blockpin name="ar_in(15:0)" />
             <blockpin signalname="instruction_mem(15:0)" name="instruction_mem(15:0)" />
             <blockpin signalname="wr_en" name="wr_en_out" />
             <blockpin signalname="instruction_wb(15:0)" name="instruction_wb(15:0)" />
             <blockpin signalname="wr(15:0)" name="ar_out(15:0)" />
         </block>
         <block symbolname="mem_wb_controller" name="XLXI_40">
-            <blockpin signalname="results_mem(15:0)" name="ar_in(15:0)" />
-            <blockpin signalname="instruction_mem(15:9)" name="op(6:0)" />
-            <blockpin signalname="wr_en_mem" name="wr_en" />
-            <blockpin signalname="ar_mem(15:0)" name="ar_out(15:0)" />
+            <blockpin signalname="instruction_mem(15:9)" name="instruction_mem(15:0)" />
             <blockpin signalname="controller_input_mem(15:0)" name="controller_input(15:0)" />
+            <blockpin name="wb_en" />
+            <blockpin name="wb_src_select" />
+            <blockpin name="mem_mode" />
+            <blockpin name="mem_en" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="7609" height="5382">
@@ -893,11 +903,6 @@
         <iomarker fontsize="28" x="3856" y="3968" name="TEST_RESET_EX_MEM" orien="R180" />
         <iomarker fontsize="28" x="3856" y="4032" name="controller_input(15:0)" orien="R180" />
         <iomarker fontsize="28" x="2112" y="3520" name="Reset" orien="R180" />
-        <branch name="ar_mem(15:0)">
-            <wire x2="5664" y1="3776" y2="3776" x1="5264" />
-            <wire x2="5664" y1="3776" y2="3840" x1="5664" />
-            <wire x2="6096" y1="3840" y2="3840" x1="5664" />
-        </branch>
         <branch name="n_flag">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2624" y="3648" type="branch" />
             <wire x2="2624" y1="3648" y2="3648" x1="2592" />
@@ -905,9 +910,6 @@
         <branch name="z_flag">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2624" y="3520" type="branch" />
             <wire x2="2624" y1="3520" y2="3520" x1="2592" />
-        </branch>
-        <branch name="wr_en_mem">
-            <wire x2="6096" y1="3712" y2="3712" x1="5264" />
         </branch>
         <branch name="wr_en">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="6576" y="3712" type="branch" />
@@ -940,10 +942,6 @@
         </branch>
         <instance x="4880" y="3808" name="XLXI_40" orien="R0">
         </instance>
-        <branch name="instruction_mem(15:9)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4832" y="3776" type="branch" />
-            <wire x2="4880" y1="3776" y2="3776" x1="4832" />
-        </branch>
         <branch name="controller_input_mem(15:0)">
             <wire x2="4848" y1="4032" y2="4032" x1="4512" />
             <wire x2="4880" y1="3840" y2="3840" x1="4848" />
@@ -959,5 +957,9 @@
         <text style="fontsize:64;fontname:Arial" x="5032" y="3112">Memory Stage</text>
         <rect style="linecolor:rgb(166,202,240)" width="652" x="6304" y="3164" height="1528" />
         <text style="fontsize:64;fontname:Arial" x="6388" y="3120">Write Back Stage</text>
+        <branch name="instruction_mem(15:9)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4816" y="4160" type="branch" />
+            <wire x2="4880" y1="4160" y2="4160" x1="4816" />
+        </branch>
     </sheet>
 </drawing>
