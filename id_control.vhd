@@ -31,19 +31,19 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity id_control is
     Port ( 	clk : in std_logic;
-				    instruction_id : in  STD_LOGIC_VECTOR (15 downto 0);
-    				rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
-    				rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
+				instruction_id : in  STD_LOGIC_VECTOR (15 downto 0);
+				rd1 : out  STD_LOGIC_VECTOR (2 downto 0);
+				rd2 : out  STD_LOGIC_VECTOR (2 downto 0);
 
-    				immediate_data : out STD_LOGIC_VECTOR (7 downto 0);
-    				immediate_m : out STD_LOGIC;
-    				immediate_en : out STD_LOGIC;
+				immediate_data : out STD_LOGIC_VECTOR (7 downto 0);
+				immediate_m : out STD_LOGIC;
+				immediate_en : out STD_LOGIC;
 
-    				mov_src : out std_logic_vector (2 downto 0);
-    				mov_dest : out std_logic_vector (2 downto 0);
-    				mov_en : out std_logic
+				mov_src : out std_logic_vector (2 downto 0);
+				mov_dest : out std_logic_vector (2 downto 0);
+				mov_en : out std_logic;
 
-    			  insert_nop : out std_logic
+			  insert_nop : out std_logic
 			 );
 end id_control;
 
