@@ -48,10 +48,6 @@ begin
 
 op_code <= instruction_mem(15 downto 9);
 
-ar_out <=
-	--controller_input when (op_code = "0100001") else
-	ar_in;
-
 -- Write back related cases:
 wb_en <=	'1' when (	op_code = "0010000" or
 							op_code = "0100001" or
