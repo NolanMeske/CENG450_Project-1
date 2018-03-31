@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    15:41:41 03/13/2018 
--- Design Name: 
--- Module Name:    ex_control - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company:
+-- Engineer:
 --
--- Dependencies: 
+-- Create Date:    15:41:41 03/13/2018
+-- Design Name:
+-- Module Name:    ex_control - Behavioral
+-- Project Name:
+-- Target Devices:
+-- Tool versions:
+-- Description:
 --
--- Revision: 
+-- Dependencies:
+--
+-- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 library IEEE;
@@ -31,12 +31,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity ex_control is
 	Port(	instruction_ex : in std_logic_vector (15 downto 0);
-			rd1_data_ex	:	in std_logic_vector (15 downto 0);
-			rd2_data_ex : in std_logic_vector (15 downto 0);
+			in1	:	in std_logic_vector (15 downto 0);
+			in2 : in std_logic_vector (15 downto 0);
 			alu_in1 : out std_logic_vector (15 downto 0);
 			alu_in2 : out std_logic_vector (15 downto 0);
 			mem_val_ex : out std_logic_vector (15 downto 0);
-			mem_adr_ex : out std_logic_vector (15 downto 0)			
+			mem_adr_ex : out std_logic_vector (15 downto 0)
 	);
 end ex_control;
 
@@ -45,19 +45,18 @@ architecture Behavioral of ex_control is
 begin
 
 	op_code <= instruction_ex(15 downto 9);
-	
-	mem_val_ex <= rd1_data_ex when (op_code = "0010000" or op_code = "00100001") else
+
+	mem_val_ex <= in1 when (op_code = "0010000" or op_code = "00100001") else
 					  "0000000000000000";
-	mem_adr_ex <= rd2_data_ex when (op_code = "0010000" or op_code = "00100001") else
+	mem_adr_ex <= in2 when (op_code = "0010000" or op_code = "00100001") else
 					  "0000000000000000";
-	
-	alu_in1 <= rd1_data_ex when (op_code = "0010000" nor op_code = "00100001") else
-						"0000000000000000";
-						
-	alu_in2<= rd2_data_ex when (op_code = "0010000" nor op_code = "00100001") else
+
+	alu_in1 <= in1 when (op_code = "0010000" nor op_code = "00100001") else
 						"0000000000000000";
 
-	
+	alu_in2<= in2 when (op_code = "0010000" nor op_code = "00100001") else
+						"0000000000000000";
+
+
 
 end Behavioral;
-
