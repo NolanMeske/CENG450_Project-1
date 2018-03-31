@@ -43,7 +43,7 @@ entity id_control is
 				mov_dest : out std_logic_vector (2 downto 0);
 				mov_en : out std_logic;
 
-			  insert_nop : out std_logic
+				insert_nop : out std_logic
 			 );
 end id_control;
 
