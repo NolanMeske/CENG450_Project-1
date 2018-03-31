@@ -82,10 +82,13 @@ begin
 
 	mult:process (clk)
 	begin
-		if (falling_edge(clk) and op_code = "0000011") then --if mult
-			insert_nop <= '1';
-		elsif (falling_edge(clk)) then
-			insert_nop <= '0';
+		if(falling_edge(clk)) then
+		
+			if(op_code = "0000011") then --if mult
+				insert_nop <= '1';
+			else
+				insert_nop <= '0';
+			end if;
 		end if;
 	end process;
 

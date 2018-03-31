@@ -56,7 +56,6 @@
         <signal name="Reset" />
         <signal name="controller_input_mem(15:0)" />
         <signal name="PC_mem(6:0)" />
-        <signal name="instruction_mem(15:9)" />
         <signal name="XLXN_1089" />
         <signal name="XLXN_1090" />
         <signal name="XLXN_1092" />
@@ -580,7 +579,7 @@
             <blockpin signalname="wr(15:0)" name="ar_out(15:0)" />
         </block>
         <block symbolname="mem_wb_controller" name="XLXI_40">
-            <blockpin signalname="instruction_mem(15:9)" name="instruction_mem(15:0)" />
+            <blockpin signalname="instruction_mem(15:0)" name="instruction_mem(15:0)" />
             <blockpin signalname="controller_input_mem(15:0)" name="controller_input(15:0)" />
             <blockpin signalname="wb_en" name="wb_en" />
             <blockpin signalname="wb_src_select" name="wb_src_select" />
@@ -1048,7 +1047,7 @@
         <text style="fontsize:64;fontname:Arial" x="5032" y="3112">Memory Stage</text>
         <rect style="linecolor:rgb(166,202,240)" width="652" x="6304" y="3164" height="1528" />
         <text style="fontsize:64;fontname:Arial" x="6388" y="3120">Write Back Stage</text>
-        <branch name="instruction_mem(15:9)">
+        <branch name="instruction_mem(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4816" y="4160" type="branch" />
             <wire x2="4880" y1="4160" y2="4160" x1="4816" />
         </branch>

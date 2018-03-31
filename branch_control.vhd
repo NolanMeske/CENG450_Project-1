@@ -62,38 +62,38 @@ begin
 	
 	branch:process (clk)
 	begin
-		if (br = '1' and falling_edge(clk)) then
-		
-			if op_code = "1000000" then --BRR
-				temp <= (PC_temp + disp1);
-				br_enable <= '1';
-			elsif op_code = "1000001" and n_flag = '1' then --BRR.N
-				temp <= (PC_temp + disp1);
-				br_enable <= '1';
-			elsif op_code = "1000010" and z_flag = '1' then --BRR.Z
-				temp <= (PC_temp + disp1);
-				br_enable <= '1';
-			elsif op_code = "1000011" then --BR
-				temp <= (ra + disps);
-				br_enable <= '1';
-			elsif op_code = "1000100" and n_flag = '1' then -- BR.N
-				temp <= (ra + disps);
-				br_enable <= '1';
-			elsif op_code = "1000101" and z_flag = '1' then --BR.Z
-				temp <= (ra + disps);
-				br_enable <= '1';
-			elsif op_code = "1000110" then --BR.SUB
-				temp <= (ra + disps);
-				br_enable <= '1';
-			elsif op_code = "1000111" then -- RETURN
-				temp <= signed(rd_data1(8 downto 0));
-				br_enable <= '1';
+		if(falling_edge(clk)) then
+			if (br = '1') then
+				if op_code = "1000000" then --BRR
+					temp <= (PC_temp + disp1);
+					br_enable <= '1';
+				elsif op_code = "1000001" and n_flag = '1' then --BRR.N
+					temp <= (PC_temp + disp1);
+					br_enable <= '1';
+				elsif op_code = "1000010" and z_flag = '1' then --BRR.Z
+					temp <= (PC_temp + disp1);
+					br_enable <= '1';
+				elsif op_code = "1000011" then --BR
+					temp <= (ra + disps);
+					br_enable <= '1';
+				elsif op_code = "1000100" and n_flag = '1' then -- BR.N
+					temp <= (ra + disps);
+					br_enable <= '1';
+				elsif op_code = "1000101" and z_flag = '1' then --BR.Z
+					temp <= (ra + disps);
+					br_enable <= '1';
+				elsif op_code = "1000110" then --BR.SUB
+					temp <= (ra + disps);
+					br_enable <= '1';
+				elsif op_code = "1000111" then -- RETURN
+					temp <= signed(rd_data1(8 downto 0));
+					br_enable <= '1';
+				else
+					br_enable <= '0';
+				end if;
 			else
 				br_enable <= '0';
 			end if;
-			
-		elsif falling_edge(clk) then
-			br_enable <= '0';
 		end if;
 	end process;
 
