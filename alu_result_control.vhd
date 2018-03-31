@@ -51,17 +51,18 @@ latch: process (clk)
 	--		  The next clock cycle it will send the bottom half regardless of if ther is another
 	-- 		instruction. As such, the compiler must know to not try to do anything the cycle 
 	--			after a multiply.
-	if (falling_edge(clk) and mult_mode = '1') then
-		result_ex <= save_mult_top_result;
-		mult_mode <= '0';
-	elsif (falling_edge(clk) and alu_mode = "011") then
-		save_mult_top_result <= alu_mult_top_result;
-		result_ex <= alu_result;
-		mult_mode <= '1';
-	elsif (falling_edge(clk))then
-		result_ex <= alu_result;
-	end if;
-	
+		if(falling_edge(clk)) then
+			if(mult_mode = '1') then
+				result_ex <= save_mult_top_result;
+				mult_mode <= '0';
+			elsif(alu_mode = "011") then
+				save_mult_top_result <= alu_mult_top_result;
+				result_ex <= alu_result;
+				mult_mode <= '1';
+			else
+				result_ex <= alu_result;
+			end if;
+		end if;
 	end process;
 
 end Behavioral;
