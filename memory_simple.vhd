@@ -54,7 +54,7 @@ begin
 
 	begin
 
-		if rising_edge(clk) then
+		if falling_edge(clk) then
 			if enable = '1' then
 
 				lsb_index := to_integer(unsigned(adr));

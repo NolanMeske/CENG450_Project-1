@@ -65,11 +65,11 @@ wb_src_select <= '1' when op_code = "0010000" else
 					  '0';
 
 -- Memory related cases
-mem_mode <= '1' when op_code = "0010000" else
-				'0';
+mem_mode <= '1' when op_code = "0010001" else
+				    '0';
 
 mem_en <= '1' when (	op_code = "0010000" or
 							op_code = "0010001"	) else
-			 '0';
+			    '0';
 
 end Behavioral;

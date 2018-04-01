@@ -30,7 +30,8 @@ ARCHITECTURE behavioral OF processor_processor_sch_tb IS
           TEST_RESET_EX_MEM	:	IN	STD_LOGIC;
           controller_input	:	IN	STD_LOGIC_VECTOR (15 DOWNTO 0);
           TEST_ENABLE_EX_MEM	:	IN	STD_LOGIC;
-          Reset	:	IN	STD_LOGIC);
+          Reset	:	IN	STD_LOGIC;
+          controller_output	:	OUT	STD_LOGIC_VECTOR (15 DOWNTO 0));
    END COMPONENT;
 
    SIGNAL clk	:	STD_LOGIC;
@@ -42,6 +43,7 @@ ARCHITECTURE behavioral OF processor_processor_sch_tb IS
    SIGNAL controller_input	:	STD_LOGIC_VECTOR (15 DOWNTO 0);
    SIGNAL TEST_ENABLE_EX_MEM	:	STD_LOGIC;
    SIGNAL Reset	:	STD_LOGIC;
+   SIGNAL controller_ouput : std_logic_vector (15 downto 0);
 
 BEGIN
 
@@ -54,7 +56,8 @@ BEGIN
 		TEST_RESET_EX_MEM => TEST_RESET_EX_MEM,
 		controller_input => controller_input,
 		TEST_ENABLE_EX_MEM => TEST_ENABLE_EX_MEM,
-		Reset => Reset
+		Reset => Reset,
+    controller_output => controller_ouput
    );
 
 -- *** Test Bench - User Defined Section ***
