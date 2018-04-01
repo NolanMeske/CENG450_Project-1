@@ -77,7 +77,7 @@
         <signal name="XLXN_1102(15:0)" />
         <signal name="mem_adr_ex(15:0)" />
         <signal name="mem_val_ex(15:0)" />
-        <signal name="instruction_ex(15:9)" />
+        <signal name="controller_output(15:0)" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
         <port polarity="Input" name="TEST_ENABLE_ID_EX_LATCH" />
@@ -87,6 +87,7 @@
         <port polarity="Input" name="controller_input(15:0)" />
         <port polarity="Input" name="TEST_ENABLE_EX_MEM" />
         <port polarity="Input" name="Reset" />
+        <port polarity="Output" name="controller_output(15:0)" />
         <blockdef name="alu">
             <timestamp>2018-3-29T22:30:33</timestamp>
             <rect width="64" x="352" y="20" height="24" />
@@ -397,6 +398,17 @@
             <line x2="528" y1="-32" y2="-32" x1="464" />
             <rect width="400" x="64" y="-256" height="448" />
         </blockdef>
+        <blockdef name="output_control">
+            <timestamp>2018-4-1T5:47:9</timestamp>
+            <rect width="432" x="64" y="-192" height="192" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <rect width="64" x="496" y="-172" height="24" />
+            <line x2="560" y1="-160" y2="-160" x1="496" />
+        </blockdef>
         <block symbolname="counter" name="XLXI_48">
             <blockpin signalname="clk" name="clock" />
             <blockpin name="reset" />
@@ -609,6 +621,12 @@
             <blockpin signalname="mem_val_ex(15:0)" name="mem_adr_ex(15:0)" />
             <blockpin signalname="in1(15:0)" name="in1(15:0)" />
             <blockpin signalname="in2(15:0)" name="in2(15:0)" />
+        </block>
+        <block symbolname="output_control" name="XLXI_111">
+            <blockpin signalname="clk" name="clk" />
+            <blockpin signalname="rd_data1_id(15:0)" name="rd_data1(15:0)" />
+            <blockpin signalname="instruction_id(15:0)" name="instruction_id(15:0)" />
+            <blockpin signalname="controller_output(15:0)" name="controller_output(15:0)" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="7609" height="5382">
@@ -1198,9 +1216,23 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3776" y="4416" type="branch" />
             <wire x2="3936" y1="4416" y2="4416" x1="3776" />
         </branch>
-        <branch name="instruction_ex(15:9)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2880" y="3968" type="branch" />
-            <wire x2="2912" y1="3968" y2="3968" x1="2880" />
+        <instance x="6688" y="832" name="XLXI_111" orien="R0">
+        </instance>
+        <branch name="controller_output(15:0)">
+            <wire x2="7280" y1="672" y2="672" x1="7248" />
+        </branch>
+        <iomarker fontsize="28" x="7280" y="672" name="controller_output(15:0)" orien="R0" />
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="6656" y="672" type="branch" />
+            <wire x2="6688" y1="672" y2="672" x1="6656" />
+        </branch>
+        <branch name="rd_data1_id(15:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="6656" y="736" type="branch" />
+            <wire x2="6688" y1="736" y2="736" x1="6656" />
+        </branch>
+        <branch name="instruction_id(15:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="6656" y="800" type="branch" />
+            <wire x2="6688" y1="800" y2="800" x1="6656" />
         </branch>
     </sheet>
 </drawing>

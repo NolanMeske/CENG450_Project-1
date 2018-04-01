@@ -22,7 +22,7 @@ END processor_processor_sch_tb;
 ARCHITECTURE behavioral OF processor_processor_sch_tb IS
 
    COMPONENT processor
-   PORT( INSERT_NOP	:	IN	STD_LOGIC;
+   PORT( 
           TEST_ENABLE_IF_ID_LATCH	:	IN	STD_LOGIC;
           rst	:	IN	STD_LOGIC;
           TEST_ENABLE_ID_EX_LATCH	:	IN	STD_LOGIC;
@@ -30,12 +30,12 @@ ARCHITECTURE behavioral OF processor_processor_sch_tb IS
           TEST_RESET_ID_EX_LATCH	:	IN	STD_LOGIC;
           TEST_ENABLE_EX_MEM	:	IN	STD_LOGIC;
           TEST_RESET_EX_MEM	:	IN	STD_LOGIC;
-          PC_mem	:	OUT	STD_LOGIC_VECTOR (6 DOWNTO 0);
+          
           Reset	:	IN	STD_LOGIC;
+			 controller_output	:	OUT	STD_LOGIC_VECTOR (15 DOWNTO 0);
           controller_input	:	IN	STD_LOGIC_VECTOR (15 DOWNTO 0));
    END COMPONENT;
 
-   SIGNAL INSERT_NOP	:	STD_LOGIC;
    SIGNAL TEST_ENABLE_IF_ID_LATCH	:	STD_LOGIC;
    SIGNAL rst	:	STD_LOGIC;
    SIGNAL TEST_ENABLE_ID_EX_LATCH	:	STD_LOGIC;
@@ -43,14 +43,14 @@ ARCHITECTURE behavioral OF processor_processor_sch_tb IS
    SIGNAL TEST_RESET_ID_EX_LATCH	:	STD_LOGIC;
    SIGNAL TEST_ENABLE_EX_MEM	:	STD_LOGIC;
    SIGNAL TEST_RESET_EX_MEM	:	STD_LOGIC;
-   SIGNAL PC_mem	:	STD_LOGIC_VECTOR (6 DOWNTO 0);
    SIGNAL Reset	:	STD_LOGIC;
    SIGNAL controller_input	:	STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL controller_output	:	STD_LOGIC_VECTOR (15 DOWNTO 0);
 
 BEGIN
 
    UUT: processor PORT MAP(
-		INSERT_NOP => INSERT_NOP,
+
 		TEST_ENABLE_IF_ID_LATCH => TEST_ENABLE_IF_ID_LATCH,
 		rst => rst,
 		TEST_ENABLE_ID_EX_LATCH => TEST_ENABLE_ID_EX_LATCH,
@@ -58,13 +58,12 @@ BEGIN
 		TEST_RESET_ID_EX_LATCH => TEST_RESET_ID_EX_LATCH,
 		TEST_ENABLE_EX_MEM => TEST_ENABLE_EX_MEM,
 		TEST_RESET_EX_MEM => TEST_RESET_EX_MEM,
-		PC_mem => PC_mem,
 		Reset => Reset,
+		controller_output => controller_output,
 		controller_input => controller_input
    );
 
 -- *** Test Bench - User Defined Section ***
-	INSERT_NOP <= '0';
 	TEST_ENABLE_IF_ID_LATCH <= '1';
 	rst <= '0';
 	TEST_ENABLE_ID_EX_LATCH <= '1';
