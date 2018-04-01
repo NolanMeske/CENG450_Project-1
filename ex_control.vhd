@@ -46,15 +46,15 @@ begin
 
 	op_code <= instruction_ex(15 downto 9);
 
-	mem_val_ex <= in1 when (op_code = "0010000" or op_code = "00100001") else
+	mem_val_ex <= in1 when (op_code = "0010000" or op_code = "0010001") else
 					  "0000000000000000";
-	mem_adr_ex <= in2 when (op_code = "0010000" or op_code = "00100001") else
+	mem_adr_ex <= in2 when (op_code = "0010000" or op_code = "0010001") else
 					  "0000000000000000";
 
-	alu_in1 <= in1 when (op_code = "0010000" nor op_code = "00100001") else
+	alu_in1 <= in1 when (op_code = "0010000" nor op_code = "0010001") else
 						"0000000000000000";
 
-	alu_in2<= in2 when (op_code = "0010000" nor op_code = "00100001") else
+	alu_in2<= in2 when (op_code = "0010000" nor op_code = "0010001") else
 						"0000000000000000";
 
 
