@@ -77,6 +77,7 @@
         <signal name="XLXN_1102(15:0)" />
         <signal name="mem_adr_ex(15:0)" />
         <signal name="mem_val_ex(15:0)" />
+        <signal name="instruction_ex(15:9)" />
         <port polarity="Input" name="clk" />
         <port polarity="Input" name="TEST_ENABLE_IF_ID_LATCH" />
         <port polarity="Input" name="TEST_ENABLE_ID_EX_LATCH" />
@@ -308,17 +309,17 @@
             <rect width="448" x="64" y="-384" height="948" />
         </blockdef>
         <blockdef name="alu_result_control">
-            <timestamp>2018-3-14T16:50:3</timestamp>
-            <rect width="432" x="64" y="-256" height="256" />
+            <timestamp>2018-4-1T17:55:30</timestamp>
+            <rect width="64" x="0" y="20" height="24" />
+            <line x2="0" y1="32" y2="32" x1="64" />
             <line x2="0" y1="-224" y2="-224" x1="64" />
             <rect width="64" x="0" y="-172" height="24" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
             <rect width="64" x="0" y="-108" height="24" />
             <line x2="0" y1="-96" y2="-96" x1="64" />
-            <rect width="64" x="0" y="-44" height="24" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
             <rect width="64" x="496" y="-236" height="24" />
             <line x2="560" y1="-224" y2="-224" x1="496" />
+            <rect width="432" x="64" y="-256" height="320" />
         </blockdef>
         <blockdef name="branch_adder">
             <timestamp>2018-3-17T18:52:40</timestamp>
@@ -555,8 +556,8 @@
             <blockpin signalname="clk" name="clk" />
             <blockpin signalname="alu_result(15:0)" name="alu_result(15:0)" />
             <blockpin signalname="alu_top_result(15:0)" name="alu_mult_top_result(15:0)" />
-            <blockpin signalname="instruction_ex(11:9)" name="alu_mode(2:0)" />
             <blockpin signalname="result_ex(15:0)" name="result_ex(15:0)" />
+            <blockpin signalname="instruction_ex(15:9)" name="op_code(6:0)" />
         </block>
         <block symbolname="alu" name="XLXI_1">
             <blockpin signalname="Reset" name="rst" />
@@ -939,10 +940,6 @@
         <branch name="alu_result(15:0)">
             <wire x2="2912" y1="3776" y2="3776" x1="2592" />
         </branch>
-        <branch name="instruction_ex(11:9)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2880" y="3904" type="branch" />
-            <wire x2="2912" y1="3904" y2="3904" x1="2880" />
-        </branch>
         <branch name="result_ex(15:0)">
             <wire x2="3936" y1="3712" y2="3712" x1="3472" />
         </branch>
@@ -1200,6 +1197,10 @@
         <branch name="mem_val_ex(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="3776" y="4416" type="branch" />
             <wire x2="3936" y1="4416" y2="4416" x1="3776" />
+        </branch>
+        <branch name="instruction_ex(15:9)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2880" y="3968" type="branch" />
+            <wire x2="2912" y1="3968" y2="3968" x1="2880" />
         </branch>
     </sheet>
 </drawing>

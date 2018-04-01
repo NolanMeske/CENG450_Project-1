@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    08:38:34 03/14/2018 
--- Design Name: 
--- Module Name:    alu_result_control - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company:
+-- Engineer:
 --
--- Dependencies: 
+-- Create Date:    08:38:34 03/14/2018
+-- Design Name:
+-- Module Name:    alu_result_control - Behavioral
+-- Project Name:
+-- Target Devices:
+-- Tool versions:
+-- Description:
 --
--- Revision: 
+-- Dependencies:
+--
+-- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
 library IEEE;
@@ -31,11 +31,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity alu_result_control is
     Port ( 	clk : in STD_LOGIC;
-				alu_result : in  STD_LOGIC_VECTOR (15 downto 0);
-           alu_mult_top_result : in  STD_LOGIC_VECTOR (15 downto 0);
-			  alu_mode : in STD_LOGIC_VECTOR(2 downto 0);
-			  result_ex : out  STD_LOGIC_VECTOR (15 downto 0)
-			 );
+				    alu_result : in  STD_LOGIC_VECTOR (15 downto 0);
+            alu_mult_top_result : in  STD_LOGIC_VECTOR (15 downto 0);
+			      op_code : in STD_LOGIC_VECTOR(6 downto 0);
+			      result_ex : out  STD_LOGIC_VECTOR (15 downto 0)
+			   );
 end alu_result_control;
 
 architecture Behavioral of alu_result_control is
@@ -44,18 +44,18 @@ architecture Behavioral of alu_result_control is
 begin
 
 
-latch: process (clk) 
+latch: process (clk)
 	begin
-	
+
 	--Note: When a multiply command comes in it will pass the bottom half and save the top
 	--		  The next clock cycle it will send the bottom half regardless of if ther is another
-	-- 		instruction. As such, the compiler must know to not try to do anything the cycle 
+	-- 		instruction. As such, the compiler must know to not try to do anything the cycle
 	--			after a multiply.
 		if(falling_edge(clk)) then
 			if(mult_mode = '1') then
 				result_ex <= save_mult_top_result;
 				mult_mode <= '0';
-			elsif(alu_mode = "011") then
+			elsif(op_code = "0000011") then
 				save_mult_top_result <= alu_mult_top_result;
 				result_ex <= alu_result;
 				mult_mode <= '1';
@@ -66,4 +66,3 @@ latch: process (clk)
 	end process;
 
 end Behavioral;
-
