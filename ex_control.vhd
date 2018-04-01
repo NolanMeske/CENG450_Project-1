@@ -42,9 +42,11 @@ end ex_control;
 
 architecture Behavioral of ex_control is
 	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
+	signal temp : STD_LOGIC_VECTOR(15 downto 0);
 begin
 
 	op_code <= instruction_ex(15 downto 9);
+	temp <= X"000" & instruction_ex(3 downto 0);
 
 	mem_val_ex <= in1 when (op_code = "0010000" or op_code = "0010001") else
 					  "0000000000000000";
@@ -54,7 +56,8 @@ begin
 	alu_in1 <= in1 when (op_code = "0010000" nor op_code = "0010001") else
 						"0000000000000000";
 
-	alu_in2<= in2 when (op_code = "0010000" nor op_code = "0010001") else
+	alu_in2 <= 	temp when (op_code = "0000101" or op_code = "0000110") else
+					in2 when (op_code = "0010000" nor op_code = "0010001") else
 						"0000000000000000";
 
 
