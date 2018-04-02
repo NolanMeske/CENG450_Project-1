@@ -1059,7 +1059,6 @@
         </branch>
         <rect style="linecolor:rgb(166,202,240)" width="4136" x="80" y="3164" height="1516" />
         <text style="fontsize:64;fontname:Arial" x="1816" y="3112">Execute Stage</text>
-        <rect style="linecolor:rgb(192,220,192)" width="2088" x="4212" y="3164" height="1520" />
         <text style="fontsize:64;fontname:Arial" x="5032" y="3112">Memory Stage</text>
         <rect style="linecolor:rgb(166,202,240)" width="652" x="6304" y="3164" height="1528" />
         <text style="fontsize:64;fontname:Arial" x="6388" y="3120">Write Back Stage</text>
@@ -1240,5 +1239,6 @@
             <wire x2="2896" y1="3968" y2="3968" x1="2864" />
             <wire x2="2912" y1="3968" y2="3968" x1="2896" />
         </branch>
+        <rect style="linecolor:rgb(192,220,192)" width="2088" x="4212" y="3164" height="1520" />
     </sheet>
 </drawing>

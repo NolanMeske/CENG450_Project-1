@@ -53,11 +53,9 @@ begin
 
 	op_code <= instruction_id(15 downto 9);
 
-	rd1 <= instruction_id (5 downto 3) when (  op_code = "0000001" --ADD
-                                          or op_code = "0000010" --SUB
-                                          or op_code = "0000011" --MULT
-                                          or op_code = "0010000" --LOAD
-                                          or op_code = "0010001")--STORE
+	rd1 <= instruction_id (5 downto 3) when (  op_code = "0000001"  --ADD
+                                          or op_code = "0000010"  --SUB
+                                          or op_code = "0000011") --MULT
                                  else
         instruction_id (8 downto 6) when (  op_code = "0000100" --NAND
                                          or op_code = "0000101" --SHL
@@ -66,7 +64,9 @@ begin
                                          or op_code = "1000011" --BR
                                          or op_code = "1000100" --BR.N
                                          or op_code = "1000011" --BR.Z
-                                         or op_code = "1000110")--BR.SUB
+                                         or op_code = "1000110" --BR.SUB
+                                         or op_code = "0010000" --LOAD
+                                         or op_code = "0010001")--STORE
                                  else "000";
 
 
@@ -74,10 +74,9 @@ begin
                                           or op_code = "0000010"      --SUB
                                           or op_code = "0000011")     --MUL
                                       else
-         instruction_id(5 downto 3) when (op_code = "0000100")        --NAND
-                                      else
-         instruction_id(8 downto 6) when (  op_code = "0010000"       --LOAD
-                                          or op_code = "0010001")     --STORE
+         instruction_id(5 downto 3) when (op_code = "0000100"       --NAND
+                                         or op_code = "0010000"     --LOAD
+                                         or op_code = "0010001")    --STORE
                                       else "000";
 
 	mult:process (clk)
