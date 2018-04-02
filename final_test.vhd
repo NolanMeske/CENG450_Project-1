@@ -69,7 +69,7 @@ BEGIN
    TEST_RESET_ID_EX_LATCH <= '0';
    TEST_RESET_EX_MEM <= '0';
 
-   controller_input <= X"0000";
+   controller_input <= X"7fff";
 
    clk_process : PROCESS
    BEGIN

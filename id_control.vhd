@@ -63,6 +63,7 @@ begin
                                          or op_code = "0000101" --SHL
                                          or op_code = "0000110" --SHR
                                          or op_code = "0000111" --TEST
+													  or op_code = "0100000" --OUT
                                          or op_code = "1000011" --BR
                                          or op_code = "1000100" --BR.N
                                          or op_code = "1000011" --BR.Z
