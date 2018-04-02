@@ -48,6 +48,7 @@ architecture Behavioral of branch_adder is
 	signal disp1   : signed(8 downto 0);
 	signal disps   : signed(8 downto 0);
 	signal ra		: signed(8 downto 0);
+	signal ra_temp : signed(8 downto 0);
 	signal PC_temp : signed(8 downto 0);
 	signal temp 	: signed(8 downto 0);
 	signal br  : STD_LOGIC;
@@ -57,7 +58,8 @@ begin
 	
 	disps <= resize(signed(instruction_id(5 downto 0)),9);
 	PC_temp <= resize(signed(PC_id),9) - 1; --If we change our Program counter to increment by 2 this needs to be changed to be -2 
-	ra <= signed(rd_data1(8 downto 0));
+	--shift_right is a division by 2, this needs to be done to comply with instruction set to work with test codes for the class
+	ra <= shift_right(signed(rd_data1(8 downto 0)),1); 
 	br <= instruction_id(15);
 	
 	branch:process (clk)
