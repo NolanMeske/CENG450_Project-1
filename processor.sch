@@ -11,7 +11,6 @@
         <signal name="n_flag" />
         <signal name="z_flag" />
         <signal name="wr(15:0)" />
-        <signal name="results_mem(15:0)" />
         <signal name="instruction_mem(15:0)" />
         <signal name="instruction_wb(15:0)" />
         <signal name="instruction_ex(15:0)" />
@@ -537,14 +536,14 @@
         <block symbolname="mux3_16bit" name="XLXI_107">
             <blockpin signalname="alu_sel2(1:0)" name="SEL(1:0)" />
             <blockpin signalname="rd_data2_ex(15:0)" name="D0(15:0)" />
-            <blockpin signalname="results_mem(15:0)" name="D1(15:0)" />
+            <blockpin signalname="result_mem(15:0)" name="D1(15:0)" />
             <blockpin signalname="wr(15:0)" name="D2(15:0)" />
             <blockpin signalname="in2(15:0)" name="X(15:0)" />
         </block>
         <block symbolname="mux3_16bit" name="XLXI_106">
             <blockpin signalname="alu_sel1(1:0)" name="SEL(1:0)" />
             <blockpin signalname="rd_data1_ex(15:0)" name="D0(15:0)" />
-            <blockpin signalname="results_mem(15:0)" name="D1(15:0)" />
+            <blockpin signalname="result_mem(15:0)" name="D1(15:0)" />
             <blockpin signalname="wr(15:0)" name="D2(15:0)" />
             <blockpin signalname="in1(15:0)" name="X(15:0)" />
         </block>
@@ -925,7 +924,7 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="368" y="3440" type="branch" />
             <wire x2="464" y1="3440" y2="3440" x1="368" />
         </branch>
-        <branch name="results_mem(15:0)">
+        <branch name="result_mem(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="368" y="3568" type="branch" />
             <wire x2="464" y1="3568" y2="3568" x1="368" />
         </branch>
@@ -937,7 +936,7 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="368" y="3792" type="branch" />
             <wire x2="464" y1="3792" y2="3792" x1="368" />
         </branch>
-        <branch name="results_mem(15:0)">
+        <branch name="result_mem(15:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="368" y="3920" type="branch" />
             <wire x2="464" y1="3920" y2="3920" x1="368" />
         </branch>
@@ -1092,28 +1091,6 @@
         <branch name="XLXN_1095(2:0)">
             <wire x2="5776" y1="1744" y2="1744" x1="4912" />
         </branch>
-        <instance x="5632" y="4608" name="XLXI_108" orien="R0">
-        </instance>
-        <branch name="clk">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4384" type="branch" />
-            <wire x2="5632" y1="4384" y2="4384" x1="5520" />
-        </branch>
-        <branch name="mem_mode">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4448" type="branch" />
-            <wire x2="5632" y1="4448" y2="4448" x1="5520" />
-        </branch>
-        <branch name="mem_val(15:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4512" type="branch" />
-            <wire x2="5632" y1="4512" y2="4512" x1="5520" />
-        </branch>
-        <branch name="mem_adr(15:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4576" type="branch" />
-            <wire x2="5632" y1="4576" y2="4576" x1="5520" />
-        </branch>
-        <branch name="mem_en">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4640" type="branch" />
-            <wire x2="5632" y1="4640" y2="4640" x1="5520" />
-        </branch>
         <branch name="mem_mode">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5472" y="3904" type="branch" />
             <wire x2="5472" y1="3904" y2="3904" x1="5424" />
@@ -1158,7 +1135,8 @@
         </branch>
         <branch name="mem_out(15:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="6080" y="4384" type="branch" />
-            <wire x2="6080" y1="4384" y2="4384" x1="6016" />
+            <wire x2="6064" y1="4384" y2="4384" x1="6016" />
+            <wire x2="6080" y1="4384" y2="4384" x1="6064" />
         </branch>
         <branch name="mem_adr(15:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4592" y="4224" type="branch" />
@@ -1240,5 +1218,32 @@
             <wire x2="2912" y1="3968" y2="3968" x1="2896" />
         </branch>
         <rect style="linecolor:rgb(192,220,192)" width="2088" x="4212" y="3164" height="1520" />
+        <branch name="mem_en">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4640" type="branch" />
+            <wire x2="5536" y1="4640" y2="4640" x1="5520" />
+            <wire x2="5632" y1="4640" y2="4640" x1="5536" />
+        </branch>
+        <branch name="mem_adr(15:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4576" type="branch" />
+            <wire x2="5536" y1="4576" y2="4576" x1="5520" />
+            <wire x2="5632" y1="4576" y2="4576" x1="5536" />
+        </branch>
+        <branch name="mem_val(15:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4512" type="branch" />
+            <wire x2="5536" y1="4512" y2="4512" x1="5520" />
+            <wire x2="5632" y1="4512" y2="4512" x1="5536" />
+        </branch>
+        <branch name="mem_mode">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4448" type="branch" />
+            <wire x2="5536" y1="4448" y2="4448" x1="5520" />
+            <wire x2="5632" y1="4448" y2="4448" x1="5536" />
+        </branch>
+        <branch name="clk">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="5520" y="4384" type="branch" />
+            <wire x2="5536" y1="4384" y2="4384" x1="5520" />
+            <wire x2="5632" y1="4384" y2="4384" x1="5536" />
+        </branch>
+        <instance x="5632" y="4608" name="XLXI_108" orien="R0">
+        </instance>
     </sheet>
 </drawing>

@@ -35,10 +35,10 @@ architecture BHV of ROM_VHDL is
     016    => "0000010011011010",  -- Sub r3,r3,r2  -- r3=r3-r2: Checking the difference between the square of the two numbers
     017    => "0000000000000000",       -- NOP
     018    => "0000000000000000",       -- NOP
-    019    => "0010001011100000",  -- STORE r3,@r4  -- Store the content of r3 into the address indexed by the value of r4=2
+    019    => "0010001100011000",  -- STORE r3,@r4  -- Store the content of r3 into the address indexed by the value of r4=2
     020    => "0000001010000001",  -- Add r2,r0,r1  -- r2=r0+r1
     021    => "0000101100000001",  -- SHL r4#1      -- r4=2*r4: r4=4 as another even destination for the second Store
-    022    => "0010001010100000",  -- STORE r2,@r4  -- Store the content of r2 into the address indexed by the value of r4=4
+    022    => "0010001100010000",  -- STORE r2,@r4  -- Store the content of r2 into the address indexed by the value of r4=4
     023    => "0000000000000000",       -- NOP
     024    => "0000000000000000",       -- NOP
     025    => "0010000010100000",  -- LOAD r2,@r4   -- Load the content of the address indexed by the value of r4=4 into r2
