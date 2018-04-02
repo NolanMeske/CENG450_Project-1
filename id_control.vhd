@@ -76,14 +76,14 @@ begin
                                       else
          instruction_id(5 downto 3) when (op_code = "0000100")        --NAND
                                       else
-         instruction_id (8 downto 6) when (  op_code = "0010000"      --LOAD
+         instruction_id(8 downto 6) when (  op_code = "0010000"       --LOAD
                                           or op_code = "0010001")     --STORE
                                       else "000";
 
 	mult:process (clk)
 	begin
 		if(falling_edge(clk)) then
-		
+
 			if(op_code = "0000011") then --if mult
 				insert_nop <= '1';
 			else

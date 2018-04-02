@@ -340,7 +340,7 @@
             <line x2="480" y1="-32" y2="-32" x1="416" />
         </blockdef>
         <blockdef name="fcu">
-            <timestamp>2018-3-24T17:46:8</timestamp>
+            <timestamp>2018-4-2T2:6:29</timestamp>
             <rect width="400" x="64" y="-256" height="256" />
             <line x2="0" y1="-224" y2="-224" x1="64" />
             <rect width="64" x="0" y="-172" height="24" />
@@ -618,8 +618,8 @@
             <blockpin signalname="instruction_ex(15:0)" name="instruction_ex(15:0)" />
             <blockpin signalname="alu_in1(15:0)" name="alu_in1(15:0)" />
             <blockpin signalname="alu_in2(15:0)" name="alu_in2(15:0)" />
-            <blockpin signalname="mem_adr_ex(15:0)" name="mem_val_ex(15:0)" />
-            <blockpin signalname="mem_val_ex(15:0)" name="mem_adr_ex(15:0)" />
+            <blockpin signalname="mem_val_ex(15:0)" name="mem_val_ex(15:0)" />
+            <blockpin signalname="mem_adr_ex(15:0)" name="mem_adr_ex(15:0)" />
             <blockpin signalname="in1(15:0)" name="in1(15:0)" />
             <blockpin signalname="in2(15:0)" name="in2(15:0)" />
         </block>
@@ -1197,11 +1197,11 @@
             <wire x2="1840" y1="3712" y2="4064" x1="1840" />
             <wire x2="2176" y1="3712" y2="3712" x1="1840" />
         </branch>
-        <branch name="mem_adr_ex(15:0)">
+        <branch name="mem_val_ex(15:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1920" y="4128" type="branch" />
             <wire x2="1920" y1="4128" y2="4128" x1="1728" />
         </branch>
-        <branch name="mem_val_ex(15:0)">
+        <branch name="mem_adr_ex(15:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1920" y="4192" type="branch" />
             <wire x2="1920" y1="4192" y2="4192" x1="1728" />
         </branch>

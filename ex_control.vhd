@@ -50,6 +50,7 @@ begin
 
 	mem_val_ex <= in1 when (op_code = "0010000" or op_code = "0010001") else
 					  "0000000000000000";
+
 	mem_adr_ex <= in2 when (op_code = "0010000" or op_code = "0010001") else
 					  "0000000000000000";
 
