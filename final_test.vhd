@@ -23,53 +23,41 @@ ARCHITECTURE behavioral OF processor_processor_sch_tb IS
 
    COMPONENT processor
    PORT( clk	:	IN	STD_LOGIC;
-          TEST_ENABLE_IF_ID_LATCH	:	IN	STD_LOGIC;
-          TEST_ENABLE_ID_EX_LATCH	:	IN	STD_LOGIC;
-          TEST_RESET_ID_EX_LATCH	:	IN	STD_LOGIC;
-          rst	:	IN	STD_LOGIC;
-          TEST_RESET_EX_MEM	:	IN	STD_LOGIC;
+          
+        
           controller_input	:	IN	STD_LOGIC_VECTOR (15 DOWNTO 0);
-          TEST_ENABLE_EX_MEM	:	IN	STD_LOGIC;
+        
           Reset	:	IN	STD_LOGIC;
+			 anode_activate : OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
+			 led_out : OUT STD_LOGIC_VECTOR (6 DOWNTO 0);
           controller_output	:	OUT	STD_LOGIC_VECTOR (15 DOWNTO 0));
    END COMPONENT;
 
    SIGNAL clk	:	STD_LOGIC;
-   SIGNAL TEST_ENABLE_IF_ID_LATCH	:	STD_LOGIC;
-   SIGNAL TEST_ENABLE_ID_EX_LATCH	:	STD_LOGIC;
-   SIGNAL TEST_RESET_ID_EX_LATCH	:	STD_LOGIC;
-   SIGNAL rst	:	STD_LOGIC;
-   SIGNAL TEST_RESET_EX_MEM	:	STD_LOGIC;
+   
    SIGNAL controller_input	:	STD_LOGIC_VECTOR (15 DOWNTO 0);
-   SIGNAL TEST_ENABLE_EX_MEM	:	STD_LOGIC;
+  
    SIGNAL Reset	:	STD_LOGIC;
+	SIGNAL anode_activate :  STD_LOGIC_VECTOR (3 DOWNTO 0);
+	SIGNAL led_out : STD_LOGIC_VECTOR (6 DOWNTO 0);
    SIGNAL controller_ouput : std_logic_vector (15 downto 0);
 
 BEGIN
 
    UUT: processor PORT MAP(
 		clk => clk,
-		TEST_ENABLE_IF_ID_LATCH => TEST_ENABLE_IF_ID_LATCH,
-		TEST_ENABLE_ID_EX_LATCH => TEST_ENABLE_ID_EX_LATCH,
-		TEST_RESET_ID_EX_LATCH => TEST_RESET_ID_EX_LATCH,
-		rst => rst,
-		TEST_RESET_EX_MEM => TEST_RESET_EX_MEM,
+		
+		
 		controller_input => controller_input,
-		TEST_ENABLE_EX_MEM => TEST_ENABLE_EX_MEM,
+		anode_activate => anode_activate,
+		led_out => led_out,
 		Reset => Reset,
     controller_output => controller_ouput
    );
 
 -- *** Test Bench - User Defined Section ***
-   TEST_ENABLE_IF_ID_LATCH <= '1';
-   TEST_ENABLE_ID_EX_LATCH <= '1';
-   TEST_ENABLE_IF_ID_LATCH <= '1';
-   TEST_ENABLE_EX_MEM <= '1';
 
-   TEST_RESET_ID_EX_LATCH <= '0';
-   TEST_RESET_EX_MEM <= '0';
-
-   controller_input <= X"7fff";
+   controller_input <= X"0005";
 
    clk_process : PROCESS
    BEGIN
@@ -82,10 +70,10 @@ BEGIN
    tb : PROCESS
    BEGIN
    reset <= '1';
-   rst <= '1';
+
    wait for 20 ns;
    reset <= '0';
-   rst <= '0';
+
    wait;
    END PROCESS;
 -- *** End Test Bench - User Defined Section ***
