@@ -103,11 +103,13 @@ begin
 	--Shifter
 	lshift_enable1 <=
 	'0' when (alu_mode = "110") else
-	'1' when (alu_mode = "101");
+	'1' when (alu_mode = "101") else
+	'0';
 
 	lshift_enable2 <=
 	'0' when (alu_mode = "110") else
-	'1' when (alu_mode = "101");
+	'1' when (alu_mode = "101") else
+	'0';
 
 	b1 <=
 	"000" when (in2 = X"00") else
@@ -130,7 +132,9 @@ begin
 	"111" when (in2 = X"0E") else
 	"000";
 
-	a1 <= in1 when (alu_mode = "101" or alu_mode = "110");
+	a1 <= in1 when (alu_mode = "101" or alu_mode = "110") else
+				X"0000";
+
 	a2 <= y1;
 
 	--Multiplier
