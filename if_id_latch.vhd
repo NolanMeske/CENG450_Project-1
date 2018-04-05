@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    17:43:37 02/20/2018 
+-- Create Date:    13:28:48 02/21/2018 
 -- Design Name: 
--- Module Name:    ex_mem_reg - Behavioral 
+-- Module Name:    if_id_latch - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,16 +29,36 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity ex_mem_reg is
-    Port ( ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
-			  ar_out : out STD_LOGIC_VECTOR (15 downto 0));
-end ex_mem_reg;
+entity if_id_latch is
+    Port ( clk : in std_logic;
+			  enable : in std_logic;
+			  reset : in std_logic;
+	 
+           instruction_if : in std_logic_vector(15 downto 0);
+			  PC_if : in std_logic_vector(6 downto 0);
+			  
+			  instruction_id : out std_logic_vector(15 downto 0);
+			  PC_id : out std_logic_vector(6 downto 0)
+			 );
+			
+end if_id_latch;
 
-architecture Behavioral of ex_mem_reg is
+architecture Behavioral of if_id_latch is
 
 begin
 
-ar_out <= ar_in;
-
+	latch: process (clk)
+	begin
+		if rising_edge(clk) then
+			if reset = '1' then
+				instruction_id <= X"0000";
+				PC_id <= "0000000";
+			elsif enable = '1' then
+				instruction_id <= instruction_if;
+				PC_id <= PC_if;
+			end if;
+		end if;
+	end process;
+	
 end Behavioral;
 

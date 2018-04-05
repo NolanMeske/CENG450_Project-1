@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    17:43:27 02/15/2018 
+-- Create Date:    14:24:17 02/21/2018 
 -- Design Name: 
--- Module Name:    memory - Behavioral 
+-- Module Name:    mem_wb_latch - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,27 +29,28 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity memory is
-    Port ( clk : in  STD_LOGIC;
-           addr : in  STD_LOGIC_VECTOR (15 downto 0);
-           data : in  STD_LOGIC_VECTOR (7 downto 0));
-end memory;
+entity mem_wb_latch is
+    Port ( wr_en_in : in  STD_LOGIC;
+           ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
+			  instruction_mem : in  STD_LOGIC_VECTOR (15 downto 0);
+			  instruction_wb : out  STD_LOGIC_VECTOR (15 downto 0);
+           wr_en_out : out  STD_LOGIC;
+           ar_out : out  STD_LOGIC_VECTOR (15 downto 0);
+           clk : in  STD_LOGIC);
+end mem_wb_latch;
 
-architecture Behavioral of memory is
-
-	type memory_type is array (0 to 65536) of std_logic_vector (7 downto 0);
-	
-	variable memory_content : memory_type;
+architecture Behavioral of mem_wb_latch is
 
 begin
 
-p1: process (clk)
-	variable addr_in : integer := 0;
+	latch: process (clk)
 	begin
-		if rising_edge (clk) then
-			add_in := conv_integer(unsigned(addr));
-			data <= memory_content(add_in);
-		end if;
+	if (rising_edge(clk)) then
+		wr_en_out <= wr_en_in;
+		ar_out <= ar_in;
+		instruction_wb <= instruction_mem;
+	end if;
 	end process;
+
 end Behavioral;
 

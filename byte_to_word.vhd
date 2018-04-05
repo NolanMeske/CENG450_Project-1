@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    18:49:17 02/20/2018 
+-- Create Date:    13:42:38 03/23/2018 
 -- Design Name: 
--- Module Name:    mem_wb_reg - Behavioral 
+-- Module Name:    byte_to_word - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,23 +29,19 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity mem_wb_reg is
-    Port ( ar_in : in  STD_LOGIC_VECTOR (15 downto 0);
-           ar_out : out  STD_LOGIC_VECTOR (15 downto 0);
-			  wr_en	: out	STD_LOGIC;
-           op : in  STD_LOGIC_VECTOR (6 downto 0));
-end mem_wb_reg;
+entity byte_to_word is
+    Port ( high_byte : in  STD_LOGIC_VECTOR (7 downto 0);
+           low_byte : in  STD_LOGIC_VECTOR (7 downto 0);
+			  en : in std_logic;
+           word : out  STD_LOGIC_VECTOR (15 downto 0));
+end byte_to_word;
 
-architecture Behavioral of mem_wb_reg is
-	signal op_code : STD_LOGIC_VECTOR (6 downto 0);
+architecture Behavioral of byte_to_word is
+
 begin
 
-op_code <= op;
-
-ar_out <= ar_in;
-
-wr_en <=
-	'1' when (op_code = "0100001" or op_code = "0000001" or op_code = "0000010" or op_code = "0000011" or op_code = "0000100") else
-	'0';
+	word <= high_byte & low_byte when en = '1' else
+			  "0000000000000000";
 
 end Behavioral;
+

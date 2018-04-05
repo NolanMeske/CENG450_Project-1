@@ -1,51 +1,70 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    16:28:15 02/20/2018 
--- Design Name: 
--- Module Name:    program_counter - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
+-- Company:
+-- Engineer:
 --
--- Dependencies: 
+-- Create Date:    22:01:13 01/24/2011
+-- Design Name:
+-- Module Name:    ROM_128_8 - Behavioral
+-- Project Name:
+-- Target Devices:
+-- Tool versions:
+-- Description:
 --
--- Revision: 
+-- Dependencies:
+--
+-- Revision:
 -- Revision 0.01 - File Created
--- Additional Comments: 
+-- Additional Comments:
 --
 ----------------------------------------------------------------------------------
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.numeric_std.ALL;
+library ieee ;
+use ieee.std_logic_1164.all;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.STD_LOGIC_ARITH.all;
+use ieee.NUMERIC_STD.all;
+use ieee.std_logic_unsigned.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+----------------------------------------------------
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+entity counter is
 
-entity program_counter is
-    Port ( clk : in  STD_LOGIC;
-           addr : out  STD_LOGIC_VECTOR (6 downto 0));
-end program_counter;
 
-architecture Behavioral of program_counter is
+port(	clock:	in std_logic;
+	reset:		in std_logic;
+	en:			in std_logic;
+	br: 			in std_logic;
+	Qin: 			in std_logic_vector(6 downto 0);
+	Q:				out std_logic_vector(6 downto 0)
+);
+end counter;
+
+----------------------------------------------------
+
+architecture behv of counter is
+
+    --signal Pre_Q: integer range 0 to 127 := 0; --TODO: adjust to correct range?
 
 begin
 
-	process (clk)
-		variable temp : integer := 0;
-	begin
-		temp := to_integer(unsigned(addr)) + 8;
-		addr <= temp;
-	end process;
+    -- behavior describe the counter
 
+	process(clock)
+		variable Pre_Q : integer range 0 to 127 := 0;
+   begin
+	 if rising_edge(clock) then
+		if reset = '1' then
+ 	    		Pre_Q := 0;
+		elsif en = '1' and br = '1' then
+			Pre_Q := conv_integer(Qin) + 1; 
+		elsif en = '1' then
+			Pre_Q := Pre_Q + 1;
+	   end if;
+	 end if;
+	 Q <= conv_std_logic_vector(Pre_Q,7); --Testing assignment inside process
+ end process;
 
-end Behavioral;
+	 --Q <= conv_std_logic_vector(Pre_Q,7);
 
+    -- concurrent assignment statement
+
+end behv;

@@ -29,7 +29,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity id_ex_reg is
+entity id_ex_controller is
     Port ( clk : in STD_LOGIC;
 			  rd1 : in  STD_LOGIC_VECTOR (15 downto 0);
            rd2 : in  STD_LOGIC_VECTOR (15 downto 0);
@@ -37,15 +37,18 @@ entity id_ex_reg is
 			  op	: in	STD_LOGIC_VECTOR (6 downto 0);
 			  to_in1	: out	STD_LOGIC_VECTOR (15 downto 0);
 			  to_in2	: out STD_LOGIC_VECTOR	(15 downto 0);
-			  to_out	: out STD_LOGIC_VECTOR (15 downto 0));
-end id_ex_reg;
+			  to_out	: out STD_LOGIC_VECTOR (15 downto 0);
+			  op_out : out std_logic_vector (6 downto 0));
+end id_ex_controller;
 
-architecture Behavioral of id_ex_reg is
+architecture Behavioral of id_ex_controller is
 	signal data1 : STD_LOGIC_VECTOR (15 downto 0);
 	signal data2 : STD_LOGIC_VECTOR (15 downto 0);
 begin
 
 to_in1 <= rd1;
+
+op_out <= op;
 
 to_in2 <= 
 	rd2 when (op = "0000001" or op = "0000010" or op = "0000011" or op = "0000100") else
